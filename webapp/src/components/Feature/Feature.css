@@ -1,0 +1,163 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #F8F9F9;
+}
+
+.container-top{
+    height: 320px;
+    width: 100%;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.img-backgrou{
+    width: 100%;
+    height: 100%;
+}
+.title{
+    margin-top: -13%;
+    color: #4C5151;
+}
+.col-8{
+    margin: auto;
+    text-align: center;
+}
+/* .title::after{
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 4px;
+    background-color: #55cbe1;
+    top: 40%;
+    bottom: -21px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+} */
+.nav-bar{
+    background-color: white;
+    border: none !important;
+    position: sticky;
+    top: 0;
+    display: flex;
+    padding: 10px;
+    border: 1px solid gray;
+    justify-content: center
+}
+.logo-rikkei{
+ height: 100%;
+ width: 100px;  
+ margin: auto; 
+}
+.nav-content{
+    display: flex;
+    list-style: none;
+    width: 100%;
+}
+.nav-content li{
+ margin: 2%;
+}
+.btn-nut{
+    border: 1px solid #55CBE1;
+    background-color: #55CBE1;
+    color: white;
+    border-radius: 70px;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+}
+.nav-content li:hover{
+    color: #55CBE1;
+}
+.btn-nut:hover{
+    background-color: white;
+    color: #55CBE1;
+    border: 1px solid #55CBE1;
+}
+.letter{
+    color: #55CBE1;
+}
+.toolbar{
+    display: flex;
+    list-style: none;
+   
+}
+.title-content{
+    font-size: 40px;
+    margin-bottom: 10%;
+}
+.transfer{
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #55CBE1;
+}
+.fa-house{
+    color: #55CBE1;
+}
+.nav{
+    margin: 20px;
+}
+.img-content{
+    width: 100%;
+  
+}
+.content{
+    font-size: 22px;
+    color: #4C5151;
+}
+.little{
+    display: flex;
+   width: 100%;
+   margin-top: 10%;
+   padding: 20px;
+   background-color: #EEFAFB;
+   margin-bottom: 20px;
+}
+.little-one{
+    width: 50%;
+}
+.little-one h3{
+    font-size: 15px;
+}
+.little-two{
+width: 50%;
+}
+.little-two p{
+    font-size: 15px;
+}
+
+
+.rectangle{
+    height: 10%;
+    margin-bottom: 10px;
+}
+.img-info{
+    
+    width: 100%;
+    margin: auto;
+}
+.col{
+    text-align: center;
+    display: flex;
+    width: 100% /3;
+    flex-direction: column;
+    margin: 20px;
+    /* margin-top: 2%; */
+    
+}
+.col-8{
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.col-8 p{
+    margin-top: 10px;
+    font-size: 15px;
+}
