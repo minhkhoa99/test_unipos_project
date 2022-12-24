@@ -64,3 +64,14 @@
 .img-title {
   width: 50px;
 }
+.background{
+  background-image: url("https://i.pinimg.com/originals/f4/a2/ac/f4a2ace8e8067689b1aeeb602fa12f0f.jpg");
+  /* background-attachment: fixed; */
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  /* border-radius: 2%; */
+  box-shadow: 0px 16px 24px rgb(0 0 0 / 8%);
+}
