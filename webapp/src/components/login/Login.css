@@ -65,9 +65,11 @@
   width: 50px;
 }
 .background{
-  background-image: url("https://i.pinimg.com/originals/f4/a2/ac/f4a2ace8e8067689b1aeeb602fa12f0f.jpg");
-  /* background-attachment: fixed; */
-  background-position: center;
+  background-image: url("https://64.media.tumblr.com/b2462848cf64801288261f9fae2a49c3/93b1f09fa3725306-15/s1280x1920/839b8bf158551bf849f883393d45a67112770579.jpg");
+  background-attachment: fixed;
+  /* background-position:center; */
+  width: 100%;
+  
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
