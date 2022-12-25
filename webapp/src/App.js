@@ -1,6 +1,6 @@
 import Login from "./components/login/Login.jsx";
 import Register from "./components/register/Register.jsx";
-import { Routes, Route, Navigate } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "../src/assets/css/dashboard/container.css";
 import Homepages from "./pages/Homepages";
 import ContentHome from "./components/Contenthome";
@@ -30,14 +30,14 @@ function App() {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <div>
-      
+        
         <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
           <Route path='/home' element={<Homepages />}></Route>
           <Route
-              path="/myprofile/"
-              // element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
+              path="/myprofile" 
+              // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
               element={<ProfilePage /> }
             />
         </Routes>
