@@ -10,7 +10,7 @@ import {
   import WidgetWrapper from "../../components/WidgetWrapper";
   import { useSelector } from "react-redux";
   import { useEffect, useState } from "react";
-  import { useNavigate } from "react-router-dom";
+  import { Link, useNavigate } from "react-router-dom";
   
 
 function UserWidget({userId, picturePath}) {
@@ -125,33 +125,61 @@ function UserWidget({userId, picturePath}) {
         {/* FOURTH ROW */}
         <Box p="1rem 0">
           <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
-           Về chúng tôi
+           About Us
           </Typography>
   
           <FlexBetween gap="1rem" mb="0.5rem">
             <FlexBetween gap="1rem">
-              <img src="../assets/twitter.png" alt="twitter" />
+            <i className='fa-solid fa-star'></i>
               <Box>
                 <Typography color={main} fontWeight="500">
-                  Twitter
+                <Link to ="/home/history"  style={{textDecoration:"none", color: "rgba(0, 0, 0, 0.87)"}}>Lịch sử Point</Link> 
                 </Typography>
-                <Typography color={medium}>Social Network</Typography>
+                {/* <Typography color={medium}>Hiển thị số point bạn đã nhận</Typography> */}
               </Box>
             </FlexBetween>
-            <EditOutlined sx={{ color: main }} />
           </FlexBetween>
   
-          <FlexBetween gap="1rem">
+          <FlexBetween gap="1rem" mb="0.5rem">
             <FlexBetween gap="1rem">
-              <img src="../assets/linkedin.png" alt="linkedin" />
+            <i className='fa-solid fa-ranking-star'></i>
               <Box>
                 <Typography color={main} fontWeight="500">
-                  Linkedin
+                <Link to ="/home/rank"  style={{textDecoration:"none", color: "rgba(0, 0, 0, 0.87)"}}>Bảng xếp hạng</Link> 
+
                 </Typography>
-                <Typography color={medium}>Network Platform</Typography>
+                {/* <Typography color={medium}>Network Platform</Typography> */}
               </Box>
             </FlexBetween>
-            <EditOutlined sx={{ color: main }} />
+            {/* <EditOutlined sx={{ color: main }} /> */}
+          </FlexBetween>
+
+          <FlexBetween gap="1rem" mb="0.5rem">
+            <FlexBetween gap="1rem">
+            <i className='fa-solid fa-circle-info'></i>
+              <Box>
+                <Typography color={main} fontWeight="500">
+                <Link to ="/home/introduction"  style={{textDecoration:"none", color: "rgba(0, 0, 0, 0.87)"}}>Giới thiệu Web</Link> 
+
+                </Typography>
+                {/* <Typography color={medium}>Network Platform</Typography> */}
+              </Box>
+            </FlexBetween>
+            {/* <EditOutlined sx={{ color: main }} /> */}
+          </FlexBetween>
+
+          <FlexBetween gap="1rem" mb="0.5rem">
+            <FlexBetween gap="1rem" >
+            <i className='fa-solid fa-question'></i>
+              <Box>
+                <Typography color={main} fontWeight="500">
+                <Link to ="/home/support"  style={{textDecoration:"none", color: "rgba(0, 0, 0, 0.87)"}}>Hỗ trợ giải đáp</Link> 
+
+                </Typography>
+                {/* <Typography color={medium}>Network Platform</Typography> */}
+              </Box>
+            </FlexBetween>
+            {/* <EditOutlined sx={{ color: main }} /> */}
           </FlexBetween>
         </Box>
       </WidgetWrapper>);

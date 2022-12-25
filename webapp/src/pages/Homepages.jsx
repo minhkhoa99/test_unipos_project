@@ -3,7 +3,6 @@ import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
 import NavbarHomePage from "./navbarhomepage/NavbarHomePage"
-import SubHeader from "../components/SubHeader";
 import MyPostWidget from "./widgets/MyPostWidget";
 import PostsWidget from "./widgets/PostsWidget";
 import AdvertWidget from "./widgets/AdvertWidget";

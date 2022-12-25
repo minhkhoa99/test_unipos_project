@@ -878,7 +878,10 @@ ul {
 }
 
 /* Totalpoint */
-
+.fa-solid{
+  margin-right: auto ;
+  margin-top: 0px;
+}
 .box-total-point {
   width: 100%;
  

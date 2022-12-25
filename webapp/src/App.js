@@ -3,7 +3,6 @@ import Register from "./components/register/Register.jsx";
 import {BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "../src/assets/css/dashboard/container.css";
 import Homepages from "./pages/Homepages";
-import ContentHome from "./components/Contenthome";
 import { useMemo } from "react";
 import Rank from "./components/Rank";
 import Support from "./components/Support";
@@ -47,7 +46,7 @@ function App() {
       <section className='mv__heading'>
        
         <Routes>
-            <Route path='/home/blog' element={<ContentHome />}></Route>
+            
             <Route path='/home/history' element={<History />}>
               <Route index element={<All />}></Route>
               <Route path='/home/history/all' element={<All />}></Route>

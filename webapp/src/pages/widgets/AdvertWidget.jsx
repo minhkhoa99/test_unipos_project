@@ -12,24 +12,25 @@ const AdvertWidget = () => {
     <WidgetWrapper>
       <FlexBetween>
         <Typography color={dark} variant="h5" fontWeight="500">
-          Sponsored
+         Đề xuất
         </Typography>
-        <Typography color={medium}>Create Ad</Typography>
+        <Typography color={medium}>Quảng cáo</Typography>
       </FlexBetween>
       <img
         width="100%"
         height="auto"
         alt="advert"
-        src="http://localhost:3001/assets/info4.jpeg"
+        src="https://www.gifcen.com/wp-content/uploads/2022/11/goku-gif-14.gif"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
-        <Typography color={main}>MikaCosmetics</Typography>
-        <Typography color={medium}>mikacosmetics.com</Typography>
+        <Typography color={main}>Click ngay</Typography>
+        <Typography color={medium}>rikkei.academy.com</Typography>
       </FlexBetween>
       <Typography color={medium} m="0.5rem 0">
-        Your pathway to stunning and immaculate beauty and made sure your skin
-        is exfoliating skin and shining like light.
+         Trải nghiệm lập trình 6 tháng trở thành lập trình viên chuyên nghiệp với 
+        kiến thức chuyên sâu, đội ngũ giảng viên kinh nghiệm,môi trường thực chiến hiệu Quả
+        mô hình học tập đảo ngược, cam kết việc làm ngay sau khi hoàn thành khóa học.
       </Typography>
     </WidgetWrapper>
   );
