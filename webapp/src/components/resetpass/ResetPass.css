@@ -1,0 +1,35 @@
+.logoRikkei{
+    width: 10%;
+}
+
+.logo-container{
+    padding: 2%;
+    border: 1px solid gray;
+    background-color: #221F20;
+    text-align: center;
+}
+.logo-reset{
+    width: 10%;
+}
+.welcome{
+    font-size: 20px;
+    margin-right: 2%;
+}
+.signin{
+    width: 63%;
+    font-size: 25px;
+    padding: 2%;
+    background-color: #F9FAFB;
+    border: none;
+    color: #7B7C7C;
+}
+
+.login-form-button-repass{
+    width: 63%;
+    height: 15%;
+    background-color: #950102;
+}
+.img-robot{
+    width: 70%;
+    height: 100%;
+}
