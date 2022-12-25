@@ -9,6 +9,7 @@ import { Outlet } from "react-router-dom";
 // import All from "../components/ContentHistory/All";
 import SubHeader from "../components/SubHeader";
 
+
 function Homepages() {
   return (
     <>
@@ -36,6 +37,7 @@ function Homepages() {
               </Route>
               <Route path='/about' element={<About />}></Route>
             </Routes> */}
+           
             <Rightbox />
           </div>
         </div>
