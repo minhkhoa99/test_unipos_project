@@ -47,8 +47,6 @@ function App() {
       <section className='mv__heading'>
        
         <Routes>
-        
-            <Route index element={<ContentHome />}></Route>
             <Route path='/home/blog' element={<ContentHome />}></Route>
             <Route path='/home/history' element={<History />}>
               <Route index element={<All />}></Route>
