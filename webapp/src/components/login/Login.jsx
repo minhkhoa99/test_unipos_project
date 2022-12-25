@@ -9,11 +9,11 @@ import "./Login.css";
 import { signInWithGoogle } from "./firebase";
 import FeatureBottum from "../FeatureFooter/FeatureBottom";
 import HeadingNavbar from "../dashboard/HeadingNavbar";
-// import FlexBetween from "./FlexBetween";
+
 import FormLogin from "./FormLogin";
 
 // import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import FlexBetween from './FlexBetween';
+
 
 const Login = () => {
   const theme = useTheme();
