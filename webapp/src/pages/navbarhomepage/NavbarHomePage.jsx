@@ -24,6 +24,8 @@ import {
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
+import { Link } from "react-router-dom";
+
 const NavbarHomePage =()=>{
     const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
@@ -104,6 +106,11 @@ const NavbarHomePage =()=>{
             <MenuItem value={fullName}>
               <Typography>{fullName}</Typography>
             </MenuItem>
+            
+            <MenuItem >
+           <Typography><Link to ="/editprofile" style={{textDecoration:"none", color: "rgba(0, 0, 0, 0.87)"}}>Chỉnh sửa thông tin cá nhân  </Link></Typography>
+            </MenuItem>
+           
             <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
           </Select>
         </FormControl>
@@ -179,6 +186,7 @@ const NavbarHomePage =()=>{
               <MenuItem value={fullName}>
                 <Typography>{fullName}</Typography>
               </MenuItem>
+             
               <MenuItem onClick={() => dispatch(setLogout())}>
                 Log Out
               </MenuItem>
