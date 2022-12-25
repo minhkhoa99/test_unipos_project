@@ -11,8 +11,12 @@ npm i react-iframe --force --save
 //fix err
 --force hoặc --legacy-peer-deps neu err
 
-Add a .npmrc file with this line in it:
+# 👇 remove node_modules and package-lock.json
+rm -rf node_modules package-lock.json
 
-legacy-peer-deps=true
+# 👇 Clear and verify npm cache
+npm cache clean --force
+npm cache verify
 
-npm audit fix --force`
+# 👇 now run npm install again
+npm install
