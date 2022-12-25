@@ -1,7 +1,18 @@
+npm cache clean --force
 
 
+//thư viện cài
 npm i react-redux @reduxjs/toolkit redux-persist react-dropzone dotenv --force --save
 npm i formik yup react-router-dom@6 @mui/material --force --save
 npm i @emotion/react @emotion/styled  --force --save
 npm i @mui/icons-material --force --save
 npm i react-iframe --force --save
+
+//fix err
+--force hoặc --legacy-peer-deps neu err
+
+Add a .npmrc file with this line in it:
+
+legacy-peer-deps=true
+
+npm audit fix --force`
