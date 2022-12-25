@@ -1,9 +1,10 @@
 import Login from "./components/login/Login.jsx";
 import Register from "./components/register/Register.jsx";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "../src/assets/css/dashboard/container.css";
 import Homepages from "./pages/Homepages";
 import ContentHome from "./components/Contenthome";
+import { useMemo } from "react";
 import Rank from "./components/Rank";
 import Support from "./components/Support";
 import History from "./components/History";
@@ -14,16 +15,39 @@ import Clap from "./components/ContentHistory/Clap";
 import All from "./components/ContentHistory/All";
 import NavbarTab from "./components/dashboard/NavbarTab";
 import FeaturePages from "./components/Feature/FeaturePages";
-
+import ProfilePage from "./pages/profilePage/ProfilePage.jsx";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import "./App.css";
+import { themeSettings } from "./theme";
+import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/UserProfile.jsx";
+import { useSelector } from "react-redux";
+
 
 function App() {
+  const isAuth = Boolean(useSelector((state) => state.token));
+  const mode = useSelector((state) => state.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <div>
-      <section className='mv__heading'>
+      
+        <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Routes>
-          <Route path='/home' element={<Homepages />}>
+          <Route path='/home' element={<Homepages />}></Route>
+          <Route
+              path="/myprofile/"
+              // element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
+              element={<ProfilePage /> }
+            />
+        </Routes>
+         
+          </ThemeProvider>
+        
+      <section className='mv__heading'>
+       
+        <Routes>
+        
             <Route index element={<ContentHome />}></Route>
             <Route path='/home/blog' element={<ContentHome />}></Route>
             <Route path='/home/history' element={<History />}>
@@ -40,14 +64,16 @@ function App() {
               <Route path='/home/history/clap' element={<Clap />}></Route>
             </Route>
             <Route path='/home/about' element={<About />}></Route>
-          </Route>
+        
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
-          
-          <Route path='/profile' element={<UserProfile />} />
+       
+          <Route path='/editprofile' element={<UserProfile />} />
+      
         </Routes>
+        
       </section>
     </div>
   );

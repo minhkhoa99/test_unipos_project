@@ -20,7 +20,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
-  console.log(main);
+  console.log(palette);
 
 
   const getUser = async () => {

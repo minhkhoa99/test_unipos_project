@@ -4,15 +4,19 @@ import { useSelector } from "react-redux";
 
 import NavbarHomePage from "./navbarhomepage/NavbarHomePage"
 import SubHeader from "../components/SubHeader";
-import UserWidget from "./widgets/UserWidget";
 import MyPostWidget from "./widgets/MyPostWidget";
 import PostsWidget from "./widgets/PostsWidget";
 import AdvertWidget from "./widgets/AdvertWidget";
 import FriendListWidget from "./widgets/FriendListWidget";
+import UserWidget from "./widgets/UserWidget";
+
+
 
 function Homepages() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   // const { _id, picturePath } = useSelector((state) => state.user);
+ 
+
   return (
     <>
        <Box>
@@ -26,7 +30,7 @@ function Homepages() {
       >
         <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
           {/* <UserWidget userId={_id} picturePath={picturePath} /> */}
-          <UserWidget />
+       <UserWidget/>
         </Box>
         <Box
           flexBasis={isNonMobileScreens ? "42%" : undefined}

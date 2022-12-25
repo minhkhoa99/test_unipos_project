@@ -5,12 +5,12 @@ function HeadingNavbar() {
     return (   <header className='headerWrap mv__header' id='headerWrap'>
     <div className='header' id='js-header__border'>
       <h1 className='header__logo' id='js-header__logo'>
-        <a className='bottom' href='/'>
+        <Nav.Link className='bottom' href='/'>
           <img
             src='https://upload.wikimedia.org/wikipedia/commons/b/ba/Logo-Rikkei.png'
             alt='Rikkei'
           ></img>
-        </a>
+        </Nav.Link>
       </h1>
       <span className='header__hamberger' id='js-hamberger_open'>
         <span className='header__hambergerLineTopSp'></span>{" "}
