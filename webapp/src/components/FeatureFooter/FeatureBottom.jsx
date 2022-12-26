@@ -5,13 +5,7 @@ function FeatureBottum() {
     <>
       <div className="container-bottom">
         <div className="row">
-          <div className="col-9 img-bottom">
-            <img
-              src="https://tuyendung.rikkeisoft.com/assets/front/images/logoRikkeisoft.png"
-              alt=""
-              className="logoRikkei"
-            />
-          </div>
+          
           <div className="col-10-bottom">
             <div className="title-bottom">
               <h3>Đặc điểm của Rating</h3>
@@ -57,7 +51,13 @@ function FeatureBottum() {
               <p>
                 <b>Chảy cho đến khi giới thiệu</b>
               </p>
+               <img
+              src="https://tuyendung.rikkeisoft.com/assets/front/images/logoRikkeisoft.png"
+              alt=""
+              className="logoRikkei"
+            />
             </div>
+            
           </div>
         </div>
       </div>
@@ -79,6 +79,7 @@ function FeatureBottum() {
             <span className="footerItem_terms">
               <b>Hướng dẫn thương hiệu</b>
             </span>
+           
           </div>
           <div className="footerItem_sns">
             <img

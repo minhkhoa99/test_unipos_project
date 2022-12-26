@@ -1,26 +1,25 @@
 import "./ResetPass.css";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Checkbox, Form, Input } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import FeatureBottum from "../FeatureFooter/FeatureBottom";
 import HeadingNavbar from "../dashboard/HeadingNavbar";
+import { Button, useTheme } from "@mui/material";
+import { Typography } from "@mui/material";
 
 function ResetPass() {
+  const { palette } = useTheme();
+
   return (
     <>
       <div className="resetPass">
         <HeadingNavbar />
         <div className="container">
-          <div className="row">
+          <div className="row resetPass-container">
             <div className="col-6 resetpass">
-              <h3 className="title">
-                Welcome to
-                <img
-                  src="https://tuyendung.rikkeisoft.com/assets/front/images/logoRikkeisoft.png"
-                  alt=""
-                  className="img-title"
-                />
-              </h3>
+              <Typography fontWeight="bold" fontSize="32px" color="primary">
+                Rating App
+              </Typography>
               <Form
                 name="normal_login"
                 className="login-form"
@@ -44,33 +43,43 @@ function ResetPass() {
                   />
                 </Form.Item>
                 <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button resetpassword"
+                  fullWidth
+                  type="submit"
+                  sx={{
+                    m: "2rem 0",
+                    p: "1rem",
+                    backgroundColor: "#00d5fa",
+                    color: "white",
+                    "&:hover": { backgroundColor: palette.error.main },
+                  }}
                 >
-                  <b className="login-title">Reset Password</b>
+                  Reset Password
                 </Button>
               </Form>
-
-              <p>
+              <p className="or-title">
                 <b>Or</b>
               </p>
-              <Link to="/login">
+              <Link
+                to="/login"
+                style={{
+                  textDecoration: "none",
+                }}
+              >
                 <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button-repass"
+                  fullWidth
+                  type="submit"
+                  sx={{
+                    m: "2rem 0",
+                    p: "1rem",
+                    width: "63%",
+                    backgroundColor: "#00d5fa",
+                    color: "white",
+                    "&:hover": { backgroundColor: palette.error.main },
+                  }}
                 >
-                  <b className="login-title">Sign In</b>
+                  SignIn
                 </Button>
               </Link>
-            </div>
-            <div className="col-6">
-              <img
-                src="https://media.istockphoto.com/id/1279772419/vi/vec-to/trang-%C4%91%C3%ADch-minh-h%E1%BB%8Da-thi%E1%BA%BFt-k%E1%BA%BF-m%E1%BB%8Di-ng%C6%B0%E1%BB%9Di-qu%C3%AAn-m%E1%BA%ADt-kh%E1%BA%A9u-c%E1%BB%A7a-c%C3%B4-thi%E1%BA%BFt-k%E1%BA%BF-n%C3%A0y-c%C3%B3-th%E1%BB%83-%C4%91%C6%B0%E1%BB%A3c-s%E1%BB%AD-d%E1%BB%A5ng.jpg?s=1024x1024&w=is&k=20&c=o8B_qYDt9JaNTV_ek28uljpQR98S3KbSZwJKMdkB6Sk="
-                alt=""
-                className="img-robot"
-              />
             </div>
           </div>
         </div>
