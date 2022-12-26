@@ -31,7 +31,24 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path='/home' element={<Homepages />}></Route>
+          <Route path='/home' element={<Homepages />}>\
+
+            <Route path="/home" element={<Blogs />}></Route>
+            <Route path='/home/history' element={<History />}>
+              <Route index element={<All />}></Route>
+              <Route path='/home/history/all' element={<All />}></Route>
+              <Route
+                path='/home/history/sendpoint'
+                element={<Sendpoint />}
+              ></Route>
+              <Route
+                path='/home/history/receivepoint'
+                element={<ReceivePoint />}
+              ></Route>
+              <Route path='/home/history/clap' element={<Clap />}></Route>
+            </Route>
+            <Route path='/home/about' element={<About />}></Route>
+          </Route>
           <Route
             path='/myprofile'
             // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
