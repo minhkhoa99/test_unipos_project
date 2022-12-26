@@ -1293,4 +1293,10 @@ History
   /* color: #19d4d4 !important; */
 }
 
+.page-content{
+  width: 70%;
+}
 
+.table-responsive{
+  text-align: left;
+}

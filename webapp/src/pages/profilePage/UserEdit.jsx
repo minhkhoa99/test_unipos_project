@@ -1,4 +1,5 @@
 import React from "react";
+import Box from "@mui/material";
 import MetaTags from "react-meta-tags";
 import {
   Table,
@@ -16,7 +17,7 @@ import Editable from "react-bootstrap-editable";
 //Import Breadcrumb
 // import Breadcrumbs from "../../components/Common/Breadcrumb";
 
-const UserProfile = () => {
+const UserEdit = () => {
   return (
     <React.Fragment>
       <div className='page-content'>
@@ -30,30 +31,32 @@ const UserProfile = () => {
             <Col>
               <Card>
                 <CardBody>
-                  <CardTitle className='h4'>Inline Example</CardTitle>
-                  <CardSubtitle className='mb-3'>
+                  <CardTitle className='h4'>Chỉnh sửa thông tin</CardTitle>
+                  {/* <CardSubtitle className='mb-3'>
                     This library allows you to create editable elements on your
                     page. It can be used with any engine (bootstrap, jquery-ui,
                     jquery only) and includes both popup and inline modes.
                     Please try out demo to see how it works.
-                  </CardSubtitle>
+                  </CardSubtitle> */}
 
                   <div className='table-responsive'>
                     <Table responsive striped className='table-nowrap mb-0'>
                       <thead>
                         <tr>
-                          <th style={{ width: "50%" }}>Inline</th>
-                          <th>Examples</th>
+                          <th style={{ width: "50%", fontWeight: "bold" }}>
+                            Thông tin
+                          </th>
+                          <th>Chi tiết</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Simple Text Field</td>
+                          <td>Username</td>
                           <td>
                             <Editable
                               alwaysEditing={false}
                               disabled={false}
-                              editText='User'
+                              editText='Siêu nhân Gao'
                               id={null}
                               isValueClickable={false}
                               mode='inline'
@@ -64,14 +67,14 @@ const UserProfile = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td>Empty text field, required</td>
+                          <td>Email</td>
                           <td>
                             <Editable
                               ajax={null}
                               alwaysEditing={false}
                               className={null}
                               disabled={false}
-                              editText='Empty'
+                              editText='bachnx1991@gmail.com'
                               id={null}
                               isValueClickable={false}
                               label={null}
@@ -80,13 +83,13 @@ const UserProfile = () => {
                               onValidated={null}
                               placement='top'
                               showText
-                              type='textfield'
+                              type='email'
                               validate={null}
                             />
                           </td>
                         </tr>
                         <tr>
-                          <td>Select, local array, custom display</td>
+                          <td>Giới tính</td>
                           <td>
                             <Editable
                               ajax={null}
@@ -108,9 +111,8 @@ const UserProfile = () => {
                             />
                           </td>
                         </tr>
-
                         <tr>
-                          <td>Combodate</td>
+                          <td>Ngày Sinh</td>
                           <td>
                             <Editable
                               ajax={null}
@@ -132,14 +134,14 @@ const UserProfile = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td>Textarea, buttons below. Submit by ctrl+enter</td>
+                          <td>Mật khẩu</td>
                           <td>
                             <Editable
                               ajax={null}
                               alwaysEditing={false}
                               className={null}
                               disabled={false}
-                              editText='Awesome User'
+                              editText='******'
                               id={null}
                               isValueClickable={false}
                               label={null}
@@ -148,7 +150,7 @@ const UserProfile = () => {
                               onValidated={null}
                               placement='top'
                               showText
-                              type='textarea'
+                              type='password'
                               validate={null}
                             />
                           </td>
@@ -166,4 +168,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserEdit;
