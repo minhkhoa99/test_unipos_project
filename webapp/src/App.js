@@ -19,9 +19,11 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import "./App.css";
 import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
-import UserProfile from "./pages/UserProfile.jsx";
+import UserProfile from "./pages/profilePage/UserEdit.jsx";
 import { useSelector } from "react-redux";
 import Blogs from "./pages/widgets/Blogs";
+import UserEdit from "./pages/profilePage/UserEdit.jsx";
+import MyProfile from "./pages/profilePage/MyProfile.jsx";
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -54,7 +56,10 @@ function App() {
             path='/myprofile'
             // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
             element={<ProfilePage />}
-          />
+          >
+            <Route path='/myprofile' element={<MyProfile></MyProfile>}></Route>
+            <Route path='/myprofile/edit' element={<UserEdit />}></Route>
+          </Route>
         </Routes>
       </ThemeProvider>
       <section className='mv__heading'>
