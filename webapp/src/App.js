@@ -21,8 +21,9 @@ import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/profilePage/UserEdit.jsx";
 import { useSelector } from "react-redux";
-
-
+import Blogs from "./pages/widgets/Blogs";
+import UserEdit from "./pages/profilePage/UserEdit.jsx";
+import MyProfile from "./pages/profilePage/MyProfile.jsx";
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -65,10 +66,8 @@ function App() {
         <Routes>
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
-       
-          <Route path='/editprofile' element={<UserProfile />} />
-      
         </Routes>
       </section>
     </div>
