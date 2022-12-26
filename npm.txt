@@ -1,7 +1,22 @@
+npm cache clean --force
 
 
+//thư viện cài
 npm i react-redux @reduxjs/toolkit redux-persist react-dropzone dotenv --force --save
 npm i formik yup react-router-dom@6 @mui/material --force --save
 npm i @emotion/react @emotion/styled  --force --save
 npm i @mui/icons-material --force --save
 npm i react-iframe --force --save
+
+//fix err
+--force hoặc --legacy-peer-deps neu err
+
+# 👇 remove node_modules and package-lock.json
+rm -rf node_modules package-lock.json
+
+# 👇 Clear and verify npm cache
+npm cache clean --force
+npm cache verify
+
+# 👇 now run npm install again
+npm install

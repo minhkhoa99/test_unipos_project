@@ -20,6 +20,8 @@ const UserWidget = ({ userId, picturePath }) => {
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
+  console.log(palette);
+
 
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
@@ -128,7 +130,7 @@ const UserWidget = ({ userId, picturePath }) => {
               <Typography color={medium}>Social Network</Typography>
             </Box>
           </FlexBetween>
-          <EditOutlined sx={{ color: main }} />
+          
         </FlexBetween>
 
         <FlexBetween gap="1rem">

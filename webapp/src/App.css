@@ -24,6 +24,7 @@ body {
   margin: 0 auto;
   color: #1f2526;
   word-wrap: break-word;
+  
 }
 .mv {
   /* margin-right: 320px; */
@@ -877,15 +878,16 @@ ul {
 }
 
 /* Totalpoint */
-
+.fa-solid{
+  margin-right: auto ;
+  margin-top: 0px;
+}
 .box-total-point {
   width: 100%;
-  border: 1px solid #c8c9ca;
+ 
   padding-bottom: 2%;
   background-color: white;
-  box-shadow: 11px 10px 13px -8px rgba(185, 35, 41, 0.75);
-  -webkit-box-shadow: 11px 10px 13px -8px rgba(185, 35, 41, 0.75);
-  -moz-box-shadow: 11px 10px 13px -8px rgba(185, 35, 41, 0.75);
+ 
 }
 
 .point {
