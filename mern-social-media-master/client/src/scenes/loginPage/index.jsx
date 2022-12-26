@@ -7,25 +7,26 @@ const LoginPage = () => {
   return (
     <Box>
       <Box
-        width="100%"
+        width='100%'
         backgroundColor={theme.palette.background.alt}
-        p="1rem 6%"
-        textAlign="center"
+        p='1rem 6%'
+        textAlign='center'
       >
-        <Typography fontWeight="bold" fontSize="32px" color="primary">
-          Sociopedia
+        <Typography fontWeight='bold' fontSize='32px' color='primary'>
+          RATING APP
         </Typography>
       </Box>
 
       <Box
         width={isNonMobileScreens ? "50%" : "93%"}
-        p="2rem"
-        m="2rem auto"
-        borderRadius="1.5rem"
+        p='2rem'
+        m='2rem auto'
+        borderRadius='1.5rem'
         backgroundColor={theme.palette.background.alt}
       >
-        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to Socipedia, the Social Media for Sociopaths!
+        <Typography fontWeight='500' variant='h5' sx={{ mb: "1.5rem" }}>
+          Chào mừng bạn đến với Rating App, nơi bạn có thể chia sẻ và trao yêu
+          thường với những người bạn khác
         </Typography>
         <Form />
       </Box>
