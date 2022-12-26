@@ -807,17 +807,9 @@ ul {
   margin-right: 13%;
 }
 
-.voting-symbol {
-  width: 150px;
-  height: 150px;
-  margin-left: 12%;
-  margin-top: 55%;
-}
-
-.voting-symbol img {
-  width: 100%;
-  height: 100%;
-}
+/* .about-text{
+  margin-left: 1%;
+} */
 
 .left-menu a {
   text-decoration: none;
@@ -884,22 +876,22 @@ ul {
 }
 .box-total-point {
   width: 100%;
- 
   padding-bottom: 2%;
   background-color: white;
- 
 }
 
 .point {
   display: flex;
   justify-content: space-between;
-  padding: 3% 5%;
-  /* border: 1px solid red; */
+  padding: 2% 4%;
   font-weight: bold;
 }
 
 .number-star {
   text-align: center;
+}
+.number-star .fa-star{
+  margin-right: 5%;
 }
 
 .link-dashboard {
@@ -1291,3 +1283,5 @@ ul {
   padding-left: 5%;
   /* color: #19d4d4 !important; */
 }
+
+

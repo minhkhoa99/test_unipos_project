@@ -16,7 +16,7 @@ function PointWidget() {
           fontWeight="500"
           sx={{ mb: "1.5rem" }}
         >
-          Poin của bạn
+          Point của bạn
         </Typography>
         <Box display="flex" flexDirection="column" gap="1.5rem">
         <div className='box-total-point'>
@@ -25,7 +25,7 @@ function PointWidget() {
             <div>Point tuần</div>
             <div className='number-star'>
               <span>
-                <i className='fa-solid fa-star'></i>
+                <i className='fa-solid fa-star '></i>
               </span>
               2.000
             </div>
