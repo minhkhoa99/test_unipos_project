@@ -76,7 +76,16 @@ const NavbarHomePage = () => {
         {/* DESKTOP NAV */}
         {isNonMobileScreens ? (
           <FlexBetween gap='2rem'>
+            {/* <IconButton onClick={() => dispatch(setMode())}>
+              {theme.palette.mode === "dark" ? (
+                <DarkMode sx={{ fontSize: "25px" }} />
+              ) : (
+                <LightMode sx={{ color: dark, fontSize: "25px" }} />
+              )}
+            </IconButton> */}
+            <Message sx={{ fontSize: "25px" }} />
             <Notifications sx={{ fontSize: "25px" }} />
+            <Help sx={{ fontSize: "25px" }} />
             <FormControl variant='standard' value={fullName}>
               <Select
                 value={fullName}
@@ -102,7 +111,7 @@ const NavbarHomePage = () => {
                 <MenuItem>
                   <Typography>
                     <Link
-                      to='/editprofile'
+                      to='/myprofile/edit'
                       style={{
                         textDecoration: "none",
                         color: "rgba(0, 0, 0, 0.87)",
