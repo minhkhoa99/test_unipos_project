@@ -21,6 +21,7 @@ import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/UserProfile.jsx";
 import { useSelector } from "react-redux";
+import ResetPass from "./components/resetpass/ResetPass.jsx";
 
 
 function App() {
@@ -64,9 +65,8 @@ function App() {
         
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
-       
+          <Route path="/resetpassword" element={<ResetPass/>} />
           <Route path='/editprofile' element={<UserProfile />} />
       
         </Routes>
