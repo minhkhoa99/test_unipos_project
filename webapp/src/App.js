@@ -21,7 +21,7 @@ import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/UserProfile.jsx";
 import { useSelector } from "react-redux";
-
+import Blogs from "./pages/widgets/Blogs";
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -31,9 +31,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path='/home' element={<Homepages />}>\
-
-            <Route path="/home" element={<Blogs />}></Route>
+          <Route path='/home' element={<Homepages />}>
+            <Route path='/home' element={<Blogs />}></Route>
             <Route path='/home/history' element={<History />}>
               <Route index element={<All />}></Route>
               <Route path='/home/history/all' element={<All />}></Route>
@@ -58,21 +57,6 @@ function App() {
       </ThemeProvider>
       <section className='mv__heading'>
         <Routes>
-          <Route path='/home/history' element={<History />}>
-            <Route index element={<All />}></Route>
-            <Route path='/home/history/all' element={<All />}></Route>
-            <Route
-              path='/home/history/sendpoint'
-              element={<Sendpoint />}
-            ></Route>
-            <Route
-              path='/home/history/receivepoint'
-              element={<ReceivePoint />}
-            ></Route>
-            <Route path='/home/history/clap' element={<Clap />}></Route>
-          </Route>
-          <Route path='/home/about' element={<About />}></Route>
-
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
