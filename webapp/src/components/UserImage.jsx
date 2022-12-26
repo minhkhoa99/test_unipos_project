@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-const UserImage = ({ image, size = "60px" }) => {
+const UserImage = ({ image, size = "50px" }) => {
   return (
     <Box width={size} height={size}>
       <img
@@ -8,7 +8,7 @@ const UserImage = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={`http://localhost:3001/assets/${image}`}
+        src={image!=null ? image : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"}
       />
     </Box>
   );
