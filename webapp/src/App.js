@@ -71,6 +71,9 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
+          <Route path='/nghien-cuu-dien-hinh' element={<CaseStudy />}></Route>
+          <Route path='/chi-phi' element={<PricePage />}></Route>
+          <Route path='/tin-tuc' element={<NewsPage />}></Route>
         </Routes>
       </section>
     </div>
