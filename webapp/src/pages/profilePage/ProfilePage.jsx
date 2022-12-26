@@ -1,11 +1,9 @@
 import { Box, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import NavbarHomePage from "../navbarhomepage/NavbarHomePage";
-import FriendListWidget from "../widgets/FriendListWidget";
-import MyPostWidget from "../widgets/MyPostWidget";
-import PostsWidget from "../widgets/PostsWidget";
+
 import UserWidget from "../widgets/UserWidget";
 
 function ProfilePage() {
@@ -44,19 +42,8 @@ function ProfilePage() {
 
           <Box m='2rem 0' />
           {/* <FriendListWidget userId={userId} /> */}
-          <FriendListWidget />
         </Box>
-        <Box
-          flexBasis={isNonMobileScreens ? "42%" : undefined}
-          mt={isNonMobileScreens ? undefined : "2rem"}
-        >
-          {/* <MyPostWidget picturePath={user.picturePath} /> */}
-          <MyPostWidget />
-
-          <Box m='2rem 0' />
-          {/* <PostsWidget userId={userId} isProfile /> */}
-          <PostsWidget />
-        </Box>
+        <Outlet></Outlet>
       </Box>
     </Box>
   );

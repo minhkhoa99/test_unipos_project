@@ -102,7 +102,7 @@ const NavbarHomePage = () => {
                 <MenuItem>
                   <Typography>
                     <Link
-                      to='/editprofile'
+                      to='/myprofile/edit'
                       style={{
                         textDecoration: "none",
                         color: "rgba(0, 0, 0, 0.87)",
