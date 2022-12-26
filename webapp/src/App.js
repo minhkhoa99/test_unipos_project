@@ -35,7 +35,6 @@ function App() {
         <CssBaseline />
         <Routes>
           <Route path='/home' element={<Homepages />}>\
-
             <Route path="/home" element={<Blogs />}></Route>
             <Route path='/home/history' element={<History />}>
               <Route index element={<All />}></Route>
