@@ -21,15 +21,9 @@ import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/profilePage/UserEdit.jsx";
 import { useSelector } from "react-redux";
-<<<<<<<<< Temporary merge branch 1
-import Blogs from "./pages/widgets/Blogs.jsx";
-import NewsPage from "./pages/newspage/NewsPage.jsx";
-import CaseStudy from "./pages/caseStudy/CaseStudy.jsx";
-=========
-import ResetPass from "./components/resetpass/ResetPass.jsx";
-
-
->>>>>>>>> Temporary merge branch 2
+import Blogs from "./pages/widgets/Blogs";
+import UserEdit from "./pages/profilePage/UserEdit.jsx";
+import MyProfile from "./pages/profilePage/MyProfile.jsx";
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -74,14 +68,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
-<<<<<<<<< Temporary merge branch 1
-          <Route path='/chi-phi' element={<PricePage />} />
-=========
-          <Route path="/resetpassword" element={<ResetPass/>} />
->>>>>>>>> Temporary merge branch 2
-          <Route path='/editprofile' element={<UserProfile />} />
-          <Route path='/tin-tuc' element={<NewsPage />} />
-          <Route path='nghien-cuu-dien-hinh' element={<CaseStudy />} />
+          //
         </Routes>
       </section>
     </div>
