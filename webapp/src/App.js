@@ -1,6 +1,6 @@
 import Login from "./components/login/Login.jsx";
 import Register from "./components/register/Register.jsx";
-import {BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "../src/assets/css/dashboard/container.css";
 import Homepages from "./pages/Homepages";
 import { useMemo } from "react";
@@ -21,17 +21,14 @@ import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/UserProfile.jsx";
 import { useSelector } from "react-redux";
-import Blogs from "./pages/widgets/Blogs.jsx";
-
-
+import Blogs from "./pages/widgets/Blogs";
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <div>
-        
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
           <Route path='/home' element={<Homepages />}>
@@ -49,31 +46,26 @@ function App() {
               ></Route>
               <Route path='/home/history/clap' element={<Clap />}></Route>
             </Route>
+            <Route path='/home/rank' element={<Rank />}></Route>
             <Route path='/home/about' element={<About />}></Route>
+            <Route path='/home/support' element={<Support />}></Route>
           </Route>
           <Route
-              path="/myprofile" 
-              // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
-              element={<ProfilePage /> }
-            />
- 
-
+            path='/myprofile'
+            // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
+            element={<ProfilePage />}
+          />
         </Routes>
-         
-        </ThemeProvider>
-        
+      </ThemeProvider>
       <section className='mv__heading'>
-       
         <Routes>
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
-       
+
           <Route path='/editprofile' element={<UserProfile />} />
-      
         </Routes>
-        
       </section>
     </div>
   );

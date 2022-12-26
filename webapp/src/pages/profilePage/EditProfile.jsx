@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import NavbarHomePage from "../navbarhomepage/NavbarHomePage";
+import UserProfile from "../UserProfile";
 import FriendListWidget from "../widgets/FriendListWidget";
-import MyPostWidget from "../widgets/MyPostWidget";
-import PostsWidget from "../widgets/PostsWidget";
+import UserProfile from "../UserProfile";
 import UserWidget from "../widgets/UserWidget";
 
-function ProfilePage() {
+function EditProfile() {
   const [user, setUser] = useState(null);
   const { userId } = useParams();
   const token = useSelector((state) => state.token);
@@ -51,15 +51,11 @@ function ProfilePage() {
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
           {/* <MyPostWidget picturePath={user.picturePath} /> */}
-          <MyPostWidget />
-
-          <Box m='2rem 0' />
-          {/* <PostsWidget userId={userId} isProfile /> */}
-          <PostsWidget />
+          <UserProfile />
         </Box>
       </Box>
     </Box>
   );
 }
 
-export default ProfilePage;
+export default EditProfile;
