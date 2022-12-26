@@ -46,7 +46,9 @@ function App() {
               ></Route>
               <Route path='/home/history/clap' element={<Clap />}></Route>
             </Route>
+            <Route path='/home/rank' element={<Rank />}></Route>
             <Route path='/home/about' element={<About />}></Route>
+            <Route path='/home/support' element={<Support />}></Route>
           </Route>
           <Route
             path='/myprofile'

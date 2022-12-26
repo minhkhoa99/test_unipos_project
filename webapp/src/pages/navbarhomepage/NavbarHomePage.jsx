@@ -26,7 +26,6 @@ import { useNavigate } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
 import { Link } from "react-router-dom";
 
-
 const NavbarHomePage = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
@@ -53,7 +52,6 @@ const NavbarHomePage = () => {
             onClick={() => navigate("/home")}
             sx={{
               "&:hover": {
-                color: primaryLight,
                 cursor: "pointer",
               },
             }}

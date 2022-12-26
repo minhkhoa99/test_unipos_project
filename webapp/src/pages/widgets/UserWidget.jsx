@@ -108,9 +108,11 @@ function UserWidget({ userId, picturePath }) {
                   style={{
                     textDecoration: "none",
                     color: "rgba(0, 0, 0, 0.87)",
+                    marginLeft: "1.5px",
+                    fontWeight: "bolder",
                   }}
                 >
-                  Lịch sử Point
+                  Lịch sử Sao
                 </Link>
               </Typography>
               {/* <Typography color={medium}>Hiển thị số point bạn đã nhận</Typography> */}
@@ -128,6 +130,7 @@ function UserWidget({ userId, picturePath }) {
                   style={{
                     textDecoration: "none",
                     color: "rgba(0, 0, 0, 0.87)",
+                    fontWeight: "bolder",
                   }}
                 >
                   Bảng xếp hạng
@@ -145,10 +148,12 @@ function UserWidget({ userId, picturePath }) {
             <Box>
               <Typography color={main} fontWeight='500'>
                 <Link
-                  to='/home/introduction'
+                  to='/home/about'
                   style={{
                     textDecoration: "none",
                     color: "rgba(0, 0, 0, 0.87)",
+                    marginLeft: "3px",
+                    fontWeight: "bolder",
                   }}
                 >
                   Giới thiệu Web
@@ -170,6 +175,8 @@ function UserWidget({ userId, picturePath }) {
                   style={{
                     textDecoration: "none",
                     color: "rgba(0, 0, 0, 0.87)",
+                    marginLeft: "9px",
+                    fontWeight: "bolder",
                   }}
                 >
                   <span className='text'>Hỗ trợ giải đáp</span>

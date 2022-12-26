@@ -16,13 +16,13 @@ function PointWidget() {
           fontWeight="500"
           sx={{ mb: "1.5rem" }}
         >
-          Point của bạn
+          Sao của bạn
         </Typography>
         <Box display="flex" flexDirection="column" gap="1.5rem">
         <div className='box-total-point'>
         <div className='point'>
           <div className='week-point'>
-            <div>Point tuần</div>
+            <div>Sao tuần</div>
             <div className='number-star'>
               <span>
                 <i className='fa-solid fa-star '></i>
@@ -31,7 +31,7 @@ function PointWidget() {
             </div>
           </div>
           <div className='month-point'>
-            <div>Point tháng</div>
+            <div>Sao tháng</div>
             <div className='number-star'>
               <span>
                 <i className='fa-solid fa-star'></i>

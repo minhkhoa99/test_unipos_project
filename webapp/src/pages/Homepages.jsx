@@ -17,7 +17,6 @@ function Homepages() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   // const { _id, picturePath } = useSelector((state) => state.user);
  
-
   return (
     <>
       <Box>
@@ -52,7 +51,6 @@ function Homepages() {
             <Box m="2rem 0" />
             <FriendListWidget />
             {/* <FriendListWidget userId={_id} /> */}
-
           </Box>
         )}
       </Box>
