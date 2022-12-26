@@ -34,7 +34,7 @@ function App() {
         <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path='/home' element={<Homepages />}>\
+          <Route path='/home' element={<Homepages />}>
             <Route path="/home" element={<Blogs />}></Route>
             <Route path='/home/history' element={<History />}>
               <Route index element={<All />}></Route>
@@ -65,9 +65,6 @@ function App() {
       <section className='mv__heading'>
        
         <Routes>
-            
-            
-        
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
