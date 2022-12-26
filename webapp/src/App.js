@@ -16,19 +16,14 @@ import NavbarTab from "./components/dashboard/NavbarTab";
 import FeaturePages from "./components/Feature/FeaturePages";
 import ProfilePage from "./pages/profilePage/ProfilePage.jsx";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import PricePage from "./pages/pricePages/PricePage.jsx";
 import "./App.css";
 import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
-import UserProfile from "./pages/UserProfile.jsx";
+// import UserProfile from "./pages/profilePage/UserEdit.jsx";
 import { useSelector } from "react-redux";
-
-import Blogs from "./pages/widgets/Blogs.jsx";
-import NewsPage from "./pages/newspage/NewsPage.jsx";
-import CaseStudy from "./pages/caseStudy/CaseStudy.jsx";
-
 import Blogs from "./pages/widgets/Blogs";
 
+// import MyProfile from "./pages/profilePage/MyProfile.jsx";
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -40,24 +35,31 @@ function App() {
         <Routes>
           <Route path='/home' element={<Homepages />}>
             <Route path='/home' element={<Blogs />}></Route>
+            <Route path='/home/history' element={<History />}>
+              <Route index element={<All />}></Route>
+              <Route path='/home/history/all' element={<All />}></Route>
+              <Route
+                path='/home/history/sendpoint'
+                element={<Sendpoint />}
+              ></Route>
+              <Route
+                path='/home/history/receivepoint'
+                element={<ReceivePoint />}
+              ></Route>
+              <Route path='/home/history/clap' element={<Clap />}></Route>
+            </Route>
+            <Route path='/home/rank' element={<Rank />}></Route>
+            <Route path='/home/about' element={<About />}></Route>
+            <Route path='/home/support' element={<Support />}></Route>
           </Route>
-
-          <Route path='/home/history' element={<History />}>
-            <Route index element={<All />}></Route>
-            <Route path='/home/history/all' element={<All />}></Route>
-            <Route
-              path='/home/history/sendpoint'
-              element={<Sendpoint />}
-            ></Route>
-            <Route
-              path='/home/history/receivepoint'
-              element={<ReceivePoint />}
-            ></Route>
-            <Route path='/home/history/clap' element={<Clap />}></Route>
+          <Route
+            path='/myprofile'
+            // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
+            element={<ProfilePage />}
+          >
+            {/* <Route path='/myprofile' element={<MyProfile></MyProfile>}></Route> */}
+            {/* <Route path='/myprofile/edit' element={<UserEdit />}></Route> */}
           </Route>
-          <Route path='/home/rank' element={<Rank />}></Route>
-          <Route path='/home/about' element={<About />}></Route>
-          <Route path='/home/support' element={<Support />}></Route>
         </Routes>
       </ThemeProvider>
       <section className='mv__heading'>
@@ -66,13 +68,6 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
-
-          <Route path='/chi-phi' element={<PricePage />} />
-          <Route path='/editprofile' element={<UserProfile />} />
-          <Route path='/tin-tuc' element={<NewsPage />} />
-          <Route path='nghien-cuu-dien-hinh' element={<CaseStudy />} />
-
-          <Route path='/editprofile' element={<UserProfile />} />
         </Routes>
       </section>
     </div>
