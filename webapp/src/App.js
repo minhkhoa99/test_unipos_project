@@ -21,6 +21,7 @@ import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/UserProfile.jsx";
 import { useSelector } from "react-redux";
+import Blogs from "./pages/widgets/Blogs.jsx";
 
 
 function App() {
@@ -33,20 +34,9 @@ function App() {
         <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path='/home' element={<Homepages />}></Route>
-          <Route
-              path="/myprofile" 
-              // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
-              element={<ProfilePage /> }
-            />
-        </Routes>
-         
-          </ThemeProvider>
-        
-      <section className='mv__heading'>
-       
-        <Routes>
-            
+          <Route path='/home' element={<Homepages />}>\
+
+            <Route path="/home" element={<Blogs />}></Route>
             <Route path='/home/history' element={<History />}>
               <Route index element={<All />}></Route>
               <Route path='/home/history/all' element={<All />}></Route>
@@ -61,6 +51,23 @@ function App() {
               <Route path='/home/history/clap' element={<Clap />}></Route>
             </Route>
             <Route path='/home/about' element={<About />}></Route>
+          </Route>
+          <Route
+              path="/myprofile" 
+              // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
+              element={<ProfilePage /> }
+            />
+ 
+
+        </Routes>
+         
+        </ThemeProvider>
+        
+      <section className='mv__heading'>
+       
+        <Routes>
+            
+            
         
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
