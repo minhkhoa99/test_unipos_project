@@ -1,9 +1,11 @@
 import React from "react";
+import WidgetWrapper from "../components/WidgetWrapper";
+import rank from "../assets/image/rank.jpg";
 import All from "./ContentHistory/All";
 
 function Intro() {
   return (
-    <div className='intro'>
+    <WidgetWrapper>
       <h1>ỨNG DỤNG RATING</h1>
       <div className='intro-content'>
         {" "}
@@ -19,13 +21,18 @@ function Intro() {
           <All />
         </div>
       </div>
-      <div className='intro-content'>
-        <h4>Hệ thống Bảng xếp hạng</h4>
+      <div className='intro-content-rank'>
+        <div>
+          <h4>Hệ thống Xếp hạng</h4>
+        </div>
+        <div className='intro-rank'>
+          <img src={rank} alt='rank' />
+        </div>
       </div>
       <div className='intro-content'>
         <h4>Hệ thống Chat trực tuyến</h4>
       </div>
-    </div>
+    </WidgetWrapper>
   );
 }
 
