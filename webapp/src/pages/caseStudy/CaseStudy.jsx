@@ -1,9 +1,8 @@
 import HeadingNavbar from "../../components/dashboard/HeadingNavbar";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
-import price from "../../assets/image/price.png";
+import Image from "../../assets/image/nghiencuudienhinh.png";
 import FreatureBottom from "../../components/FeatureFooter/FeatureBottom";
-function PricePage() {
+
+function CaseStudy() {
   return (
     <>
       <HeadingNavbar />
@@ -13,7 +12,7 @@ function PricePage() {
           alt=''
           className='img-backgrou'
         />
-        <h1 className='title'>Cơ cấu chi phí</h1>
+        <h1 className='title'>Nghiên cứu điển hình</h1>
       </div>
       <div className='nav'>
         <ul className='toolbar'>
@@ -22,15 +21,16 @@ function PricePage() {
             <i class='fa-solid fa-house'></i> Trang Chủ{" "}
             <b className='transfer'></b>
           </li>
-          <li>Cơ cấu chi phí</li>
+          <li>Nghiên cứu điển hình</li>
         </ul>
       </div>
+      <div></div>
       <div>
-        <img src={price} alt='' style={{ width: "80%", marginLeft: "10%" }} />
+        <img src={Image} alt='' style={{ width: "80%", marginLeft: "10%" }} />
       </div>
       <FreatureBottom />
     </>
   );
 }
 
-export default PricePage;
+export default CaseStudy;

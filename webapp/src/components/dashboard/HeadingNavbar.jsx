@@ -33,9 +33,12 @@ function HeadingNavbar() {
             <Navbar.Collapse id='basic-navbar-nav'>
               <Nav className='me-auto'>
                 <Nav.Link href='/gioi-thieu'>Giới thiệu</Nav.Link>
-                <Nav.Link href='#link'> Nghiên cứu điển hình</Nav.Link>
+                <Nav.Link href='nghien-cuu-dien-hinh'>
+                  {" "}
+                  Nghiên cứu điển hình
+                </Nav.Link>
                 <Nav.Link href='/chi-phi'> Cơ cấu chi phí</Nav.Link>
-                <Nav.Link to='/tin-tuc'>Tin tức</Nav.Link>
+                <Nav.Link href='/tin-tuc'>Tin tức</Nav.Link>
 
                 <Nav.Link href='/login'>Đăng nhập</Nav.Link>
               </Nav>

@@ -23,6 +23,8 @@ import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/UserProfile.jsx";
 import { useSelector } from "react-redux";
 import Blogs from "./pages/widgets/Blogs.jsx";
+import NewsPage from "./pages/newspage/NewsPage.jsx";
+import CaseStudy from "./pages/caseStudy/CaseStudy.jsx";
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -66,6 +68,8 @@ function App() {
           <Route path='/gioi-thieu' element={<FeaturePages />} />
           <Route path='/chi-phi' element={<PricePage />} />
           <Route path='/editprofile' element={<UserProfile />} />
+          <Route path='/tin-tuc' element={<NewsPage />} />
+          <Route path='nghien-cuu-dien-hinh' element={<CaseStudy />} />
         </Routes>
       </section>
     </div>
