@@ -3,12 +3,13 @@ import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
 import NavbarHomePage from "./navbarhomepage/NavbarHomePage"
-import MyPostWidget from "./widgets/MyPostWidget";
-import PostsWidget from "./widgets/PostsWidget";
+// import MyPostWidget from "./widgets/MyPostWidget";
+// import PostsWidget from "./widgets/PostsWidget";
 import AdvertWidget from "./widgets/AdvertWidget";
 import FriendListWidget from "./widgets/FriendListWidget";
 import UserWidget from "./widgets/UserWidget";
 import PointWidget from "./widgets/PointWidget";
+import { Outlet } from "react-router";
 
 
 
@@ -19,8 +20,8 @@ function Homepages() {
 
   return (
     <>
-       <Box>
-      <NavbarHomePage />
+      <Box>
+        <NavbarHomePage />
       <Box
         width="100%"
         padding="2rem 6%"
@@ -36,12 +37,12 @@ function Homepages() {
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          <MyPostWidget />
+          {/* <MyPostWidget /> */}
           {/* <MyPostWidget picturePath={picturePath} /> */}
 
           {/* <PostsWidget userId={_id} /> */}
-          <PostsWidget />
-
+          {/* <PostsWidget /> */}
+          <Outlet></Outlet>
         </Box>
         
         {isNonMobileScreens && (
