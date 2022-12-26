@@ -22,9 +22,13 @@ import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/UserProfile.jsx";
 import { useSelector } from "react-redux";
+
 import Blogs from "./pages/widgets/Blogs.jsx";
 import NewsPage from "./pages/newspage/NewsPage.jsx";
 import CaseStudy from "./pages/caseStudy/CaseStudy.jsx";
+
+import Blogs from "./pages/widgets/Blogs";
+
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -38,11 +42,6 @@ function App() {
             <Route path='/home' element={<Blogs />}></Route>
           </Route>
 
-          <Route
-            path='/myprofile'
-            // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
-            element={<ProfilePage />}
-          />
           <Route path='/home/history' element={<History />}>
             <Route index element={<All />}></Route>
             <Route path='/home/history/all' element={<All />}></Route>
@@ -56,20 +55,24 @@ function App() {
             ></Route>
             <Route path='/home/history/clap' element={<Clap />}></Route>
           </Route>
+          <Route path='/home/rank' element={<Rank />}></Route>
           <Route path='/home/about' element={<About />}></Route>
+          <Route path='/home/support' element={<Support />}></Route>
         </Routes>
       </ThemeProvider>
-
       <section className='mv__heading'>
         <Routes>
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
+
           <Route path='/chi-phi' element={<PricePage />} />
           <Route path='/editprofile' element={<UserProfile />} />
           <Route path='/tin-tuc' element={<NewsPage />} />
           <Route path='nghien-cuu-dien-hinh' element={<CaseStudy />} />
+
+          <Route path='/editprofile' element={<UserProfile />} />
         </Routes>
       </section>
     </div>

@@ -370,31 +370,27 @@ ul {
   background-color: #f0f2f5;
 }
 
-/* History */
-.history {
+History .history {
   display: flex;
   background-color: #f0f2f5;
   padding: 0% 0% 0% 2%;
 }
 
-.history-content {
-  width: 100%;
-}
-
-.nav-item {
-  margin-left: 2%;
+.nav {
+  justify-content: space-around;
 }
 
 .nav-item a {
   text-decoration: none;
-
   /* font-size: large; */
   font-weight: bold;
+  font-size: larger;
+  color: #00d5fa;
 }
 
 .nav-item a.active {
-  color: #0d6efd;
-  border-bottom: 2px solid #0d6efd;
+  color: #00d5fa;
+  border-bottom: 2px solid #00d5fa;
 }
 
 /* Content home */
@@ -804,18 +800,6 @@ ul {
   margin-right: 13%;
 }
 
-.voting-symbol {
-  width: 150px;
-  height: 150px;
-  margin-left: 12%;
-  margin-top: 55%;
-}
-
-.voting-symbol img {
-  width: 100%;
-  height: 100%;
-}
-
 .left-menu a {
   text-decoration: none;
   color: black;
@@ -879,9 +863,9 @@ ul {
   margin-right: auto;
   margin-top: 0px;
 }
+
 .box-total-point {
   width: 100%;
-
   padding-bottom: 2%;
   background-color: white;
 }
@@ -889,13 +873,15 @@ ul {
 .point {
   display: flex;
   justify-content: space-between;
-  padding: 3% 5%;
-  /* border: 1px solid red; */
+  padding: 2% 4%;
   font-weight: bold;
 }
 
 .number-star {
   text-align: center;
+}
+.number-star .fa-star {
+  margin-right: 5%;
 }
 
 .link-dashboard {
@@ -997,7 +983,7 @@ ul {
 /* All*/
 .all {
   width: 100%;
-  border: 2px solid #b92329;
+  border: 2px solid #00d5fa;
   margin-top: 2%;
   padding: 2% 2%;
   background-color: #ffffff;
@@ -1088,7 +1074,6 @@ ul {
 .intro-content {
   display: flex;
   height: 100%;
-  /* border: 1px solid red; */
   background-color: white;
   border-radius: 15px;
   margin-bottom: 2%;
@@ -1096,7 +1081,6 @@ ul {
 
 .intro-content-left {
   width: 35%;
-  /* border: 1px solid blue; */
   padding: 2% 1% 0% 1%;
 }
 
@@ -1109,8 +1093,25 @@ ul {
 .intro-content-right {
   width: 90%;
   padding: 0% 1%;
-  /* border: 1px solid red; */
   margin: auto;
+}
+
+.intro-content {
+  height: 100%;
+  background-color: white;
+  border-radius: 15px;
+  margin-bottom: 2%;
+}
+
+.intro-rank {
+  width: 40%;
+  height: 40%;
+  margin: auto;
+}
+
+.intro-rank img {
+  width: 100%;
+  height: 100%;
 }
 
 /* Modal post */
@@ -1142,6 +1143,7 @@ ul {
 .left-menu .a {
   color: black;
 }
+
 /* User Profile */
 .user-profile {
   display: flex;
@@ -1287,6 +1289,7 @@ ul {
   padding-left: 5%;
   /* color: #19d4d4 !important; */
 }
+
 .banner {
   text-align: center;
 }
