@@ -24,6 +24,9 @@ import { useSelector } from "react-redux";
 import Blogs from "./pages/widgets/Blogs";
 import UserEdit from "./pages/profilePage/UserEdit.jsx";
 import MyProfile from "./pages/profilePage/MyProfile.jsx";
+import CaseStudy from './pages/caseStudy/CaseStudy';
+import PricePage from './pages/pricePages/PricePage';
+import NewsPage from './pages/newspage/NewsPage';
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -68,7 +71,6 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
-          //
         </Routes>
       </section>
     </div>

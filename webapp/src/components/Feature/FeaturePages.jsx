@@ -19,7 +19,7 @@ function FeaturePages() {
         <ul className='toolbar'>
           <li>
             {" "}
-            <i class='fa-solid fa-house'></i> Trang Đầu{" "}
+            <i class='fa-solid fa-house'></i> Trang Chủ{" "}
             <b className='transfer'></b>
           </li>
           <li>Đặc điểm của Rating App</li>
