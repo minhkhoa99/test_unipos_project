@@ -1,12 +1,23 @@
-.logoRikkei{
-    width: 10%;
-}
 
 .logo-container{
     padding: 2%;
     border: 1px solid gray;
     background-color: #221F20;
     text-align: center;
+}
+.mv__heading{
+    background-image: url("https://64.media.tumblr.com/3d62dedb5a37c6692861b8c8d665c262/2ada355e5789475b-c6/s640x960/f9d19c10b8255b998245e09aeba485d74b2ac49a.gif");
+    background-attachment: fixed;
+    /* background-position:center; */
+    width: 100%;
+    
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    /* border-radius: 2%; */
+    box-shadow: 0px 16px 24px rgb(0 0 0 / 8%);
+
 }
 .logo-reset{
     width: 10%;
@@ -23,13 +34,30 @@
     border: none;
     color: #7B7C7C;
 }
+.resetPass-container{
+    background-color: none;
+}
 
 .login-form-button-repass{
     width: 63%;
     height: 15%;
-    background-color: #950102;
+    background-color: #00D5FA;
 }
+
 .img-robot{
     width: 70%;
+    height: 100%;
+}
+.resetpass{
+    margin: auto;
+    background-color: none;
+}
+.ant-btn{
+    height: 50px;
+}
+.or-title{
+   color: white;
+}
+.input{
     height: 100%;
 }
