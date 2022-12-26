@@ -67,26 +67,24 @@ const UserEdit = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td>Email</td>
+                          <td>Avatar</td>
                           <td>
                             <Editable
-                              ajax={null}
                               alwaysEditing={false}
-                              className={null}
                               disabled={false}
-                              editText='bachnx1991@gmail.com'
+                              editText='Siêu nhân Gao'
                               id={null}
                               isValueClickable={false}
-                              label={null}
                               mode='inline'
-                              onSubmit={null}
-                              onValidated={null}
                               placement='top'
                               showText
-                              type='email'
-                              validate={null}
+                              type='textfield'
                             />
                           </td>
+                        </tr>
+                        <tr>
+                          <td>Email</td>
+                          <td>bachnx1991@gmail.com</td>
                         </tr>
                         <tr>
                           <td>Giới tính</td>
@@ -96,7 +94,7 @@ const UserEdit = () => {
                               alwaysEditing={false}
                               className={null}
                               disabled={false}
-                              editText='male'
+                              editText='Male'
                               id={null}
                               isValueClickable={false}
                               label={null}
@@ -119,7 +117,7 @@ const UserEdit = () => {
                               alwaysEditing={false}
                               className={null}
                               disabled={false}
-                              editText='Enter Date'
+                              editText='26/09/1991'
                               id={null}
                               isValueClickable={false}
                               label={null}
