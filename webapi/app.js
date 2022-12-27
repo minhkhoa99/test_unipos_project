@@ -22,7 +22,7 @@ app.use(cors());
   await db.sequelize.sync();
 })();
 
-app.use("/users", users);
+app.use("/users", user);
 app.use("/auth", auth);
 app.use("/blog", blogs);
 

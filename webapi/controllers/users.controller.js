@@ -6,11 +6,8 @@ module.exports.createUser = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.Password, salt);
     console.log(hash);
-<<<<<<< HEAD
-    const userDetails = new db.models.Users.create({
-=======
     const userDetails = await db.models.Users.create({
->>>>>>> origin/feature-frontend-thong
+
       ...req.body,
       password: hash,
     });
@@ -27,24 +24,23 @@ module.exports.createUser = async (req, res) => {
     //   referralCode: req.body.ReferralCode,
     //   Status: req.body.Status,
     // });
-<<<<<<< HEAD
+
     console.log(userDetails);
-=======
+
     // console.log(userDetails);
->>>>>>> origin/feature-frontend-thong
+
     res.status(200).send({
       status: 200,
       message: "Success",
       data: "data",
     });
   } catch (error) {
-<<<<<<< HEAD
     console.log("hello");
     console.log(error.errors[0].message);
-=======
+
     // console.log(error);
     // console.log(error.errors[0].message);
->>>>>>> origin/feature-frontend-thong
+
     return res.status(400).send({
       message: "Unable to insert data",
       error: error,
