@@ -26,6 +26,7 @@ const registerSchema = yup.object().shape({
     .email("invalid email")
     .required("Email cannot be empty !!"),
   password: yup.string().required("Password cannot be empty !!"),
+  repassword: yup.string().required("Password cannot be empty !!"),
 });
 const loginSchema = yup.object().shape({
   email: yup
@@ -33,6 +34,7 @@ const loginSchema = yup.object().shape({
     .email("invalid email")
     .required("Email cannot be empty !!"),
   password: yup.string().required("Password cannot be empty !!"),
+  repassword: yup.string().required("Password cannot be empty !!"),
 });
 
 const initialValuesRegister = {
@@ -40,11 +42,13 @@ const initialValuesRegister = {
   lastName: "",
   email: "",
   password: "",
+  repassword: "",
 };
 
 const initialValuesLogin = {
   email: "",
   password: "",
+  repassword: "",
 };
 function FormLogin() {
   const [pageType, setPageType] = useState("login");
@@ -108,8 +112,9 @@ function FormLogin() {
       let lastName = values.target[2].value;
       let email = values.target[4].value;
       let pass = values.target[6].value;
+      let repass = values.target[8].value;
 
-      console.log(firstName, lastName, email, pass);
+      console.log(firstName, lastName, email, pass, repass);
       const data = {
         id: null,
         username: firstName + lastName,
@@ -122,33 +127,41 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-      fetch("http://localhost:5000/user", {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.message === "Success") {
-            Swal.fire(
-              "Register Successful!",
-              "Logged in successfully!",
-              "success"
-            );
-            window.location.href = "http://localhost:8800/login";
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Incorrect email or password!",
-            });
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
+      if (pass !== repass) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Password does not match !!",
         });
+      } else {
+        fetch("http://localhost:5000/user", {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.message === "Success") {
+              Swal.fire(
+                "Register Successful!",
+                "Logged in successfully!",
+                "success"
+              );
+              // window.location.href = "http://localhost:8800/login";
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Incorrect email or password!",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
     }
   };
 
@@ -191,6 +204,7 @@ function FormLogin() {
                     helperText={touched.firstName && errors.firstName}
                     sx={{ gridColumn: "span 2" }}
                   />
+
                   <TextField
                     label="Last Name"
                     onBlur={handleBlur}
@@ -203,31 +217,74 @@ function FormLogin() {
                     helperText={touched.lastName && errors.lastName}
                     sx={{ gridColumn: "span 2" }}
                   />
+                  <TextField
+                    label="Email"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.email}
+                    name="email"
+                    error={Boolean(touched.email) && Boolean(errors.email)}
+                    helperText={touched.email && errors.email}
+                    sx={{ gridColumn: "span 4" }}
+                  />
+
+                  <TextField
+                    label="Password"
+                    type="password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.password}
+                    name="password"
+                    error={
+                      Boolean(touched.password) && Boolean(errors.password)
+                    }
+                    helperText={touched.password && errors.password}
+                    sx={{ gridColumn: "span 4" }}
+                  />
+                  <TextField
+                    label="Enter the Password"
+                    type="password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.repassword}
+                    name="repassword"
+                    error={
+                      Boolean(touched.repassword) && Boolean(errors.repassword)
+                    }
+                    helperText={touched.repassword && errors.repassword}
+                    sx={{ gridColumn: "span 4" }}
+                  />
                 </>
               )}
-              <TextField
-                label="Email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={Boolean(touched.email) && Boolean(errors.email)}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                label="Password"
-                type="password"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.password}
-                name="password"
-                error={Boolean(touched.password) && Boolean(errors.password)}
-                helperText={touched.password && errors.password}
-                sx={{ gridColumn: "span 4" }}
-              />
-              
+              {isLogin && (
+                <>
+                  <TextField
+                    label="Email"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.email}
+                    name="email"
+                    error={Boolean(touched.email) && Boolean(errors.email)}
+                    helperText={touched.email && errors.email}
+                    sx={{ gridColumn: "span 4" }}
+                  />
+                  <TextField
+                    label="Password"
+                    type="password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.password}
+                    name="password"
+                    error={
+                      Boolean(touched.password) && Boolean(errors.password)
+                    }
+                    helperText={touched.password && errors.password}
+                    sx={{ gridColumn: "span 4" }}
+                  />
+                </>
+              )}
             </Box>
+
             <Box>
               <Button
                 fullWidth
