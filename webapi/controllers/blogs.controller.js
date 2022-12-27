@@ -20,7 +20,9 @@ module.exports.createBlog = async (req, res) => {
 
 module.exports.getAllBlog = async (req, res) => {
   try {
-    const blogs = await db.models.Blogs.findAll();
+    const blogs = await db.models.Blogs.findAll({
+      order: [["id", "DESC"]],
+    });
     res.status(200).send({
       status: 200,
       message: "Success",
