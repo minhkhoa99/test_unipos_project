@@ -79,7 +79,7 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-      fetch("http://localhost:5000/auth", {
+      fetch("http://localhost:3000/auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +132,7 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-      fetch("http://localhost:5000/user", {
+      fetch("http://localhost:3000/user", {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
