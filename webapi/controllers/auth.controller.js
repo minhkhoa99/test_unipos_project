@@ -17,6 +17,7 @@ module.exports.signin = async (req, res, next) => {
       });
     }
 
+<<<<<<< HEAD
     bcrypt.compare(req.body.Password, user.Password, function (err, res) {
       if (err) {
         res.status(err.status(500).json({ message: "Server err" }));
@@ -27,6 +28,20 @@ module.exports.signin = async (req, res, next) => {
         console.log("Dung");
       }
     });
+=======
+    const check = bcrypt.compare(req.body.Password, user.Password);
+    console.log(check);
+  
+    if (check) {
+      res.status(200).send({
+        message: "login success",
+      });
+    } else {
+      res.status(404).send({
+        message: "error",
+      });
+    }
+>>>>>>> origin/feature-frontend-thong
 
     // if (!isCorrect) {
     //   res.status(404).send({

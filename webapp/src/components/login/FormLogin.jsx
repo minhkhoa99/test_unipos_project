@@ -18,7 +18,6 @@ import FlexBetween from "../../components/FlexBetween";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("FirstName cannot be empty !!"),
   lastName: yup.string().required("LastName cannot be empty !!"),
@@ -54,8 +53,6 @@ const initialValuesLogin = {
   password: "",
 };
 function FormLogin() {
- 
-
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
   // const dispatch = useDispatch();
@@ -64,51 +61,53 @@ function FormLogin() {
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
-
   const handleSubmit = (values) => {
-    if(isLogin){
+    if (isLogin) {
       values.preventDefault();
       let email = values.target[0].value;
       let pass = values.target[2].value;
       console.log(email, pass);
-     const data = {
-      id: null,
-      username: null,
-      Email: email,
-      Password: pass,
-      DOB: null,
-      Gender: null,
-      Avata: null,
-      Level: null,
-      referralCode: null,
-      Status: null,
-    };
-    fetch("http://localhost:5000/auth", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message === "login success") {
-          Swal.fire("Login Successful!", "Logged in successfully!", "success");
-          window.location.href = "http://localhost:8800/home";
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Incorrect email or password!",
-          });
-        }
-        console.log(data);
+      const data = {
+        id: null,
+        username: null,
+        Email: email,
+        Password: pass,
+        DOB: null,
+        Gender: null,
+        Avata: null,
+        Level: null,
+        referralCode: null,
+        Status: null,
+      };
+      fetch("http://localhost:5000/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-
-    } else if(isRegister){
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message === "login success") {
+            Swal.fire(
+              "Login Successful!",
+              "Logged in successfully!",
+              "success"
+            );
+            window.location.href = "http://localhost:8800/home";
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Incorrect email or password!",
+            });
+          }
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } else if (isRegister) {
       values.preventDefault();
       console.log(values);
       let firstName = values.target[0].value;
@@ -119,7 +118,6 @@ function FormLogin() {
       let email = values.target[9].value;
       let pass = values.target[11].value;
       const id = Math.floor(Math.random() * 100);
-
 
       console.log(firstName, lastName, occupation, picture, email, pass);
       const data = {
@@ -135,30 +133,33 @@ function FormLogin() {
         Status: null,
       };
       fetch("http://localhost:5000/user", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message === "Success") {
-          Swal.fire("Register Successful!", "Logged in successfully!", "success");
-          window.location.href = "http://localhost:8800/login";
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Incorrect email or password!",
-          });
-        }
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message === "Success") {
+            Swal.fire(
+              "Register Successful!",
+              "Logged in successfully!",
+              "success"
+            );
+            window.location.href = "http://localhost:8800/login";
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Incorrect email or password!",
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
-    
   };
 
   return (
@@ -177,7 +178,6 @@ function FormLogin() {
           setFieldValue,
           resetForm,
         }) => (
-          
           <form onSubmit={handleSubmit}>
             <Box
               display="grid"
@@ -225,7 +225,7 @@ function FormLogin() {
                     helperText={touched.location && errors.location}
                     sx={{ gridColumn: "span 4" }}
                   />
-                  
+
                   <Box
                     gridColumn="span 4"
                     border={`1px solid `}
