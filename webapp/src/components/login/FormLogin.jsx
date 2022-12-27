@@ -113,13 +113,12 @@ function FormLogin() {
       let firstName = values.target[0].value;
       let lastName = values.target[2].value;
       let gender = values.target[4].value;
-      let occupation = values.target[6].value;
-      let picture = values.target[8].value;
-      let email = values.target[9].value;
-      let pass = values.target[11].value;
+      let picture = values.target[6].value;
+      let email = values.target[7].value;
+      let pass = values.target[9].value;
       const id = Math.floor(Math.random() * 100);
 
-      console.log(firstName, lastName, occupation, picture, email, pass);
+      console.log(firstName, lastName,  picture, email, pass);
       const data = {
         id: id,
         username: firstName + lastName,
