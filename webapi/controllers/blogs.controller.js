@@ -2,20 +2,6 @@ const db = require("../database/models/index");
 
 module.exports.createBlog = async (req, res) => {
   console.log(req.body);
-  // let id = Number(req.body.id)
-  // let content = req.body.Content
-  // let userId = 1
-  // console.log(db);
-  // db.execute("INSERT INTO blogs VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [id,content,null,null,null,null,null,null,null,null,null,userId])
-  // .then(() => {
-  //   // let [row] = data;
-  //   // console.log(data);
-  //   res.status(200).json({
-  //       message2:"create one successfully",
-  //       status:"success"
-  //   })
-  // })
-  // .catch((err) => console.log(err))
   try {
     const blogDetails = await db.models.Blogs.create({ ...req.body });
     res.status(200).send({
