@@ -3,13 +3,13 @@ const bcrypt = require("bcryptjs");
 
 module.exports.createUser = async (req, res) => {
   try {
+    const passFontend = req.body.Password;
     const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(req.body.Password, salt);
-    console.log(hash);
+    const hash = await bcrypt.hashSync(passFontend, salt);
     const userDetails = await db.models.Users.create({
 
       ...req.body,
-      password: hash,
+      Password: hash,
     });
 
     // const userDetails = await db.models.Users.create({

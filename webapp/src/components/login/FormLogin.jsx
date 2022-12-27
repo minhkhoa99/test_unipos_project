@@ -26,9 +26,6 @@ const registerSchema = yup.object().shape({
     .email("invalid email")
     .required("Email cannot be empty !!"),
   password: yup.string().required("Password cannot be empty !!"),
-  location: yup.string().required("Location cannot be empty !!"),
-  occupation: yup.string().required("Occupation cannot be empty !!"),
-  picture: yup.string().required("picture cannot be empty !!"),
 });
 const loginSchema = yup.object().shape({
   email: yup
@@ -43,9 +40,6 @@ const initialValuesRegister = {
   lastName: "",
   email: "",
   password: "",
-  location: "",
-  occupation: "",
-  picture: "",
 };
 
 const initialValuesLogin = {
@@ -112,22 +106,18 @@ function FormLogin() {
       console.log(values);
       let firstName = values.target[0].value;
       let lastName = values.target[2].value;
-      let gender = values.target[4].value;
-      let occupation = values.target[6].value;
-      let picture = values.target[8].value;
-      let email = values.target[9].value;
-      let pass = values.target[11].value;
-      const id = Math.floor(Math.random() * 100);
+      let email = values.target[4].value;
+      let pass = values.target[6].value;
 
-      console.log(firstName, lastName, occupation, picture, email, pass);
+      console.log(firstName, lastName, email, pass);
       const data = {
-        id: id,
+        id: null,
         username: firstName + lastName,
         Email: email,
         Password: pass,
         DOB: null,
-        Gender: gender,
-        Avata: picture,
+        Gender: null,
+        Avata: null,
         Level: null,
         referralCode: null,
         Status: null,
@@ -213,52 +203,6 @@ function FormLogin() {
                     helperText={touched.lastName && errors.lastName}
                     sx={{ gridColumn: "span 2" }}
                   />
-                  <TextField
-                    label="Gender"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.location}
-                    name="gender"
-                    error={
-                      Boolean(touched.location) && Boolean(errors.location)
-                    }
-                    helperText={touched.location && errors.location}
-                    sx={{ gridColumn: "span 4" }}
-                  />
-
-                  <Box
-                    gridColumn="span 4"
-                    border={`1px solid `}
-                    borderRadius="5px"
-                    p="1rem"
-                  >
-                    <Dropzone
-                      acceptedFiles=".jpg,.jpeg,.png"
-                      multiple={false}
-                      onDrop={(acceptedFiles) =>
-                        setFieldValue("picture", acceptedFiles[0])
-                      }
-                    >
-                      {({ getRootProps, getInputProps }) => (
-                        <Box
-                          {...getRootProps()}
-                          border={`2px dashed ${palette.primary.main}`}
-                          p="1rem"
-                          sx={{ "&:hover": { cursor: "pointer" } }}
-                        >
-                          <input {...getInputProps()} />
-                          {!values.picture ? (
-                            <p>Add Picture Here</p>
-                          ) : (
-                            <FlexBetween>
-                              <Typography>{values.picture.name}</Typography>
-                              <EditOutlinedIcon />
-                            </FlexBetween>
-                          )}
-                        </Box>
-                      )}
-                    </Dropzone>
-                  </Box>
                 </>
               )}
               <TextField
@@ -282,6 +226,7 @@ function FormLogin() {
                 helperText={touched.password && errors.password}
                 sx={{ gridColumn: "span 4" }}
               />
+              
             </Box>
             <Box>
               <Button
