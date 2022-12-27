@@ -17,6 +17,17 @@ module.exports.signin = async (req, res, next) => {
       });
     }
 
+
+    bcrypt.compare(req.body.Password, user.Password, function (err, res) {
+      if (err) {
+        res.status(err.status(500).json({ message: "Server err" }));
+      }
+      if (!res) {
+        console.log("Sai");
+      } else {
+        console.log("Dung");
+      }
+    });
     const check = bcrypt.compare(req.body.Password, user.Password);
     console.log(check);
   

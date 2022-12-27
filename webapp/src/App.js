@@ -25,9 +25,12 @@ import { useSelector } from "react-redux";
 import Blogs from "./pages/widgets/Blogs";
 import UserEdit from "./pages/profilePage/UserEdit.jsx";
 import MyProfile from "./pages/profilePage/MyProfile.jsx";
+
 import CaseStudy from "./pages/caseStudy/CaseStudy";
 import PricePage from "./pages/pricePages/PricePage";
 import NewsPage from "./pages/newspage/NewsPage";
+
+import ResetPass from "./components/resetpass/ResetPass.jsx";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -73,9 +76,13 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
+
           <Route path='/nghien-cuu-dien-hinh' element={<CaseStudy />}></Route>
           <Route path='/chi-phi' element={<PricePage />}></Route>
           <Route path='/tin-tuc' element={<NewsPage />}></Route>
+
+          <Route path='/resetpassword' element={<ResetPass />} />
+          <Route path='/editprofile' element={<UserProfile />} />
         </Routes>
       </section>
     </div>

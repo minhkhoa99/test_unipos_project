@@ -1,13 +1,16 @@
 const db = require("../database/models/index");
 
 module.exports.createBlog = async (req, res) => {
+  console.log(req.body);
   try {
     const blogDetails = await db.models.Blogs.create({ ...req.body });
     res.status(200).send({
       status: 200,
       message: "successfully created",
+      data: blogDetails
     });
   } catch (err) {
+    console.log(err);
     return res.status(400).send({
       message: "Unable to create blog",
       status: 400,
