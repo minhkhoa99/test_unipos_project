@@ -27,8 +27,6 @@ import Blogs from "./pages/widgets/Blogs.jsx";
 import NewsPage from "./pages/newspage/NewsPage.jsx";
 import CaseStudy from "./pages/caseStudy/CaseStudy.jsx";
 
-import Blogs from "./pages/widgets/Blogs";
-
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
   const mode = useSelector((state) => state.mode);
@@ -71,8 +69,6 @@ function App() {
           <Route path='/editprofile' element={<UserProfile />} />
           <Route path='/tin-tuc' element={<NewsPage />} />
           <Route path='nghien-cuu-dien-hinh' element={<CaseStudy />} />
-
-          <Route path='/editprofile' element={<UserProfile />} />
         </Routes>
       </section>
     </div>
