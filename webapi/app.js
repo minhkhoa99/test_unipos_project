@@ -26,7 +26,7 @@ app.use(cors({
   await db.sequelize.sync();
 })();
 
-app.use("/users", user);
+app.use("/user", user);
 app.use("/auth", auth);
 app.use("/blog", blog);
 

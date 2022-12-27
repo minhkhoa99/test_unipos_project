@@ -27,7 +27,6 @@ import { setPosts } from "../../state/index";
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
-  let id = Math.floor(Math.random()*10000)
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
@@ -40,16 +39,15 @@ const MyPostWidget = ({ picturePath }) => {
   const handlePost = async () => {
     const formData = {}
     
-    formData.id = id;
     formData.userId = 1;
     formData.Content = post;
     if (image) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
     }
-     console.log(post);
-     console.log(id);
-     console.log(formData);
+    //  console.log(post);
+    //  console.log(id);
+    //  console.log(formData);
     const response = await fetch(`http://127.0.0.1:3000/blog`, {
       mode: 'cors',
       method: 'POST',
