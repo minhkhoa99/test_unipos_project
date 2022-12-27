@@ -17,7 +17,6 @@ module.exports.signin = async (req, res, next) => {
       });
     }
 
-
     bcrypt.compare(req.body.Password, user.Password, function (err, res) {
       if (err) {
         res.status(err.status(500).json({ message: "Server err" }));
@@ -30,7 +29,7 @@ module.exports.signin = async (req, res, next) => {
     });
     const check = bcrypt.compare(req.body.Password, user.Password);
     console.log(check);
-  
+
     if (check) {
       res.status(200).send({
         message: "login success",
