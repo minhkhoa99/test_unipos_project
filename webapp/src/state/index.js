@@ -42,6 +42,8 @@ export const authSlice = createSlice({
       state.posts = updatedPosts;
     },
     setUser: (state, action) => {
+      console.log(state);
+      console.log(action);
       // console.log(action.payload.iduser);
       state.iduser = action.payload.iduser
     }
