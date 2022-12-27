@@ -20,6 +20,7 @@ module.exports.getAllBlog = async (req, res) => {
     const blogs = await db.models.Blogs.findAll({
       order: [["id", "DESC"]],
     });
+    console.log("aaaa");
     res.status(200).send({
       status: 200,
       message: "Success",
