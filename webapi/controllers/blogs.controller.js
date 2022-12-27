@@ -4,8 +4,9 @@ module.exports.createBlog = async (req, res) => {
   console.log(req.body);
   // let id = Number(req.body.id)
   // let content = req.body.Content
-  // console.log(id);
-  // db.execute("INSERT INTO blogs VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [id,content,null,null,null,null,null,null,null,null,null,null])
+  // let userId = 1
+  // console.log(db);
+  // db.execute("INSERT INTO blogs VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [id,content,null,null,null,null,null,null,null,null,null,userId])
   // .then(() => {
   //   // let [row] = data;
   //   // console.log(data);
@@ -20,9 +21,10 @@ module.exports.createBlog = async (req, res) => {
     res.status(200).send({
       status: 200,
       message: "successfully created",
+      data: blogDetails
     });
-    blogDetails()
   } catch (err) {
+    console.log(err);
     return res.status(400).send({
       message: "Unable to create blog",
       status: 400,

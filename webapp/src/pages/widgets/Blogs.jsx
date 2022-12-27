@@ -17,7 +17,7 @@ function Blogs() {
             setData(arr)
         })
     },[])
-     console.log(data);
+    //  console.log(data);
     return ( <>
     <MyPostWidget></MyPostWidget>
     <PostsWidget data={data}></PostsWidget>
