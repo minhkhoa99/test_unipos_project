@@ -10,6 +10,9 @@
     margin: auto;
     text-align: center;
     margin-top: 8%;
+    background: none;
+    margin-bottom: 10%;
+    border: none;
 }
 .fa-brands{
     font-size: 30px;

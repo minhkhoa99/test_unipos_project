@@ -83,9 +83,7 @@ const Login = () => {
         borderRadius="1.5rem"
         backgroundColor={theme.palette.background.alt}
       >
-        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to Rating App
-        </Typography>
+       
     <FormLogin/>
        
       </Box>

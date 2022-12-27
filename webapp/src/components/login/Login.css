@@ -77,3 +77,21 @@
   /* border-radius: 2%; */
   box-shadow: 0px 16px 24px rgb(0 0 0 / 8%);
 }
+
+.title-forgot-password{
+  float: right;
+}
+.css-1p7m5yx-MuiTypography-root{
+  display: inline;
+}
+
+.background{
+  color: white;
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+  background-color: white;
+}
+.css-1ko8d4z {
+  background-color: white;
+  color: black;
+}
