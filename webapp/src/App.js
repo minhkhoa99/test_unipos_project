@@ -20,6 +20,7 @@ import "./App.css";
 import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/profilePage/UserEdit.jsx";
+import MyProfile from "./pages/profilePage/MyProfile";
 import { useSelector } from "react-redux";
 import Blogs from "./pages/widgets/Blogs";
 import UserEdit from "./pages/profilePage/UserEdit.jsx";
