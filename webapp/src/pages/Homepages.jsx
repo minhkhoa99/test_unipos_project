@@ -16,7 +16,7 @@ import { setUser } from "../state/index";
 
 function Homepages() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.iduser);
   console.log(state);
   return (
     <>

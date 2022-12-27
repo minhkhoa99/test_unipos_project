@@ -1,6 +1,10 @@
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const UserImage = ({ image, size = "50px" }) => {
+  const state = useSelector((state) => state.iduser);
+  const avata = state.Avata
+  console.log(state.Avata);
   return (
     <Box width={size} height={size}>
       <img
@@ -8,7 +12,7 @@ const UserImage = ({ image, size = "50px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={image!=null ? image : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"}
+        src={avata!=null ? avata : "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"}
       />
     </Box>
   );
