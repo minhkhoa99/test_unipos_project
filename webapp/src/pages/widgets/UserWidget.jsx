@@ -59,7 +59,7 @@ function UserWidget({ userId, picturePath }) {
         onClick={() => navigate(`/myprofile/`)}
       >
         <FlexBetween gap='1rem'>
-          <UserImage image={picturePath} />
+          <UserImage image={"https://i.pinimg.com/474x/90/57/0a/90570addee2645866a597530721f37fd.jpg"} />
           <Box>
             <Typography
               variant='h4'
