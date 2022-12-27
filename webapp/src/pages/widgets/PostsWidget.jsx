@@ -39,7 +39,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   return (
     <>
-      {/* {posts.map(
+      {posts.map(
         ({
           _id,
           userId,
@@ -65,8 +65,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             comments={comments}
           />
         )
-      )} */}
-    <h1>hello khoa ngao</h1>
+      )}
     </>
   );
 };
