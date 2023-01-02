@@ -12,11 +12,13 @@ import { Formik } from "formik";
 import * as yup from "yup";
 // import { useNavigate } from "react-router-dom";
 // import { useDispatch } from "react-redux";
-import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../state/index"
+import { setLogin } from "../../state/index";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("FirstName cannot be empty !!"),
@@ -53,7 +55,7 @@ const initialValuesLogin = {
 function FormLogin() {
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
@@ -77,7 +79,7 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-      fetch("http://localhost:5000/auth", {
+      fetch("http://localhost:3000/auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,6 +88,8 @@ function FormLogin() {
       })
         .then((response) => response.json())
         .then((data) => {
+          // console.log(data.data);
+          dispatch(setUser({ iduser: data.data }));
           if (data.message === "login success") {
             Swal.fire(
               "Login Successful!",
@@ -100,7 +104,7 @@ function FormLogin() {
               text: "Incorrect email or password!",
             });
           }
-          console.log(data);
+          // console.log(data);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -127,41 +131,33 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-      if (pass !== repass) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Password does not match !!",
-        });
-      } else {
-        fetch("http://localhost:5000/user", {
-          method: "POST", // or 'PUT'
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+      fetch("http://localhost:5000/user", {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message === "Success") {
+            Swal.fire(
+              "Register Successful!",
+              "Logged in successfully!",
+              "success"
+            );
+            window.location.href = "http://localhost:8800/login";
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Incorrect email or password!",
+            });
+          }
         })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.message === "Success") {
-              Swal.fire(
-                "Register Successful!",
-                "Logged in successfully!",
-                "success"
-              );
-              // window.location.href = "http://localhost:8800/login";
-            } else {
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Incorrect email or password!",
-              });
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   };
 

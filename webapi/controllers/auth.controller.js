@@ -9,7 +9,7 @@ module.exports.signin = async (req, res, next) => {
         Email: req.body.Email,
       },
     });
-    // console.log(user);
+    console.log(user);
     if (!user) {
       res.status(404).send({
         message: "Email not found",
@@ -33,6 +33,7 @@ module.exports.signin = async (req, res, next) => {
     if (check) {
       res.status(200).send({
         message: "login success",
+        data:user.dataValues
       });
     } else {
       res.status(404).send({
