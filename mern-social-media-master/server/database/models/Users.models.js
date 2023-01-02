@@ -85,6 +85,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     Point: {
       type: DataTypes.INTEGER,
+      defaultValue: 400,
       allowNull: true,
     },
     DOB: {
