@@ -12,8 +12,10 @@ const Interactive = require("./routes/Interactive.routes");
 const report = require("./routes/report.routes");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
+const messageRoutes = require("./routes/messages.routes");
 const morgan = require("morgan");
+const socket = require("socket.io");
+
 // const hostname = "127.0.0.1";
 const port = 5000;
 
@@ -46,7 +48,28 @@ app.use("/history", history);
 app.use("/report", report);
 app.use("/comment", Comment);
 app.use("/Interactive", Interactive);
-
+app.use("/api/messages", messageRoutes);
 app.listen(port,()=>{
   connected();
 });
+// const io = socket(app, {
+//   cors: {
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   },
+// });
+
+// global.onlineUsers = new Map();
+// io.on("connection", (socket) => {
+//   global.chatSocket = socket;
+//   socket.on("add-user", (userId) => {
+//     onlineUsers.set(userId, socket.id);
+//   });
+
+//   socket.on("send-msg", (data) => {
+//     const sendUserSocket = onlineUsers.get(data.to);
+//     if (sendUserSocket) {
+//       socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+//     }
+//   })
+// });
