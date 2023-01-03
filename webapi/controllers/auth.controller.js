@@ -9,7 +9,7 @@ module.exports.signin = async (req, res, next) => {
         Email: req.body.Email,
       },
     });
-    // console.log(user);
+    console.log(user);
     if (!user) {
       res.status(404).send({
         message: "Email not found",
@@ -17,12 +17,24 @@ module.exports.signin = async (req, res, next) => {
       });
     }
 
+
+    bcrypt.compare(req.body.Password, user.Password, function (err, res) {
+      if (err) {
+        res.status(err.status(500).json({ message: "Server err" }));
+      }
+      if (!res) {
+        console.log("Sai");
+      } else {
+        console.log("Dung");
+      }
+    });
     const check = bcrypt.compare(req.body.Password, user.Password);
     console.log(check);
   
     if (check) {
       res.status(200).send({
         message: "login success",
+        data:user.dataValues
       });
     } else {
       res.status(404).send({

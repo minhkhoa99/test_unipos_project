@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./index.css";
 import {
   Box,
   IconButton,
@@ -42,30 +43,29 @@ const Navbar = () => {
   const fullName = `${user.firstName} ${user.lastName}`;
 
   return (
-    <FlexBetween padding="1rem 6%" backgroundColor={alt}>
-      <FlexBetween gap="1.75rem">
+    <FlexBetween padding='1rem 6%' backgroundColor={alt}>
+      <FlexBetween gap='1.75rem'>
         <Typography
-          fontWeight="bold"
-          fontSize="clamp(1rem, 2rem, 2.25rem)"
-          color="primary"
+          fontWeight='bold'
+          fontSize='clamp(1rem, 2rem, 2.25rem)'
+          color='primary'
           onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
-              color: primaryLight,
               cursor: "pointer",
             },
           }}
         >
-          Sociopedia
+          RATING APP
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
             backgroundColor={neutralLight}
-            borderRadius="9px"
-            gap="3rem"
-            padding="0.1rem 1.5rem"
+            borderRadius='9px'
+            gap='3rem'
+            padding='0.1rem 1.5rem'
           >
-            <InputBase placeholder="Search..." />
+            <InputBase placeholder='Tìm kiếm....' />
             <IconButton>
               <Search />
             </IconButton>
@@ -75,7 +75,7 @@ const Navbar = () => {
 
       {/* DESKTOP NAV */}
       {isNonMobileScreens ? (
-        <FlexBetween gap="2rem">
+        <FlexBetween gap='2rem'>
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkMode sx={{ fontSize: "25px" }} />
@@ -86,7 +86,7 @@ const Navbar = () => {
           <Message sx={{ fontSize: "25px" }} />
           <Notifications sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
-          <FormControl variant="standard" value={fullName}>
+          <FormControl variant='standard' value={fullName}>
             <Select
               value={fullName}
               sx={{
@@ -107,7 +107,9 @@ const Navbar = () => {
               <MenuItem value={fullName}>
                 <Typography>{fullName}</Typography>
               </MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
+              <MenuItem onClick={() => dispatch(setLogout())}>
+                Đăng xuất
+              </MenuItem>
             </Select>
           </FormControl>
         </FlexBetween>
@@ -122,17 +124,17 @@ const Navbar = () => {
       {/* MOBILE NAV */}
       {!isNonMobileScreens && isMobileMenuToggled && (
         <Box
-          position="fixed"
-          right="0"
-          bottom="0"
-          height="100%"
-          zIndex="10"
-          maxWidth="500px"
-          minWidth="300px"
+          position='fixed'
+          right='0'
+          bottom='0'
+          height='100%'
+          zIndex='10'
+          maxWidth='500px'
+          minWidth='300px'
           backgroundColor={background}
         >
           {/* CLOSE ICON */}
-          <Box display="flex" justifyContent="flex-end" p="1rem">
+          <Box display='flex' justifyContent='flex-end' p='1rem'>
             <IconButton
               onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
             >
@@ -142,11 +144,11 @@ const Navbar = () => {
 
           {/* MENU ITEMS */}
           <FlexBetween
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            gap="3rem"
+            display='flex'
+            flexDirection='column'
+            justifyContent='center'
+            alignItems='center'
+            gap='3rem'
           >
             <IconButton
               onClick={() => dispatch(setMode())}
@@ -161,7 +163,7 @@ const Navbar = () => {
             <Message sx={{ fontSize: "25px" }} />
             <Notifications sx={{ fontSize: "25px" }} />
             <Help sx={{ fontSize: "25px" }} />
-            <FormControl variant="standard" value={fullName}>
+            <FormControl variant='standard' value={fullName}>
               <Select
                 value={fullName}
                 sx={{

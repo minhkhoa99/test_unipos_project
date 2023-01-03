@@ -1,18 +1,16 @@
 import React from "react";
 import rank from "../assets/image/rank.jpg";
 import Table from "react-bootstrap/Table";
+import WidgetWrapper from "../components/WidgetWrapper";
 
 function Rank() {
   return (
-    <div className='rank'>
+    <WidgetWrapper>
       <h1>Bảng xếp hạng</h1>
       <h4>1. Top User</h4>
       <div className='rank-img'>
         <img src={rank} alt='rank' />
       </div>
-      <div className='top-1'>Gao đỏ</div>
-      <div className='top-2'>Gao xanh</div>
-      <div className='top-3'>Gao vàng</div>
       <h4>2. Bảng xếp hạng User</h4>
       <Table striped bordered hover>
         <thead>
@@ -40,7 +38,7 @@ function Rank() {
           </tr>
         </tbody>
       </Table>
-    </div>
+    </WidgetWrapper>
   );
 }
 

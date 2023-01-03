@@ -3,24 +3,25 @@ import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
 import NavbarHomePage from "./navbarhomepage/NavbarHomePage"
-import MyPostWidget from "./widgets/MyPostWidget";
-import PostsWidget from "./widgets/PostsWidget";
+// import MyPostWidget from "./widgets/MyPostWidget";
+// import PostsWidget from "./widgets/PostsWidget";
+// import { useState } from "react";
 import AdvertWidget from "./widgets/AdvertWidget";
 import FriendListWidget from "./widgets/FriendListWidget";
 import UserWidget from "./widgets/UserWidget";
 import PointWidget from "./widgets/PointWidget";
-
+import { Outlet } from "react-router";
+import { setUser } from "../state/index";
 
 
 function Homepages() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-  // const { _id, picturePath } = useSelector((state) => state.user);
- 
-
+  const state = useSelector((state) => state.iduser);
+  console.log(state);
   return (
     <>
-       <Box>
-      <NavbarHomePage />
+      <Box>
+        <NavbarHomePage />
       <Box
         width="100%"
         padding="2rem 6%"
@@ -36,12 +37,12 @@ function Homepages() {
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          <MyPostWidget />
+          {/* <MyPostWidget /> */}
           {/* <MyPostWidget picturePath={picturePath} /> */}
 
           {/* <PostsWidget userId={_id} /> */}
-          <PostsWidget />
-
+          {/* <PostsWidget /> */}
+          <Outlet></Outlet>
         </Box>
         
         {isNonMobileScreens && (
@@ -49,11 +50,8 @@ function Homepages() {
           <Box flexBasis="26%">
             <AdvertWidget />
             <Box m="2rem 0" />
-            <PointWidget />
-            <Box m="2rem 0" />
             <FriendListWidget />
             {/* <FriendListWidget userId={_id} /> */}
-
           </Box>
         )}
       </Box>

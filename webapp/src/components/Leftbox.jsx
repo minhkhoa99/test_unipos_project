@@ -1,4 +1,3 @@
-import Link from "antd/es/typography/Link";
 import React from "react";
 import { NavLink } from "react-router-dom";
 function Leftbox() {
@@ -12,11 +11,6 @@ function Leftbox() {
           />
         </div>
         <hr />
-        <button className='left-menu'>
-          <i className='fa-solid fa-house'></i>
-          <link rel='stylesheet' href='' />
-          <NavLink to='/home/blog'>Trang chủ</NavLink>
-        </button>
         <button className='left-menu'>
           <i className='fa-solid fa-star'></i>
           <NavLink className='a' to='/home/history'>

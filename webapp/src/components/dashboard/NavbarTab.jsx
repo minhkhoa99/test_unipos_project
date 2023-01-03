@@ -1,13 +1,13 @@
 import Container from "./Container";
 import HeadingNavbar from "./HeadingNavbar";
 import HeadingContainer from "./HeadingContainer";
+import FreatureBottom from "../FeatureFooter/FeatureBottom";
 import Footer from "./Footer";
 function NavbarTab() {
   return (
     <>
-
       <section className='mv'>
-    <HeadingNavbar/>
+        <HeadingNavbar />
 
         <div className='mv'>
           <div className='mv_bgware'></div>
@@ -18,9 +18,8 @@ function NavbarTab() {
 
         <Footer />
         <Container />
-
       </section>
-    
+      <FreatureBottom />
     </>
   );
 }

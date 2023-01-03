@@ -1,6 +1,6 @@
 import Login from "./components/login/Login.jsx";
 import Register from "./components/register/Register.jsx";
-import {BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "../src/assets/css/dashboard/container.css";
 import Homepages from "./pages/Homepages";
 import { useMemo } from "react";
@@ -19,8 +19,12 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import "./App.css";
 import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
-import UserProfile from "./pages/UserProfile.jsx";
+import UserProfile from "./pages/profilePage/UserEdit.jsx";
+import MyProfile from "./pages/profilePage/MyProfile";
 import { useSelector } from "react-redux";
+
+import Blogs from "./pages/widgets/Blogs";
+import UserEdit from "./pages/profilePage/UserEdit.jsx";
 import ResetPass from "./components/resetpass/ResetPass.jsx";
 
 
@@ -30,24 +34,11 @@ function App() {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <div>
-        
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route path='/home' element={<Homepages />}></Route>
-          <Route
-              path="/myprofile" 
-              // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
-              element={<ProfilePage /> }
-            />
-        </Routes>
-         
-          </ThemeProvider>
-        
-      <section className='mv__heading'>
-       
-        <Routes>
-            
+          <Route path='/home' element={<Homepages />}>
+            <Route path="/home" element={<Blogs />}></Route>
             <Route path='/home/history' element={<History />}>
               <Route index element={<All />}></Route>
               <Route path='/home/history/all' element={<All />}></Route>
@@ -61,16 +52,29 @@ function App() {
               ></Route>
               <Route path='/home/history/clap' element={<Clap />}></Route>
             </Route>
+            <Route path='/home/rank' element={<Rank />}></Route>
             <Route path='/home/about' element={<About />}></Route>
-        
+            <Route path='/home/support' element={<Support />}></Route>
+          </Route>
+          <Route
+            path='/myprofile'
+            // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
+            element={<ProfilePage />}
+          >
+            <Route path='/myprofile' element={<MyProfile></MyProfile>}></Route>
+            <Route path='/myprofile/edit' element={<UserEdit />}></Route>
+          </Route>
+        </Routes>
+      </ThemeProvider>
+      <section className='mv__heading'>
+        <Routes>
           <Route path='/' element={<NavbarTab />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
           <Route path="/resetpassword" element={<ResetPass/>} />
           <Route path='/editprofile' element={<UserProfile />} />
-      
         </Routes>
-        
       </section>
     </div>
   );

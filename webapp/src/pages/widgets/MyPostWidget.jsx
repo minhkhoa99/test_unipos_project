@@ -23,7 +23,7 @@ import UserImage from "../../components/UserImage";
 import WidgetWrapper from "../../components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "state";
+import { setPosts } from "../../state/index";
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
@@ -32,35 +32,40 @@ const MyPostWidget = ({ picturePath }) => {
   const [post, setPost] = useState("");
   const { palette } = useTheme();
   // const { _id } = useSelector((state) => state.user);
-  // const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mediumMain = "#858585";
   const medium = "A3A3A3";
 
   const handlePost = async () => {
-    const formData = new FormData();
-    // formData.append("userId", _id);
-    formData.append("description", post);
+    const formData = {}
+    
+    formData.userId = 1;
+    formData.Content = post;
     if (image) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
     }
-
-    // const response = await fetch(`http://localhost:3001/posts`, {
-    //   method: "POST",
-    //   headers: { Authorization: `Bearer ${token}` },
-    //   body: formData,
-    // });
-    // const posts = await response.json();
-    // dispatch(setPosts({ posts }));
-    // setImage(null);
-    // setPost("");
+    //  console.log(post);
+    //  console.log(id);
+    //  console.log(formData);
+    const response = await fetch(`http://127.0.0.1:3000/blog`, {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Content-Type': "application/json"
+      },
+      body: JSON.stringify(formData),
+    });
+    const posts = await response.json();
+    dispatch(setPosts({ posts }));
+    setImage(null);
+    setPost("");
   };
 
   return (
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">
-        <UserImage image={picturePath} />
+        <UserImage />
         <InputBase
           placeholder="What's on your mind..."
           onChange={(e) => setPost(e.target.value)}
