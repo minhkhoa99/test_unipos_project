@@ -9,15 +9,18 @@ import UserImage from "../../components/UserImage";
 import FlexBetween from "../../components/FlexBetween";
 import WidgetWrapper from "../../components/WidgetWrapper";
 import PointWidget from "./PointWidget";
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { setTrueFalse } from "../../state/index";
 
 function UserWidget({ userId, picturePath }) {
+  const dispatch = useDispatch();
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
+  const {username} = useSelector((state) => state.iduser);
   const dark = "#333333";
   const medium = "#A3A3A3";
   const main = "#666666";
@@ -47,6 +50,10 @@ function UserWidget({ userId, picturePath }) {
   //     impressions,
   //     friends,
   //   } = user;
+  const handleOnclick = () => {
+    navigate(`/myprofile`);
+    dispatch(setTrueFalse({isProfile: true}));
+  }
 
   return (
     <WidgetWrapper>
@@ -56,7 +63,7 @@ function UserWidget({ userId, picturePath }) {
         pb='1.1rem'
         style={{ cursor: "pointer" }}
         //   onClick={() => navigate(`/profile/${userId}`)}
-        onClick={() => navigate(`/myprofile/`)}
+        onClick={handleOnclick}
       >
         <FlexBetween gap='1rem'>
           <UserImage image={"https://i.pinimg.com/474x/90/57/0a/90570addee2645866a597530721f37fd.jpg"} />
@@ -75,7 +82,7 @@ function UserWidget({ userId, picturePath }) {
               {/* {firstName} {lastName} */}
             </Typography>
             {/* <Typography color={medium}>{friends.length} friends</Typography> */}
-            <Typography color={medium}> friends</Typography>
+            <Typography color={medium}>{username}</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />

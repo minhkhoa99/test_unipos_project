@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import state from "state/lib/state";
 
 const initialState = {
+  isProfile: false,
   mode: "light",
   user: null,
   token: null,
@@ -25,6 +26,10 @@ export const authSlice = createSlice({
     setLogout: (state) => {
       state.user = null;
       state.token = null;
+      state.posts= [];
+      state.users= [];
+      state.iduser= [];
+      state.newpost= [];
     },
     setFriends: (state, action) => {
       if (state.user) {
@@ -60,6 +65,10 @@ export const authSlice = createSlice({
 
       // console.log(state.newpost);
     },
+    setTrueFalse: (state, action) => {
+      // console.log(action.payload.isProfile);
+      state.isProfile = action.payload.isProfile
+    }
   },
 });
 
@@ -73,5 +82,6 @@ export const {
   setUser,
   setUsers,
   setNewpost,
+  setTrueFalse,
 } = authSlice.actions;
 export default authSlice.reducer;
