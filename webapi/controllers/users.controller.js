@@ -7,7 +7,6 @@ module.exports.createUser = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = await bcrypt.hashSync(passFontend, salt);
     const userDetails = await db.models.Users.create({
-
       ...req.body,
       Password: hash,
     });
