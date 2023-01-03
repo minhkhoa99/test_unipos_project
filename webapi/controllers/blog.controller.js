@@ -41,14 +41,18 @@ module.exports.getAllBlog = async (req, res) => {
 
 module.exports.getBlogById = async (req, res) => {
   try {
-    console.log(req.params.id);
-    const blog = await db.models.Blogs.findOne({
+  
+    let id = Number(req.params.id)
+    console.log(id);
+    const blog = await db.models.Blogs.findAll({
       where: {
-        id: req.params.id,
+        userId:id,
       },
     });
+    console.log(blog);
     res.status(200).send({
       status: 200,
+      message: "Success",
       data: blog,
     });
   } catch (error) {
