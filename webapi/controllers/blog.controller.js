@@ -1,3 +1,4 @@
+const { sequelize } = require("../database/models/index");
 const db = require("../database/models/index");
 
 module.exports.createBlog = async (req, res) => {
@@ -8,7 +9,7 @@ module.exports.createBlog = async (req, res) => {
     res.status(200).send({
       status: 200,
       message: "successfully created",
-      data: blogDetails
+      data: blogDetails,
     });
   } catch (err) {
     console.log(err);
