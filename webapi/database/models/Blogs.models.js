@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     ImgVideo: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     Total: {
       type: DataTypes.INTEGER,
