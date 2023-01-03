@@ -20,7 +20,7 @@ export const signInWithGoogle = () => {
         const name = result.user.displayName;
         const email = result.user.email;
         const profilePic = result.user.photoURL;
-        window.location.href = "http://localhost:3000/home"
+        window.location.href = "http://localhost:8800/home"
 
         console.log(result);
         

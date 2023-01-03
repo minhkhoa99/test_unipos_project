@@ -38,8 +38,7 @@ const NavbarHomePage = () => {
   const background = theme.palette.background.default;
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
-  const state = useSelector((state) => state.iduser);
-  const fullName = state.username
+  const fullName = "Minh Khoa";
 
   return (
     <>

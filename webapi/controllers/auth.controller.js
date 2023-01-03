@@ -9,7 +9,7 @@ module.exports.signin = async (req, res, next) => {
         Email: req.body.Email,
       },
     });
-    console.log(user);
+    // console.log(user);
     if (!user) {
       res.status(404).send({
         message: "Email not found",

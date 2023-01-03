@@ -1,23 +1,42 @@
 
 import { Box, useMediaQuery } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import NavbarHomePage from "./navbarhomepage/NavbarHomePage"
 // import MyPostWidget from "./widgets/MyPostWidget";
 // import PostsWidget from "./widgets/PostsWidget";
-// import { useState } from "react";
 import AdvertWidget from "./widgets/AdvertWidget";
 import FriendListWidget from "./widgets/FriendListWidget";
 import UserWidget from "./widgets/UserWidget";
 import PointWidget from "./widgets/PointWidget";
 import { Outlet } from "react-router";
-import { setUser } from "../state/index";
+import { setUsers } from '../state/index'
+import { useEffect } from "react";
+
 
 
 function Homepages() {
+  const dispatch = useDispatch();
+  const getusers = async ()=>{
+    const restuser = await fetch("http://localhost:5000/user", {modo: "cors"})
+    // const users = restuser.json()
+    .then(res=>res.json())
+    .then((result)=>{
+        // console.log(result.data);
+        let arr = result.data
+        dispatch(setUsers({ users: arr }));
+    })
+  }
+  useEffect(()=>{
+    getusers()
+  },[])
+  
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const state = useSelector((state) => state.iduser);
-  console.log(state);
+  const users = useSelector((state) => state.users);
+  // console.log(users);
+  // console.log(state);
+ 
   return (
     <>
       <Box>
