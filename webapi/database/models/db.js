@@ -1,7 +1,7 @@
 module.exports = {
   HOST: "localhost",
   USER: "root",
-  PASSWORD: "Yeulam0909",
+  PASSWORD: "123456a@",
   DATABASE: "unipos_project",
   DIALECT: "mysql",
 };

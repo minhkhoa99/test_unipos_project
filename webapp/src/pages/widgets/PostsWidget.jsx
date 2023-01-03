@@ -14,13 +14,13 @@ const PostsWidget = ({ isProfile = false }) => {
   const newpost = useSelector((state) => state.newpost);
   const [data, setData] = useState([]);
   const getPosts = async () => {
-    const response = await fetch("http://127.0.0.1:5000/blog", {
-      mode: "cors",
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await response.json();
-    dispatch(setPosts({ posts: data.data }));
+    // const response = await fetch("http://localhost:5000/blog", {
+    //   mode: "cors",
+    //   method: "GET",
+    //   headers: { "Content-Type": "application/json" },
+    // });
+    // const data = await response.json();
+    // dispatch(setPosts({ posts: data.data }));
   };
 
   // const getPosts = async () => {
@@ -31,17 +31,6 @@ const PostsWidget = ({ isProfile = false }) => {
   //   const data = await response.json();
   //   dispatch(setPosts({ posts: data }));
   // };
-
-  const getUserpost = async () =>{
-    const response = await fetch(`http://127.0.0.1:5000/blog/${id}`, {
-      mode: "cors",
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await response.json();
-    // console.log(data.data);
-    dispatch(setPosts({ posts: data.data }));
-  }
 
   useEffect(() => {
     if (isProfile) {
@@ -59,10 +48,10 @@ const PostsWidget = ({ isProfile = false }) => {
     return arr;
   });
 
-  console.log(result);
-  console.log(posts);
-  console.log(users);
-  console.log(newpost);
+  // console.log(result);
+  // console.log(posts);
+  // console.log(users);
+  // console.log(newpost);
   return (
     <>
       {newpost != undefined ?

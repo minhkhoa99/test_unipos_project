@@ -1,7 +1,4 @@
 const express = require("express");
-
-
-const blogs = require("./routes/blog.routes");
 const db = require("./database/models");
 const app = express();
 
