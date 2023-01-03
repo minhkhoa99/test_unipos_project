@@ -11,8 +11,17 @@ import WidgetWrapper from "../../components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+import { useEffect } from "react";
+import { setNewpost } from "../../state/index";
 
-const PostWidget = () => {
+const PostWidget = (postviews) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setNewpost([]));
+  }, []);
+  const newpost = useSelector((state) => state.newpost)
+  const iduser = useSelector((state) => state.iduser)
+  // console.log(newpost);
   // const [isComments, setIsComments] = useState(false);
   // const dispatch = useDispatch();
   // const token = useSelector((state) => state.token);

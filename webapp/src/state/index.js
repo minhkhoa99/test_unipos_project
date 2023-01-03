@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import state from "state/lib/state";
 
 const initialState = {
   mode: "light",
   user: null,
   token: null,
   posts: [],
-  iduser:[]
+  users: [],
+  iduser: [],
+  newpost: [],
 };
 
 export const authSlice = createSlice({
@@ -14,7 +17,6 @@ export const authSlice = createSlice({
   reducers: {
     setMode: (state) => {
       state.mode = state.mode === "light" ? "dark" : "light";
-    
     },
     setLogin: (state, action) => {
       state.user = action.payload.user;
@@ -42,14 +44,34 @@ export const authSlice = createSlice({
       state.posts = updatedPosts;
     },
     setUser: (state, action) => {
-      console.log(state);
-      console.log(action);
+      // console.log(state);
+      // console.log(action);
       // console.log(action.payload.iduser);
-      state.iduser = action.payload.iduser
-    }
+      state.iduser = action.payload.iduser;
+    },
+    setUsers: (state, action) => {
+      // console.log(action.payload.users);
+      state.users = action.payload.users;
+    },
+    setNewpost: (state, action) => {
+
+      state.newpost = action.payload.postData;
+      // state.newpost = temp;
+
+      // console.log(state.newpost);
+    },
   },
 });
 
-export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost, setUser } =
-  authSlice.actions;
+export const {
+  setMode,
+  setLogin,
+  setLogout,
+  setFriends,
+  setPosts,
+  setPost,
+  setUser,
+  setUsers,
+  setNewpost,
+} = authSlice.actions;
 export default authSlice.reducer;
