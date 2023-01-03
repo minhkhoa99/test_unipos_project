@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state/index";
+import { setNewpost } from "../../state/index";
 import PostWidget from "./PostWidget";
+import PostNew from "./PostNew";
 
 const PostsWidget = ({ isProfile = false }) => {
   const dispatch = useDispatch();
@@ -10,7 +12,6 @@ const PostsWidget = ({ isProfile = false }) => {
   const users = useSelector((state) => state.users);
   const newpost = useSelector((state) => state.newpost);
   const [data, setData] = useState([]);
-
   const getPosts = async () => {
     const response = await fetch("http://127.0.0.1:5000/blog", {
       mode: "cors",
@@ -38,7 +39,8 @@ const PostsWidget = ({ isProfile = false }) => {
       // getUserPosts();
     } else {
       getPosts();
-    }
+    };
+    dispatch(setNewpost([]));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   let result = posts.map((e) => {
@@ -48,18 +50,24 @@ const PostsWidget = ({ isProfile = false }) => {
     return arr;
   });
 
-  // console.log(result);
-  // console.log(posts);
-  // console.log(users);
-  // console.log(newpost);
+  console.log(result);
+  console.log(posts);
+  console.log(users);
+  console.log(newpost);
   return (
     <>
+      {newpost != undefined ?
+        newpost.map((e,i) => {
+        return <PostNew key={i} newpost={e} />
+      })
+      :
+      ""}
       {posts.map((e,i) => {
         let arr = users.find((e1) => {
           return e1.id === e.userId;
         });
         let postviews = [e, arr];
-        return <PostWidget key={i} postviews={postviews} />;
+        return <PostWidget key={i} postview={postviews} />;
       })}
       {/* <PostWidget /> */}
     </>

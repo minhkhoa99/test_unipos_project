@@ -14,9 +14,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function UserWidget({ userId, picturePath }) {
-  const state = useSelector((state) => state.iduser);
-  const name = state.username
-  console.log(state);
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
   const navigate = useNavigate();
@@ -62,7 +59,7 @@ function UserWidget({ userId, picturePath }) {
         onClick={() => navigate(`/myprofile/`)}
       >
         <FlexBetween gap='1rem'>
-          <UserImage />
+          <UserImage image={"https://i.pinimg.com/474x/90/57/0a/90570addee2645866a597530721f37fd.jpg"} />
           <Box>
             <Typography
               variant='h4'
@@ -78,7 +75,7 @@ function UserWidget({ userId, picturePath }) {
               {/* {firstName} {lastName} */}
             </Typography>
             {/* <Typography color={medium}>{friends.length} friends</Typography> */}
-            <Typography color={medium}>{name}</Typography>
+            <Typography color={medium}> friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />

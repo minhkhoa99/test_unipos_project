@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
+import { setUser } from "../../state/index"
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -124,7 +125,7 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-      fetch("http://127.0.0.1:3000/user", {
+      fetch("http://localhost:5000/user", {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",

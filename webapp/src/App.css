@@ -380,6 +380,10 @@ History .history {
 .banner{
   margin-left: 20%;
 }
+.nav{
+  
+    justify-content: space-between;
+}
 .nav-item a {
   text-decoration: none;
   /* font-size: large; */
