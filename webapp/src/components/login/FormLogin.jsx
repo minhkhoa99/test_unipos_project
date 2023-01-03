@@ -130,14 +130,9 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-<<<<<<<<< Temporary merge branch 1
-      if (pass !== repass) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Password does not match !!",
-=========
-      fetch("http://127.0.0.1:3000/user", {
+
+      fetch("http://localhost:3000/user", {
+
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
