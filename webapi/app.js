@@ -50,20 +50,26 @@ app.use("/history", history);
 app.use("/report", report);
 app.use("/comment", Comment);
 app.use("/interactive", Interactive);
-app.listen(port, () => {
+app.use("/api/messages", messageRoutes);
+
+const server = app.listen(port, () => {
   connected();
 });
-// global.onlineUsers = new Map();
-// io.on("connection", (socket) => {
-//   global.chatSocket = socket;
-//   socket.on("add-user", (userId) => {
-//     onlineUsers.set(userId, socket.id);
-//   });
+const io = socket(server, {
+  cors: { origin: "http://localhost:4000", credentials: true },
+});
 
-//   socket.on("send-msg", (data) => {
-//     const sendUserSocket = onlineUsers.get(data.to);
-//     if (sendUserSocket) {
-//       socket.to(sendUserSocket).emit("msg-recieve", data.msg);
-//     }
-//   })
-// });
+global.onlineUsers = new Map();
+io.on("connection", (socket) => {
+  global.chatSocket = socket;
+  socket.on("add-user", (userId) => {
+    onlineUsers.set(userId, socket.id);
+  });
+
+  socket.on("send-msg", (data) => {
+    const sendUserSocket = onlineUsers.get(data.to);
+    if (sendUserSocket) {
+      socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+    }
+  });
+});
