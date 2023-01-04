@@ -147,7 +147,7 @@ module.exports.deleteUser = async (req, res) => {
   }
 };
 
-module.exports.updateUser = async (req, res) => {
+module.exports.resetUser = async (req, res) => {
   try {
     console.log(req.params.email);
     const user = await db.models.Users.findOne({
