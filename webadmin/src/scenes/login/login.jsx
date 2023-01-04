@@ -1,99 +1,149 @@
 import React from "react";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBIcon,
-} from "mdb-react-ui-kit";
+import { Link, redirect } from "react-router-dom";
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Form, Input } from "antd";
+import "./login.css";
 
-function Login() {
+const Login = () => {
+  // const provider = new GoogleAuthProvider();
+
+  // const auth = getAuth();
+
+  // const googleLogin = () => {
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
+  //       const user = result.user;
+  //       console.log(result.user.displayName);
+
+  //       // window.location.href = "http://localhost:3000/";
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       const email = error.customData.email;
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //     });
+  // };
+
+//   const onFinish = (values) => {
+//     console.log("Received values of form: ", values);
+//     let mail = "thong1403@gmail.com";
+//     let pass = "123456";
+
+//     if (values.email === mail && values.password === pass) {
+//       Swal.fire("Login Successful!", "Logged in successfully!", "success");
+//       window.location.href = "http://localhost:3000/";
+//       localStorage.setItem("userEmail", values.email);
+//     } else {
+//       Swal.fire({
+//         icon: "error",
+//         title: "Oops...",
+//         text: "Incorrect email or password!",
+//       });
+//     }
+//   };
+
   return (
-    <MDBContainer fluid>
-      <MDBRow className='d-flex justify-content-center align-items-center h-100'>
-        <MDBCol col='12'>
-          <MDBCard
-            className='bg-dark text-white my-5 mx-auto'
-            style={{ borderRadius: "1rem", maxWidth: "400px" }}
-          >
-            <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
-              <h2 className='fw-bold mb-2 text-uppercase'>Login</h2>
-              <p className='text-white-50 mb-5'>
-                Please enter your Login and password!
-              </p>
-
-              <MDBInput
-                wrapperClass='mb-4 mx-5 w-100'
-                labelClass='text-white'
-                label='Email address'
-                id='formControlLg'
-                type='email'
-                size='lg'
+    <>
+      <div className='nabar'>
+        <img
+          src='https://tuyendung.rikkeisoft.com/assets/front/images/logoRikkeisoft.png'
+          alt=''
+          className='img'
+        />
+      </div>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-6'>
+            <h3 className='title'>
+              Welcome to
+              <img
+                src='https://tuyendung.rikkeisoft.com/assets/front/images/logoRikkeisoft.png'
+                alt=''
+                className='img-title'
               />
-              <MDBInput
-                wrapperClass='mb-4 mx-5 w-100'
-                labelClass='text-white'
-                label='Password'
-                id='formControlLg'
-                type='password'
-                size='lg'
-              />
+            </h3>
+            <Form
+              name='normal_login'
+              className='login-form'
+              initialValues={{
+                remember: true,
+              }}
+            //   onFinish={onFinish}
+            >
+              <Form.Item
+                name='email'
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your Email!",
+                  },
+                ]}
+              >
+                <Input
+                  prefix={<MailOutlined className='site-form-item-icon' />}
+                  placeholder='email'
+                  className='input'
+                />
+              </Form.Item>
+              <Form.Item
+                name='password'
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your Password!",
+                  },
+                ]}
+              >
+                <Input
+                  prefix={<LockOutlined className='site-form-item-icon' />}
+                  type='password'
+                  placeholder='Password'
+                  className='input'
+                />
+              </Form.Item>
+              <Form.Item>
+                <Form.Item name='remember' valuePropName='checked' noStyle>
+                  <Checkbox className='check'>Remember me</Checkbox>
+                </Form.Item>
 
-              <p className='small mb-3 pb-lg-2'>
-                <a class='text-white-50' href='#!'>
-                  Forgot password?
+                <a
+                  className='login-form-forgot'
+                  href='https://ant.design/components/form'
+                >
+                  Forgot password
                 </a>
-              </p>
-              <MDBBtn outline className='mx-2 px-5' color='white' size='lg'>
-                Login
-              </MDBBtn>
+              </Form.Item>
 
-              <div className='d-flex flex-row mt-3 mb-5'>
-                <MDBBtn
-                  tag='a'
-                  color='none'
-                  className='m-3'
-                  style={{ color: "white" }}
+              <Form.Item>
+                <Button
+                  type='primary'
+                  htmlType='submit'
+                  className='login-form-button'
                 >
-                  <MDBIcon fab icon='facebook-f' size='lg' />
-                </MDBBtn>
-
-                <MDBBtn
-                  tag='a'
-                  color='none'
-                  className='m-3'
-                  style={{ color: "white" }}
-                >
-                  <MDBIcon fab icon='twitter' size='lg' />
-                </MDBBtn>
-
-                <MDBBtn
-                  tag='a'
-                  color='none'
-                  className='m-3'
-                  style={{ color: "white" }}
-                >
-                  <MDBIcon fab icon='google' size='lg' />
-                </MDBBtn>
-              </div>
-
-              <div>
-                <p className='mb-0'>
-                  Don't have an account?{" "}
-                  <a href='#!' class='text-white-50 fw-bold'>
-                    Sign Up
-                  </a>
-                </p>
-              </div>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+                  <b className='login-title'> Log in</b>
+                </Button>
+                <div></div>
+                <div>
+                  Do not have an account?
+                  <Link to='/signup'>Register now!</Link>
+                </div>
+              </Form.Item>
+            </Form>
+          </div>
+          <div className='col-6'>
+            <img
+              src='https://i.ytimg.com/vi/rG47S7tH3gI/hq720_2.jpg?sqp=-oaymwEYCNAFENAFSFryq4qpAwoIARUAAIhC0AEB&rs=AOn4CLDGWPuK_SAKyeL0goMk9ZoKPG4lug'
+              alt=''
+              className='img-content'
+            />
+          </div>
+        </div>
+      </div>
+    </>
   );
-}
+};
 
 export default Login;
