@@ -8,12 +8,13 @@ import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "../../components/FlexBetween";
 import Friend from "../../components/Friend";
 import WidgetWrapper from "../../components/WidgetWrapper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost } from "state";
+import { setPost ,setNewpost} from "../../state/index";
 
 const PostWidget = ({postview}) => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(setNewpost([]));
   }, []);
@@ -149,6 +150,7 @@ const PostWidget = ({postview}) => {
             <li>50 phút trước</li>
           </ul>
         </div>
+      </div>
       </div>
     </>
   );

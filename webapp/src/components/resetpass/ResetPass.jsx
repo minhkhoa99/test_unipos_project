@@ -1,14 +1,58 @@
 import "./ResetPass.css";
 import { Checkbox, Form, Input } from "antd";
-import { MailOutlined } from "@ant-design/icons";
+import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import FeatureBottum from "../FeatureFooter/FeatureBottom";
 import HeadingNavbar from "../dashboard/HeadingNavbar";
 import { Button, useTheme } from "@mui/material";
 import { Typography } from "@mui/material";
+import Swal from "sweetalert2";
+
 
 function ResetPass() {
   const { palette } = useTheme();
+  const onFinish = (values) => {
+    const pass = values.password;
+    const email = values.email;
+    const repass = values.repassword;
+    console.log(pass, email, repass);
+
+    const data = {
+      id: null,
+      username: null,
+      Email: email,
+      Password: pass,
+      DOB: null,
+      Gender: null,
+      Avata: null,
+      Level: null,
+      referralCode: null,
+      Status: null,
+    };
+
+    console.log(values);
+    fetch("http://localhost:5000/user/forgot", {
+      method: "PUT", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        Swal.fire("Good job!", "Sign Up Success!", "success");
+        console.log(data);
+        window.location.href = "http://localhost:8800/login"
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "password does not match!",
+        });
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -26,6 +70,7 @@ function ResetPass() {
                 initialValues={{
                   remember: true,
                 }}
+                onFinish={onFinish}
               >
                 <Form.Item
                   name="email"
@@ -39,6 +84,40 @@ function ResetPass() {
                   <Input
                     prefix={<MailOutlined className="site-form-item-icon" />}
                     placeholder="Email"
+                    className="input"
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  size="12"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Password!",
+                    },
+                  ]}
+                >
+                  <Input
+                    prefix={<LockOutlined className="site-form-item-icon" />}
+                    type="password"
+                    placeholder="Password"
+                    className="input"
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="repassword"
+                  size="12"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Password!",
+                    },
+                  ]}
+                >
+                  <Input
+                    prefix={<LockOutlined className="site-form-item-icon" />}
+                    type="password"
+                    placeholder="Forgot Password"
                     className="input"
                   />
                 </Form.Item>
@@ -56,30 +135,6 @@ function ResetPass() {
                   Reset Password
                 </Button>
               </Form>
-              <p className="or-title">
-                <b>Or</b>
-              </p>
-              <Link
-                to="/login"
-                style={{
-                  textDecoration: "none",
-                }}
-              >
-                <Button
-                  fullWidth
-                  type="submit"
-                  sx={{
-                    m: "2rem 0",
-                    p: "1rem",
-                    width: "63%",
-                    backgroundColor: "#00d5fa",
-                    color: "white",
-                    "&:hover": { backgroundColor: palette.error.main },
-                  }}
-                >
-                  SignIn
-                </Button>
-              </Link>
             </div>
           </div>
         </div>

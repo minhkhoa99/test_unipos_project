@@ -148,13 +148,16 @@ module.exports.deleteUser = async (req, res) => {
 };
 
 module.exports.resetUser = async (req, res) => {
+  console.log("aaa");
   try {
-    console.log(req.params.email);
+    console.log(req.body);
+    console.log("aaaa");
     const user = await db.models.Users.findOne({
       where: {
-        email: req.params.email,
+        email: req.body.email,
       },
     });
+    console.log(user);
     if (user) {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.Password, salt);
