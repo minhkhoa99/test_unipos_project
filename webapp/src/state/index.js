@@ -10,6 +10,8 @@ const initialState = {
   users: [],
   iduser: [],
   newpost: [],
+  interactive: [],
+  like:false
 };
 
 export const authSlice = createSlice({
@@ -68,7 +70,14 @@ export const authSlice = createSlice({
     setTrueFalse: (state, action) => {
       // console.log(action.payload.isProfile);
       state.isProfile = action.payload.isProfile
-    }
+    },
+    setInteractive: (state, action) => {
+      state.interactive = action.payload.interactive
+    },
+    setLike: (state, action) => {
+      console.log(action.payload.like);
+      state.like = action.payload.like
+    },
   },
 });
 
@@ -83,5 +92,7 @@ export const {
   setUsers,
   setNewpost,
   setTrueFalse,
+  setInteractive,
+  setLike,
 } = authSlice.actions;
 export default authSlice.reducer;

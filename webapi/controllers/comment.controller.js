@@ -23,7 +23,9 @@ module.exports.createComment = async (req, res) => {
 
 module.exports.getAllComment = async (req, res) => {
   try {
-    const comment = await db.models.Comment.findAll();
+    const comment = await db.models.Comment.findAll({
+      order: [["id", "DESC"]],
+    });
     res.status(200).send({
       status: 200,
       message: "Success",

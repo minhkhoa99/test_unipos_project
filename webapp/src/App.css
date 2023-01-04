@@ -633,10 +633,18 @@ History .history {
 
 .post-reaction .number-like {
   display: flex;
+  align-items: center;
   margin: 0% 2%;
   width: 50%;
 }
-
+.post-reaction .number-like div {
+  margin-right: 5px;
+  font-size: 130%;
+}
+.post-reaction .number-like h6 {
+  margin: 0;
+  font-size: 100%;
+}
 .number-like h7 {
   margin-left: 1%;
 }
@@ -644,6 +652,7 @@ History .history {
 .fa-regular {
   color: #036ee7;
 }
+
 .post-reaction .number-user {
   display: flex;
   margin: 0% 2%;
@@ -659,7 +668,7 @@ History .history {
   /* margin: auto; */
   display: flex;
   justify-content: space-evenly;
-  padding: 0% 2%;
+  padding: 0.5% 2%;
   margin: 1% 5%;
   border-top: 1px solid #ced0d4;
   border-bottom: 1px solid #ced0d4;
@@ -667,11 +676,17 @@ History .history {
 
 .post-buttons button {
   border: none;
-  padding: 1% 2%;
+  padding: 1% 4%;
   position: relative;
   background: white;
+  border-radius: 5px;
 }
-
+.post-buttons button:hover {
+  background: rgb(230, 230, 230);
+}
+.post-buttons .likecoler {
+  color: red;
+}
 .body-left {
   height: 5000px;
   width: 20%;
@@ -1294,4 +1309,6 @@ History .history {
   /* color: #19d4d4 !important; */
 }
 
-
+.page-content {
+  width: 70%;
+}

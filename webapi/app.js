@@ -36,6 +36,6 @@ app.use("/blogs", blogs);
 app.use("/history", history);
 app.use("/report", report);
 app.use("/comment", Comment);
-app.use("/Interactive", Interactive);
+app.use("/interactive", Interactive);
 
 app.listen(port);
