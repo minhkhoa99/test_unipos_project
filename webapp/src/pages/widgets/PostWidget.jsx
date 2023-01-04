@@ -55,15 +55,12 @@ const PostWidget = ({postview,}) => {
     if(blogid){
     setLike(!like);
     }
-    console.log(e.target.parentElement.id);
   }
 
   const liked = likes.find((e)=>e.usernameLikes==iduser.username)
   
   useEffect(() => {
     dispatch(setNewpost([]));
-
-
   },[]);
   return (<>
   {/* in post từ bảng */}

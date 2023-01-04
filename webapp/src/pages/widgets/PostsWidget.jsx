@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state/index";
-import { setNewpost ,setInteractive, setLike } from "../../state/index";
+import { setNewpost ,setInteractive } from "../../state/index";
 import { setTrueFalse } from "../../state/index";
 import PostWidget from "./PostWidget";
 import PostNew from "./PostNew";
