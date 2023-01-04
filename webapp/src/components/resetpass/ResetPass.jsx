@@ -12,23 +12,23 @@ function ResetPass() {
 
   return (
     <>
-      <div className="resetPass">
+      <div className='resetPass'>
         <HeadingNavbar />
-        <div className="container">
-          <div className="row resetPass-container">
-            <div className="col-6 resetpass">
-              <Typography fontWeight="bold" fontSize="32px" color="primary">
+        <div className='container'>
+          <div className='row resetPass-container'>
+            <div className='col-6 resetpass'>
+              <Typography fontWeight='bold' fontSize='32px' color='primary'>
                 Rating App
               </Typography>
               <Form
-                name="normal_login"
-                className="login-form"
+                name='normal_login'
+                className='login-form'
                 initialValues={{
                   remember: true,
                 }}
               >
                 <Form.Item
-                  name="email"
+                  name='email'
                   rules={[
                     {
                       required: true,
@@ -37,44 +37,44 @@ function ResetPass() {
                   ]}
                 >
                   <Input
-                    prefix={<MailOutlined className="site-form-item-icon" />}
-                    placeholder="Email"
-                    className="input"
+                    prefix={<MailOutlined className='site-form-item-icon' />}
+                    placeholder='Email'
+                    className='input'
                   />
                 </Form.Item>
                 <Button
                   fullWidth
-                  type="submit"
+                  type='submit'
                   sx={{
                     m: "2rem 0",
                     p: "1rem",
                     backgroundColor: "#00d5fa",
                     color: "white",
-                    "&:hover": { backgroundColor: palette.error.main },
+                    "&:hover": { backgroundColor: "#00e1faa3" },
                   }}
                 >
                   Reset Password
                 </Button>
               </Form>
-              <p className="or-title">
+              <p className='or-title'>
                 <b>Or</b>
               </p>
               <Link
-                to="/login"
+                to='/login'
                 style={{
                   textDecoration: "none",
                 }}
               >
                 <Button
                   fullWidth
-                  type="submit"
+                  type='submit'
                   sx={{
                     m: "2rem 0",
                     p: "1rem",
                     width: "63%",
                     backgroundColor: "#00d5fa",
                     color: "white",
-                    "&:hover": { backgroundColor: palette.error.main },
+                    "&:hover": { backgroundColor: "#00e1faa3" },
                   }}
                 >
                   SignIn

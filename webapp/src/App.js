@@ -21,14 +21,13 @@ import { themeSettings } from "./theme";
 import { createTheme } from "@mui/material/styles";
 import UserProfile from "./pages/profilePage/UserEdit.jsx";
 import { useSelector } from "react-redux";
-import CaseStudy from "./pages/caseStudy/CaseStudy.jsx"
+import CaseStudy from "./pages/caseStudy/CaseStudy.jsx";
 import Blogs from "./pages/widgets/Blogs";
 import UserEdit from "./pages/profilePage/UserEdit.jsx";
 import ResetPass from "./components/resetpass/ResetPass.jsx";
-import NewsPage from './pages/newspage/NewsPage';
-import PricePage from './pages/pricePages/PricePage';
-import MyProfile from './pages/profilePage/MyProfile';
-
+import NewsPage from "./pages/newspage/NewsPage";
+import PricePage from "./pages/pricePages/PricePage";
+import MyProfile from "./pages/profilePage/MyProfile";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -63,7 +62,7 @@ function App() {
             // element={isAuth ? <ProfilePage /> : <Navigate to="/home" />}
             element={<ProfilePage />}
           >
-            <Route path='/myprofile' element={<MyProfile/>}></Route>
+            <Route path='/myprofile' element={<MyProfile />}></Route>
             <Route path='/myprofile/edit' element={<UserEdit />}></Route>
           </Route>
         </Routes>
@@ -74,14 +73,11 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
-          <Route path="/resetpassword" element={<ResetPass/>} />
+          <Route path='/resetpassword' element={<ResetPass />} />
           <Route path='/editprofile' element={<UserProfile />} />
           <Route path='/nghien-cuu-dien-hinh' element={<CaseStudy />} />
           <Route path='/tin-tuc' element={<NewsPage />} />
           <Route path='/chi-phi' element={<PricePage />} />
-
-
-
         </Routes>
       </section>
     </div>

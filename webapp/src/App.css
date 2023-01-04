@@ -376,13 +376,11 @@ History .history {
   padding: 0% 0% 0% 2%;
 }
 
-
-.banner{
+.banner {
   margin-left: 20%;
 }
-.nav{
-  
-    justify-content: space-between;
+.nav {
+  justify-content: space-between;
 }
 .nav-item a {
   text-decoration: none;
@@ -1293,5 +1291,3 @@ History .history {
   padding-left: 5%;
   /* color: #19d4d4 !important; */
 }
-
-

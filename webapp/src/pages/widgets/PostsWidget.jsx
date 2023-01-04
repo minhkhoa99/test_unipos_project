@@ -37,7 +37,7 @@ const PostsWidget = ({ isProfile = false }) => {
       // getUserPosts();
     } else {
       getPosts();
-    };
+    }
     dispatch(setNewpost([]));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -54,13 +54,12 @@ const PostsWidget = ({ isProfile = false }) => {
   // console.log(newpost);
   return (
     <>
-      {newpost != undefined ?
-        newpost.map((e,i) => {
-        return <PostNew key={i} newpost={e} />
-      })
-      :
-      ""}
-      {posts.map((e,i) => {
+      {newpost != undefined
+        ? newpost.map((e, i) => {
+            return <PostNew key={i} newpost={e} />;
+          })
+        : ""}
+      {posts.map((e, i) => {
         let arr = users.find((e1) => {
           return e1.id === e.userId;
         });
@@ -71,6 +70,5 @@ const PostsWidget = ({ isProfile = false }) => {
     </>
   );
 };
-
 
 export default PostsWidget;
