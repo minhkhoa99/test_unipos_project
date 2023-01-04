@@ -7,4 +7,6 @@ router.post("/", Interactive.createInteractive);
 
 router.get("/", Interactive.getInteractive);
 
+router.delete("/:id", users.deleteInteractive);
+
 module.exports = router;
