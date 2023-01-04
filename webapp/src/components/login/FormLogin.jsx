@@ -10,15 +10,14 @@ import {
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
+import { setUser } from "../../state/index"
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../state/index"
-import { setLogin } from "../../state/index";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("FirstName cannot be empty !!"),
@@ -53,9 +52,10 @@ const initialValuesLogin = {
   repassword: "",
 };
 function FormLogin() {
+  const dispatch = useDispatch();
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
@@ -79,7 +79,7 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-      fetch("http://localhost:3000/auth", {
+      fetch("http://localhost:5000/auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,6 @@ function FormLogin() {
       })
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data.data);
           dispatch(setUser({ iduser: data.data }));
           if (data.message === "login success") {
             Swal.fire(
@@ -104,7 +103,7 @@ function FormLogin() {
               text: "Incorrect email or password!",
             });
           }
-          // console.log(data);
+          console.log(data);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -131,7 +130,7 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-      fetch("http://localhost:3000/user", {
+      fetch("http://127.0.0.1:3000/user", {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",

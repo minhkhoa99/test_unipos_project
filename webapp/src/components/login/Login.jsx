@@ -47,7 +47,7 @@ const Login = () => {
 
     if (values.email === mail && values.password === pass) {
       Swal.fire("Login Successful!", "Logged in successfully!", "success");
-      window.location.href = "http://localhost:3000/";
+      window.location.href = "http://localhost:5000/";
       localStorage.setItem("userEmail", values.email);
     } else {
       Swal.fire({

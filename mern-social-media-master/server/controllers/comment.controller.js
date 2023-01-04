@@ -112,26 +112,26 @@ module.exports.deleteComment = async (req, res) => {
     });
   }
 };
-module.exports.deleteComment = async (req, res) => {
-  try {
-    const comment = await db.models.Comment.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
+// module.exports.deleteComment = async (req, res) => {
+//   try {
+//     const comment = await db.models.Comment.findOne({
+//       where: {
+//         id: req.params.id,
+//       },
+//     });
 
-    if (comment) {
-      await comment.destroy();
-    }
-    res.status(200).send({
-      status: 200,
-      message: "Delete oke",
-    });
-  } catch (error) {
-    return res.status(400).send({
-      message: "Unable to insert data",
-      error: error,
-      status: 400,
-    });
-  }
-};
+//     if (comment) {
+//       await comment.destroy();
+//     }
+//     res.status(200).send({
+//       status: 200,
+//       message: "Delete oke",
+//     });
+//   } catch (error) {
+//     return res.status(400).send({
+//       message: "Unable to insert data",
+//       error: error,
+//       status: 400,
+//     });
+//   }
+// };

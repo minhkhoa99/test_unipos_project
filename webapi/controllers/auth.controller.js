@@ -9,14 +9,13 @@ module.exports.signin = async (req, res, next) => {
         Email: req.body.Email,
       },
     });
-    console.log(user);
+    // console.log(user);
     if (!user) {
       res.status(404).send({
         message: "Email not found",
         status: 404,
       });
     }
-
 
     bcrypt.compare(req.body.Password, user.Password, function (err, res) {
       if (err) {
@@ -30,7 +29,7 @@ module.exports.signin = async (req, res, next) => {
     });
     const check = bcrypt.compare(req.body.Password, user.Password);
     console.log(check);
-  
+
     if (check) {
       res.status(200).send({
         message: "login success",
