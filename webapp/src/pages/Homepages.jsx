@@ -1,8 +1,7 @@
-
 import { Box, useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
-import NavbarHomePage from "./navbarhomepage/NavbarHomePage"
+import NavbarHomePage from "./navbarhomepage/NavbarHomePage";
 // import MyPostWidget from "./widgets/MyPostWidget";
 // import PostsWidget from "./widgets/PostsWidget";
 import AdvertWidget from "./widgets/AdvertWidget";
@@ -12,7 +11,6 @@ import PointWidget from "./widgets/PointWidget";
 import { Outlet } from "react-router";
 import { setUsers } from '../state/index'
 import { useEffect } from "react";
-
 
 
 function Homepages() {
@@ -41,40 +39,38 @@ function Homepages() {
     <>
       <Box>
         <NavbarHomePage />
-      <Box
-        width="100%"
-        padding="2rem 6%"
-        display={isNonMobileScreens ? "flex" : "block"}
-        gap="0.5rem"
-        justifyContent="space-between"
-      >
-        <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
-          {/* <UserWidget userId={_id} picturePath={picturePath} /> */}
-       <UserWidget/>
-        </Box>
         <Box
-          flexBasis={isNonMobileScreens ? "42%" : undefined}
-          mt={isNonMobileScreens ? undefined : "2rem"}
+          width="100%"
+          padding="2rem 6%"
+          display={isNonMobileScreens ? "flex" : "block"}
+          gap="0.5rem"
+          justifyContent="space-between"
         >
-          {/* <MyPostWidget /> */}
-          {/* <MyPostWidget picturePath={picturePath} /> */}
-
-          {/* <PostsWidget userId={_id} /> */}
-          {/* <PostsWidget /> */}
-          <Outlet></Outlet>
-        </Box>
-        
-        {isNonMobileScreens && (
-          
-          <Box flexBasis="26%">
-            <AdvertWidget />
-            <Box m="2rem 0" />
-            <FriendListWidget />
-            {/* <FriendListWidget userId={_id} /> */}
+          <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
+            {/* <UserWidget userId={_id} picturePath={picturePath} /> */}
+            <UserWidget />
           </Box>
-        )}
+          <Box
+            flexBasis={isNonMobileScreens ? "42%" : undefined}
+            mt={isNonMobileScreens ? undefined : "2rem"}
+          >
+            {/* <MyPostWidget /> */}
+            {/* <MyPostWidget picturePath={picturePath} /> */}
+
+            {/* <PostsWidget userId={_id} /> */}
+            {/* <PostsWidget /> */}
+            <Outlet></Outlet>
+          </Box>
+
+          {isNonMobileScreens && (
+            <Box flexBasis="26%">
+              <AdvertWidget />
+              <Box m="2rem 0" />
+              <FriendListWidget />
+            </Box>
+          )}
+        </Box>
       </Box>
-    </Box>
     </>
   );
 }
