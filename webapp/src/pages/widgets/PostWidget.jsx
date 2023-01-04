@@ -48,6 +48,7 @@ const PostWidget = ({postview,}) => {
   // setPostview(postviews)
   // console.log(postview);
   // console.log(interactive);
+  // console.log(likes);
   // {postview[2].length >= 1 ? console.log(postview[2][0].usernameLikes) : ""}
   const handleLikeOnclick = async (e) => {
     let blogid = e.target.parentElement.id
@@ -57,16 +58,7 @@ const PostWidget = ({postview,}) => {
     console.log(e.target.parentElement.id);
   }
 
-  // if()
-  // likes.forEach((e)=>{
-  //   if(e.usernameLikes==iduser.username){
-  //     console.log(e.blogId);
-  //     setLike(true)
-  //   }
-  //   else{
-  //     setLike(false)
-  //   }
-  // })
+  const liked = likes.find((e)=>e.usernameLikes==iduser.username)
   
   useEffect(() => {
     dispatch(setNewpost([]));
@@ -120,7 +112,7 @@ const PostWidget = ({postview,}) => {
       </div>
       <div id={blog.id} className='post-buttons'>
         <button onClick={handleLikeOnclick}>
-          <i className={`fa-regular fa-thumbs-up ${like ? 'likecoler' : ''}`}></i> Yêu thích
+          <i className={`fa-regular fa-thumbs-up  ${like || liked ? 'likecoler' : ''}`}></i> Yêu thích
         </button>
         <button>
           <i className='fa-regular fa-thumbs-down'></i> Không thích
