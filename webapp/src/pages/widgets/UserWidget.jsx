@@ -15,7 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function UserWidget({ userId, picturePath }) {
   const state = useSelector((state) => state.iduser);
-  const name = state.username
+  const name = state.username;
   console.log(state);
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
@@ -52,7 +52,7 @@ function UserWidget({ userId, picturePath }) {
   //   } = user;
 
   return (
-    <WidgetWrapper>
+    <WidgetWrapper position='sticky' top='20%'>
       {/* FIRST ROW */}
       <FlexBetween
         gap='0.5rem'

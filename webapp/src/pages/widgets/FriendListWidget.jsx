@@ -28,16 +28,16 @@ const FriendListWidget = ({ userId }) => {
   // }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <WidgetWrapper>
+    <WidgetWrapper >
       <Typography
         color={"#333333"}
-        variant="h5"
-        fontWeight="500"
+        variant='h5'
+        fontWeight='500'
         sx={{ mb: "1.5rem" }}
       >
         Friend List
       </Typography>
-      <Box display="flex" flexDirection="column" gap="1.5rem">
+      <Box display='flex' flexDirection='column' gap='1.5rem'>
         {/* {friends.map((friend) => (
           <Friend
             key={friend._id}

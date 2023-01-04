@@ -39,12 +39,17 @@ const NavbarHomePage = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
   const state = useSelector((state) => state.iduser);
-  const fullName = state.username
+  const fullName = state.username;
 
   return (
     <>
       {" "}
-      <FlexBetween padding='1rem 6%' backgroundColor={alt}>
+      <FlexBetween
+        padding='1rem 6%'
+        backgroundColor={alt}
+        position='sticky'
+        top='0'
+      >
         <FlexBetween gap='1.75rem'>
           <Typography
             fontWeight='bold'
