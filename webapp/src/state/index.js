@@ -27,10 +27,10 @@ export const authSlice = createSlice({
     setLogout: (state) => {
       state.user = null;
       state.token = null;
-      state.posts= [];
-      state.users= [];
-      state.iduser= [];
-      state.newpost= [];
+      state.posts = [];
+      state.users = [];
+      state.iduser = [];
+      state.newpost = [];
     },
     setFriends: (state, action) => {
       if (state.user) {
@@ -56,11 +56,10 @@ export const authSlice = createSlice({
       state.iduser = action.payload.iduser;
     },
     setUsers: (state, action) => {
-      // console.log(action.payload.users);
+      console.log(action.payload.users);
       state.users = action.payload.users;
     },
     setNewpost: (state, action) => {
-
       state.newpost = action.payload.postData;
       // state.newpost = temp;
 
@@ -68,10 +67,10 @@ export const authSlice = createSlice({
     },
     setTrueFalse: (state, action) => {
       // console.log(action.payload.isProfile);
-      state.isProfile = action.payload.isProfile
+      state.isProfile = action.payload.isProfile;
     },
     setInteractive: (state, action) => {
-      state.interactive = action.payload.interactive
+      state.interactive = action.payload.interactive;
     },
   },
 });

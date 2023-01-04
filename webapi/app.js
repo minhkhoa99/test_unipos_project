@@ -50,7 +50,9 @@ app.use("/history", history);
 app.use("/report", report);
 app.use("/comment", Comment);
 app.use("/interactive", Interactive);
-
+app.listen(port, () => {
+  connected();
+});
 // global.onlineUsers = new Map();
 // io.on("connection", (socket) => {
 //   global.chatSocket = socket;
