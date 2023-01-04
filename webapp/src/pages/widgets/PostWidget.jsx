@@ -20,6 +20,7 @@ const PostWidget = ({postview,}) => {
   const iduser = useSelector((state) => state.iduser)
   const {blog, arrUsers, likes, dislikes} = postview
   const [like, setLike] = useState(false)
+  const [dislike, setDislike] = useState(false)
   // console.log(newpost);
   // const [isComments, setIsComments] = useState(false);
   // const dispatch = useDispatch();
@@ -49,15 +50,25 @@ const PostWidget = ({postview,}) => {
   // console.log(postview);
   // console.log(interactive);
   // console.log(likes);
+  console.log(iduser);
   // {postview[2].length >= 1 ? console.log(postview[2][0].usernameLikes) : ""}
   const handleLikeOnclick = async (e) => {
     let blogid = e.target.parentElement.id
     if(blogid){
-    setLike(!like);
+      setLike(!like);
+    }
+  }
+  const handleDislikeOnclick = async (e) => {
+    let blogid = e.target.parentElement.id
+    if(blogid){
+      setDislike(!dislike);
     }
   }
 
   const liked = likes.find((e)=>e.usernameLikes==iduser.username)
+  const disliked = dislikes.find((e)=>e.usernameDislikes==iduser.username)
+  console.log(dislikes);
+  console.log(disliked);
   
   useEffect(() => {
     dispatch(setNewpost([]));
@@ -111,8 +122,8 @@ const PostWidget = ({postview,}) => {
         <button onClick={handleLikeOnclick}>
           <i className={`fa-regular fa-thumbs-up  ${like || liked ? 'likecoler' : ''}`}></i> Yêu thích
         </button>
-        <button>
-          <i className='fa-regular fa-thumbs-down'></i> Không thích
+        <button onClick={handleDislikeOnclick}>
+          <i className={`fa-regular fa-thumbs-down ${dislike || disliked ? 'likecoler' : ''}`}></i> Không thích
         </button>
         <button>
           <i className='fa-regular fa-comments'></i> Bình luận
