@@ -7,7 +7,7 @@ import { setTrueFalse } from "../../state/index";
 import PostWidget from "./PostWidget";
 import PostNew from "./PostNew";
 
-const PostsWidget = ({ isProfile = false }) => {
+const PostsWidget = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const users = useSelector((state) => state.users);

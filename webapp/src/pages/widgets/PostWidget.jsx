@@ -12,14 +12,14 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import { useEffect } from "react";
-import { setNewpost,} from "../../state/index";
+import { setNewpost } from "../../state/index";
 
-const PostWidget = ({postview,}) => {
+const PostWidget = ({ postview }) => {
   const dispatch = useDispatch();
   // const newpost = useSelector((state) => state.newpost)
-  const iduser = useSelector((state) => state.iduser)
-  const {blog, arrUsers, likes, dislikes} = postview
-  const [like, setLike] = useState(false)
+  const iduser = useSelector((state) => state.iduser);
+  const { blog, arrUsers, likes, dislikes } = postview;
+  const [like, setLike] = useState(false);
   // console.log(newpost);
   // const [isComments, setIsComments] = useState(false);
   // const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const PostWidget = ({postview,}) => {
   // const loggedInUserId = useSelector((state) => state.user._id);
   // const isLiked = Boolean(likes[loggedInUserId]);
   // const likeCount = Object.keys(likes).length;
-     
+
   // const { palette } = useTheme();
   // const main = palette.neutral.main;
   // const primary = palette.primary.main;
@@ -50,12 +50,12 @@ const PostWidget = ({postview,}) => {
   // console.log(interactive);
   // {postview[2].length >= 1 ? console.log(postview[2][0].usernameLikes) : ""}
   const handleLikeOnclick = async (e) => {
-    let blogid = e.target.parentElement.id
-    if(blogid){
-    setLike(!like);
+    let blogid = e.target.parentElement.id;
+    if (blogid) {
+      setLike(!like);
     }
     console.log(e.target.parentElement.id);
-  }
+  };
 
   // if()
   // likes.forEach((e)=>{
@@ -67,114 +67,123 @@ const PostWidget = ({postview,}) => {
   //     setLike(false)
   //   }
   // })
-  
+
   useEffect(() => {
     dispatch(setNewpost([]));
-
-
-  },[]);
-  return (<>
-  {/* in post từ bảng */}
-    <div id = {blog.id} className='home-post'>
-      <div className='post-header'>
-        <div className='post-header-right'>
-          <div id = {arrUsers.id} className='user-post'>
+  }, []);
+  return (
+    <>
+      {/* in post từ bảng */}
+      <div id={blog.id} className='home-post'>
+        <div className='post-header'>
+          <div className='post-header-right'>
+            <div id={arrUsers.id} className='user-post'>
+              <img
+                src={
+                  arrUsers.Avata == null
+                    ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6"
+                    : arrUsers.Avata
+                }
+                alt=''
+              />
+            </div>
+            <div className='name-user-post'>
+              <div>{arrUsers.username}</div>
+              <h6>1 giờ trước </h6>{" "}
+              <i className='fa-solid fa-earth-americas icon-public'></i>
+            </div>
+          </div>
+          <div className='option-post'>
+            <button className='btn-option'>...</button>
+          </div>
+        </div>
+        <div className='post-content'>{blog.Content}</div>
+        {blog.ImgVideo == null ? (
+          ""
+        ) : (
+          <div className='post-picture'>
+            <img src={blog.ImgVideo} alt='' />
+          </div>
+        )}
+        <br />
+        <div className='post-reaction'>
+          <div className='number-like'>
+            <div>
+              <i className='fa-regular fa-thumbs-up'></i>
+            </div>
+            <h6>
+              {" "}
+              {likes.length >= 1 ? "BẠN" : ""}{" "}
+              {likes.length >= 2 ? `, ${likes[1].usernameLikes}` : ""}{" "}
+              {likes.length >= 3 ? `, ${likes[2].usernameLikes}` : ""}{" "}
+              {likes.length >= 4 ? `và ${likes.length - 3} người khác` : ""}
+            </h6>
+          </div>
+          <div className='number-user'>
+            <div className='number-comment'>23 bình luận</div>
+            <div className='number-view'>108 người đã xem</div>
+          </div>
+        </div>
+        <div id={blog.id} className='post-buttons'>
+          <button onClick={handleLikeOnclick}>
+            <i
+              className={`fa-regular fa-thumbs-up ${like ? "likecoler" : ""}`}
+            ></i>{" "}
+            Yêu thích
+          </button>
+          <button>
+            <i className='fa-regular fa-thumbs-down'></i> Không thích
+          </button>
+          <button>
+            <i className='fa-regular fa-comments'></i> Bình luận
+          </button>
+        </div>
+        <div className='post-comment'>
+          <div className='my-user'>
             <img
-              src={arrUsers.Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : arrUsers.Avata}
+              src={
+                iduser.Avata == null
+                  ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6"
+                  : iduser.Avata
+              }
               alt=''
             />
           </div>
-          <div className='name-user-post'>
-            <div>{arrUsers.username}</div>
-            <h6>1 giờ trước </h6>{" "}
-            <i className='fa-solid fa-earth-americas icon-public'></i>
+          <div className='main-form-comment'>
+            <form action=''>
+              <input
+                className='comment-input'
+                type='text'
+                placeholder='Viết bình luận của bạn...'
+              />
+            </form>
           </div>
         </div>
-        <div className='option-post'>
-          <button className='btn-option'>...</button>
-        </div>
-      </div>
-      <div className='post-content'>
-        {blog.Content}
-      </div>
-      {blog.ImgVideo== null ?   ""   :
-           <div className='post-picture'>
-           <img
-             src={blog.ImgVideo}
-             alt=''
-           />
-          </div>
-        }
-      <br />
-      <div className='post-reaction'>
-        <div className='number-like'>
-          <div>
-            <i className='fa-regular fa-thumbs-up'></i>
-          </div>
-          <h6> {likes.length >= 1 ? "BẠN" : ""} {likes.length >= 2 ? `, ${likes[1].usernameLikes}` : ""} {likes.length >= 3 ? `, ${likes[2].usernameLikes}` : ""} {likes.length >= 4 ? `và ${likes.length-3} người khác` : ""}</h6>
-        </div>
-        <div className='number-user'>
-          <div className='number-comment'>23 bình luận</div>
-          <div className='number-view'>108 người đã xem</div>
-        </div>
-      </div>
-      <div id={blog.id} className='post-buttons'>
-        <button onClick={handleLikeOnclick}>
-          <i className={`fa-regular fa-thumbs-up ${like ? 'likecoler' : ''}`}></i> Yêu thích
-        </button>
-        <button>
-          <i className='fa-regular fa-thumbs-down'></i> Không thích
-        </button>
-        <button>
-          <i className='fa-regular fa-comments'></i> Bình luận
-        </button>
-      </div>
-      <div className='post-comment'>
-        <div className='my-user'>
-          <img
-            src={iduser.Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : iduser.Avata}
-            alt=''
-          />
-        </div>
-        <div className='main-form-comment'>
-          <form action=''>
-            <input
-              className='comment-input'
-              type='text'
-              placeholder='Viết bình luận của bạn...'
+        <div className='other-comments'>
+          <div className='other-user'>
+            <img
+              src='https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-1/272253596_10158307835791922_8649551029038105142_n.jpg?stp=cp0_dst-jpg_p48x48&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_ohc=RA01PIphbFQAX-QKwHr&_nc_ht=scontent.fhan15-1.fna&oh=00_AfD_ncaM88oph6r7tthvyNEhm76wIUWkw9Nhc_6KqA-Lew&oe=639F76A7'
+              alt=''
             />
-          </form>
+          </div>
+          <div className='comment-text'>
+            Trước khi xuất bản, thiết kế đồ họa có giả lập bố cục của bản vẽ
+            trong dòng squiggled để cho biết văn bản. Xuất hiện tầng tự dính các
+            preprinted "Lorem ipsum" nhường một thực tế cho biết văn bản đâu
+            trên trang.
+          </div>
+        </div>
+        <div>
+          <ul className='ul-like-time'>
+            <li className='li-like'>
+              <button>Thích</button>{" "}
+            </li>
+            <li>50 phút trước</li>
+          </ul>
         </div>
       </div>
-      <div className='other-comments'>
-        <div className='other-user'>
-          <img
-            src='https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-1/272253596_10158307835791922_8649551029038105142_n.jpg?stp=cp0_dst-jpg_p48x48&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_ohc=RA01PIphbFQAX-QKwHr&_nc_ht=scontent.fhan15-1.fna&oh=00_AfD_ncaM88oph6r7tthvyNEhm76wIUWkw9Nhc_6KqA-Lew&oe=639F76A7'
-            alt=''
-          />
-        </div>
-        <div className='comment-text'>
-          Trước khi xuất bản, thiết kế đồ họa có giả lập bố cục của bản vẽ trong
-          dòng squiggled để cho biết văn bản. Xuất hiện tầng tự dính các
-          preprinted "Lorem ipsum" nhường một thực tế cho biết văn bản đâu trên
-          trang.
-        </div>
-      </div>
-      <div>
-        <ul className='ul-like-time'>
-          <li className='li-like'>
-            <button>Thích</button>{" "}
-          </li>
-          <li>50 phút trước</li>
-        </ul>
-      </div>
-    </div>
     </>
   );
-
-
-
-
 
   // return (
   //   <WidgetWrapper m="2rem 0">
