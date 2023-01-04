@@ -53,7 +53,7 @@ const PostWidget = ({postview,}) => {
   // console.log(postview);
   // console.log(interactive);
   // console.log(likes);
-  console.log(iduser);
+  // console.log(iduser);
   // {postview[2].length >= 1 ? console.log(postview[2][0].usernameLikes) : ""}
   const handleLikeOnclick = async (e) => {
     let blogid = e.target.parentElement.id
@@ -70,8 +70,8 @@ const PostWidget = ({postview,}) => {
 
   const liked = likes.find((e)=>e.usernameLikes==iduser.username)
   const disliked = dislikes.find((e)=>e.usernameDislikes==iduser.username)
-  console.log(dislikes);
-  console.log(disliked);
+  // console.log(dislikes);
+  // console.log(disliked);
   
   useEffect(() => {
     dispatch(setNewpost([]));
