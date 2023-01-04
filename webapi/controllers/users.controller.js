@@ -4,26 +4,13 @@ const bcrypt = require("bcryptjs");
 module.exports.createUser = async (req, res) => {
   try {
     const passFontend = req.body.Password;
+    console.log(passFontend);
     const salt = bcrypt.genSaltSync(10);
     const hash = await bcrypt.hashSync(passFontend, salt);
     const userDetails = await db.models.Users.create({
       ...req.body,
       Password: hash,
     });
-
-    // const userDetails = await db.models.Users.create({
-    //   id: req.body.id,
-    //   username: req.body.username,
-    //   Email: req.body.Email,
-    //   Password: hash,
-    //   DOB: req.body.DOB,
-    //   Gender: req.body.Gender,
-    //   Avata: req.body.Avata,
-    //   Level: req.body.Level,
-    //   referralCode: req.body.ReferralCode,
-    //   Status: req.body.Status,
-    // });
-
     console.log(userDetails);
 
     // console.log(userDetails);
@@ -137,35 +124,6 @@ module.exports.deleteUser = async (req, res) => {
     res.status(200).send({
       status: 200,
       message: "Delete oke",
-    });
-  } catch (error) {
-    return res.status(400).send({
-      message: "Unable to insert data",
-      error: error,
-      status: 400,
-    });
-  }
-};
-
-module.exports.resetUser = async (req, res) => {
-  try {
-    console.log(req.params.email);
-    const user = await db.models.Users.findOne({
-      where: {
-        email: req.params.email,
-      },
-    });
-    if (user) {
-      const salt = bcrypt.genSaltSync(10);
-      const hash = bcrypt.hashSync(req.body.Password, salt);
-
-      user.Password = hash;
-      await user.save();
-    }
-    res.status(200).send({
-      status: 200,
-      message: "Success",
-      data: user,
     });
   } catch (error) {
     return res.status(400).send({
