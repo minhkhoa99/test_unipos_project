@@ -8,7 +8,6 @@ import { Button, useTheme } from "@mui/material";
 import { Typography } from "@mui/material";
 import Swal from "sweetalert2";
 
-
 function ResetPass() {
   const { palette } = useTheme();
   const onFinish = (values) => {
@@ -31,27 +30,36 @@ function ResetPass() {
     };
 
     console.log(values);
-    fetch("http://localhost:5000/user/forgot", {
-      method: "PUT", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        Swal.fire("Good job!", "Sign Up Success!", "success");
-        console.log(data);
-        window.location.href = "http://localhost:8800/login"
+    if (pass === repass) {
+      fetch("http://localhost:5000/user/forgot", {
+        method: "PUT", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "password does not match!",
+        .then((response) => response.json())
+
+        .then((data) => {
+          if (data.message === "Success") {
+            Swal.fire("Good job!", "Change password successfully", "success");
+            console.log(data);
+            window.location.href = "http://localhost:8800/login"
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Email does not exist",
+            });
+          }
         });
-        console.log(error);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Password does not match",
       });
+    }
   };
 
   return (

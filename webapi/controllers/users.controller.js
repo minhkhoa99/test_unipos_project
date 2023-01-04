@@ -154,11 +154,11 @@ module.exports.resetUser = async (req, res) => {
     console.log("aaaa");
     const user = await db.models.Users.findOne({
       where: {
-        email: req.body.email,
+        Email: req.body.Email,
       },
     });
-    console.log(user);
-    if (user) {
+    console.log(user.Email);
+    if (user.Email) {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.Password, salt);
 
