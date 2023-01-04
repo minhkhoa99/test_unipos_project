@@ -4,26 +4,13 @@ const bcrypt = require("bcryptjs");
 module.exports.createUser = async (req, res) => {
   try {
     const passFontend = req.body.Password;
+    console.log(passFontend);
     const salt = bcrypt.genSaltSync(10);
     const hash = await bcrypt.hashSync(passFontend, salt);
     const userDetails = await db.models.Users.create({
       ...req.body,
       Password: hash,
     });
-
-    // const userDetails = await db.models.Users.create({
-    //   id: req.body.id,
-    //   username: req.body.username,
-    //   Email: req.body.Email,
-    //   Password: hash,
-    //   DOB: req.body.DOB,
-    //   Gender: req.body.Gender,
-    //   Avata: req.body.Avata,
-    //   Level: req.body.Level,
-    //   referralCode: req.body.ReferralCode,
-    //   Status: req.body.Status,
-    // });
-
     console.log(userDetails);
 
     // console.log(userDetails);
@@ -148,17 +135,14 @@ module.exports.deleteUser = async (req, res) => {
 };
 
 module.exports.resetUser = async (req, res) => {
-  console.log("aaa");
   try {
-    console.log(req.body);
-    console.log("aaaa");
+    console.log(req.params.email);
     const user = await db.models.Users.findOne({
       where: {
-        Email: req.body.Email,
+        email: req.params.email,
       },
     });
-    console.log(user.Email);
-    if (user.Email) {
+    if (user) {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.Password, salt);
 

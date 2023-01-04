@@ -9,9 +9,9 @@ router.get("/", users.getAllUser);
 
 router.get("/:id", users.getUserById);
 
-// router.put("/:id", users.updateUser);
+router.put("/:id", users.updateUser);
 
-router.put("/forgot", users.resetUser);
+router.put("/", users.resetUser);
 
 router.delete("/:id", users.deleteUser);
 

@@ -45,3 +45,28 @@ module.exports.getInteractive = async (req, res) => {
     });
   }
 };
+
+module.exports.deleteInteractive = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const interactive = await db.models.Interactive.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (interactive) {
+      await interactive.destroy();
+    }
+    res.status(200).send({
+      status: 200,
+      message: "Delete oke",
+    });
+  } catch (error) {
+    return res.status(400).send({
+      message: "Unable to insert data",
+      error: error,
+      status: 400,
+    });
+  }
+};
