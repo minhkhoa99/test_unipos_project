@@ -12,15 +12,14 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import { useEffect } from "react";
-import { setNewpost } from "../../state/index";
+import { setNewpost,} from "../../state/index";
 
-const PostWidget = ({postview}) => {
+const PostWidget = ({postview,}) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setNewpost([]));
-  }, []);
   // const newpost = useSelector((state) => state.newpost)
   const iduser = useSelector((state) => state.iduser)
+  const {blog, arrUsers, likes, dislikes} = postview
+  const [like, setLike] = useState(false)
   // console.log(newpost);
   // const [isComments, setIsComments] = useState(false);
   // const dispatch = useDispatch();
@@ -48,21 +47,45 @@ const PostWidget = ({postview}) => {
   // const [postview, setPostview] = useState()
   // setPostview(postviews)
   // console.log(postview);
+  // console.log(interactive);
+  // {postview[2].length >= 1 ? console.log(postview[2][0].usernameLikes) : ""}
+  const handleLikeOnclick = async (e) => {
+    let blogid = e.target.parentElement.id
+    if(blogid){
+    setLike(!like);
+    }
+    console.log(e.target.parentElement.id);
+  }
+
+  // if()
+  // likes.forEach((e)=>{
+  //   if(e.usernameLikes==iduser.username){
+  //     console.log(e.blogId);
+  //     setLike(true)
+  //   }
+  //   else{
+  //     setLike(false)
+  //   }
+  // })
+  
+  useEffect(() => {
+    dispatch(setNewpost([]));
 
 
+  },[]);
   return (<>
   {/* in post từ bảng */}
-    <div id = {postview[0].id} className='home-post'>
+    <div id = {blog.id} className='home-post'>
       <div className='post-header'>
         <div className='post-header-right'>
-          <div id = {postview[1].id} className='user-post'>
+          <div id = {arrUsers.id} className='user-post'>
             <img
-              src={postview[1].Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : postview[1].Avata}
+              src={arrUsers.Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : arrUsers.Avata}
               alt=''
             />
           </div>
           <div className='name-user-post'>
-            <div>{postview[1].username}</div>
+            <div>{arrUsers.username}</div>
             <h6>1 giờ trước </h6>{" "}
             <i className='fa-solid fa-earth-americas icon-public'></i>
           </div>
@@ -72,12 +95,12 @@ const PostWidget = ({postview}) => {
         </div>
       </div>
       <div className='post-content'>
-        {postview[0].Content}
+        {blog.Content}
       </div>
-      {postview[0].ImgVideo== null ?   ""   :
+      {blog.ImgVideo== null ?   ""   :
            <div className='post-picture'>
            <img
-             src={postview[0].ImgVideo}
+             src={blog.ImgVideo}
              alt=''
            />
           </div>
@@ -88,18 +111,16 @@ const PostWidget = ({postview}) => {
           <div>
             <i className='fa-regular fa-thumbs-up'></i>
           </div>
-          <h6>Thành Đô, Hoàng Đức và 23 người khác</h6>
+          <h6> {likes.length >= 1 ? "BẠN" : ""} {likes.length >= 2 ? `, ${likes[1].usernameLikes}` : ""} {likes.length >= 3 ? `, ${likes[2].usernameLikes}` : ""} {likes.length >= 4 ? `và ${likes.length-3} người khác` : ""}</h6>
         </div>
         <div className='number-user'>
-          {" "}
           <div className='number-comment'>23 bình luận</div>
           <div className='number-view'>108 người đã xem</div>
         </div>
       </div>
-      <div className='post-buttons'>
-        <button>
-          {" "}
-          <i className='fa-regular fa-thumbs-up'></i> Yêu thích
+      <div id={blog.id} className='post-buttons'>
+        <button onClick={handleLikeOnclick}>
+          <i className={`fa-regular fa-thumbs-up ${like ? 'likecoler' : ''}`}></i> Yêu thích
         </button>
         <button>
           <i className='fa-regular fa-thumbs-down'></i> Không thích
@@ -111,7 +132,7 @@ const PostWidget = ({postview}) => {
       <div className='post-comment'>
         <div className='my-user'>
           <img
-            src='https://i.pinimg.com/originals/d9/b8/3a/d9b83aa1a08be3e46ebb47254db8cf75.jpg'
+            src={iduser.Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : iduser.Avata}
             alt=''
           />
         </div>

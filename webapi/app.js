@@ -23,9 +23,11 @@ const cors = require("cors");
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: "*"
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 dotenv.config();
 (async () => {
   await db.sequelize.sync();
@@ -48,16 +50,6 @@ app.use("/history", history);
 app.use("/report", report);
 app.use("/comment", Comment);
 app.use("/Interactive", Interactive);
-app.use("/api/messages", messageRoutes);
-app.listen(port,()=>{
-  connected();
-});
-// const io = socket(app, {
-//   cors: {
-//     origin: "http://localhost:3000",
-//     credentials: true,
-//   },
-// });
 
 // global.onlineUsers = new Map();
 // io.on("connection", (socket) => {

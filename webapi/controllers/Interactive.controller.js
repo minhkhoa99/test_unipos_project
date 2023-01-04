@@ -24,14 +24,16 @@ module.exports.createInteractive = async (req, res) => {
 
 module.exports.getInteractive = async (req, res) => {
   try {
-    const interactive = await db.models.Interactive.findAll();
-    var result = [];
-    for (i = 0; i < interactive.length; i++) {
-      let data = interactive[i].userId;
-      result.push(data);
-      // console.log(result);
-    }
-    console.log(result);
+    const interactive = await db.models.Interactive.findAll({
+      order: [["id", "DESC"]],
+    });
+    // var result = [];
+    // for (i = 0; i < interactive.length; i++) {
+    //   let data = interactive[i].userId;
+    //   result.push(data);
+    //   // console.log(result);
+    // }
+    // console.log(result);
     res.status(200).send({
       status: 200,
       message: "Success",
