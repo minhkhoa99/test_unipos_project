@@ -1,33 +1,29 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import Friend from "../../components/Friend";
 import WidgetWrapper from "../../components/WidgetWrapper";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "../../state/index";
 import Contacts from "../../components/Contacts";
+import axios from "axios";
 import Chat from "../Chat";
+import ChatContainer from './../../components/ChatContainer';
 
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
   const { palette } = useTheme();
   const token = useSelector((state) => state.token);
-  // const friends = useSelector((state) => state.user.friends);
+ const [friend,setFriends]=useState([])
 
-  // const getFriends = async () => {
-  //   const response = await fetch(
-  //     `http://localhost:3001/users/${userId}/friends`,
-  //     {
-  //       method: "GET",
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     }
-  //   );
-  //   const data = await response.json();
-  //   dispatch(setFriends({ friends: data }));
-  // };
+  const getFriends = async () => {
+   const result = await axios.get(`http://localhost:5000/user`)
+   setFriends(result.data.dataMongo)
+    console.log(result.data.dataMongo);
+  };
 
-  // useEffect(() => {
-  //   getFriends();
-  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    getFriends();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <WidgetWrapper>
@@ -50,7 +46,8 @@ const FriendListWidget = ({ userId }) => {
           />
         ))} */}
       </Box>
-      <Chat />
+      <Contacts friend ={friend}/>
+      {/* <Chat/> */}
     </WidgetWrapper>
   );
 };

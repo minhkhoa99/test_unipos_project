@@ -10,62 +10,62 @@ import Contacts from "../components/Contacts";
 import "./chatcss/Chat.css";
 
 export default function Chat() {
+ 
   const navigate = useNavigate();
   const socket = useRef();
   const [contacts, setContacts] = useState([]);
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
-  useEffect(
-    (async () => {
-      if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
-        navigate("/login");
-      } else {
-        setCurrentUser(
-          await JSON.parse(
-            localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-          )
-        );
-      }
-    },
-    [])
-  );
-  useEffect(
-    (() => {
-      if (currentUser) {
-        socket.current = io(host);
-        socket.current.emit("add-user", currentUser._id);
-      }
-    },
-    [currentUser])
-  );
-
-  // useEffect(async () => {
-  //   if (currentUser) {
-  //     if (currentUser.isAvatarImageSet) {
-  //       const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
-  //       setContacts(data.data);
-  //     } else {
-  //       navigate("/setAvatar");
-  //     }
-  //   }
-  // }, [currentUser]);
-
-  const handleChatChange = (chat) => {
-    if (currentChat === chat) {
-      setCurrentChat(undefined);
-    } else {
-      setCurrentChat(chat);
+ useEffect(()=>{
+  const getItem = async ()=>{
+    if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+      // navigate("/login");
+      setCurrentUser(
+        await JSON.parse(
+          localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+        )
+      );
     }
-  };
-
-  const handleClick = () => {
+  }
+  getItem();
+ },[])
+ useEffect(() => {
+  const getSocket = ()=>{
+    if (currentUser) {
+      socket.current = io(host);
+      socket.current.emit("add-user", currentUser._id);
+    }
+  }
+  getSocket();
+  console.log(currentUser);
+}, [currentUser]);
+useEffect(() => {
+  const getData = async()=>{
+    if (currentUser) {
+    
+      const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
+      setContacts(data.data.dataMongo);
+  }
+  getData();
+  
+  }
+}, [currentUser]);
+console.log(currentUser);
+const handleChatChange = (chat) => {
+  if (currentChat === chat) {
     setCurrentChat(undefined);
-  };
-  // console.log(allUsersRoute);
+  } else {
+    setCurrentChat(chat);
+  }
+};
+
+const handleClick = () => {
+  setCurrentChat(undefined);
+};
   return (
     <>
-      <div className='container'>
-        {currentChat === undefined ? (
+      <div className="container">
+      {currentChat === undefined ? (
           ""
         ) : (
           <ChatContainer

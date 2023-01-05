@@ -6,21 +6,22 @@ export default function Contacts({ contacts, changeChat, online }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
+ console.log(contacts);
   useEffect(
-    (() => {
+    () => {
       const getData = async () => {
         const data = await JSON.parse(
           localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+        
         );
+       
 
         setCurrentUserName(data);
         // setCurrentUserImage(data.avatarImage);
         console.log(currentUserName);
       };
       getData();
-    },
-    [])
-  );
+    },[]);
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
@@ -32,11 +33,7 @@ export default function Contacts({ contacts, changeChat, online }) {
         <div className='contact-container'>
           <div className='brand'></div>
           <div className='contacts'>
-            <input
-              type='text'
-              placeholder='Tìm kiếm người dùng '
-              className='search'
-            />
+            
             {contacts.map((contact, index) => {
               return (
                 <div
