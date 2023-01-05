@@ -4,6 +4,8 @@ import WidgetWrapper from "../../components/WidgetWrapper";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "../../state/index";
+import Contacts from "../../components/Contacts";
+import Chat from "../Chat";
 
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
@@ -31,13 +33,13 @@ const FriendListWidget = ({ userId }) => {
     <WidgetWrapper>
       <Typography
         color={"#333333"}
-        variant="h5"
-        fontWeight="500"
+        variant='h5'
+        fontWeight='500'
         sx={{ mb: "1.5rem" }}
       >
         Friend List
       </Typography>
-      <Box display="flex" flexDirection="column" gap="1.5rem">
+      <Box display='flex' flexDirection='column' gap='1.5rem'>
         {/* {friends.map((friend) => (
           <Friend
             key={friend._id}
@@ -48,6 +50,7 @@ const FriendListWidget = ({ userId }) => {
           />
         ))} */}
       </Box>
+      <Chat />
     </WidgetWrapper>
   );
 };
