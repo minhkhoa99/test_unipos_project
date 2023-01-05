@@ -190,7 +190,8 @@ const PostWidget = ({postview,}) => {
               className='comment-input'
               type='text'
               placeholder='Viết bình luận của bạn...'
-            />
+            ></input>
+          </form>
           </div>
           <div className="main-form-comment">
             <form action="">
@@ -225,6 +226,7 @@ const PostWidget = ({postview,}) => {
           </ul>
         </div>
       </div>
+      
     </>
   );
 
