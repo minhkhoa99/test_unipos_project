@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import state from "state/lib/state";
 
 const initialState = {
+  isProfile: false,
   mode: "light",
   user: null,
   token: null,
   posts: [],
-  iduser:[]
+  users: [],
+  iduser: [],
+  newpost: [],
+  interactive: [],
 };
 
 export const authSlice = createSlice({
@@ -14,7 +19,6 @@ export const authSlice = createSlice({
   reducers: {
     setMode: (state) => {
       state.mode = state.mode === "light" ? "dark" : "light";
-    
     },
     setLogin: (state, action) => {
       state.user = action.payload.user;
@@ -23,6 +27,10 @@ export const authSlice = createSlice({
     setLogout: (state) => {
       state.user = null;
       state.token = null;
+      state.posts= [];
+      state.users= [];
+      state.iduser= [];
+      state.newpost= [];
     },
     setFriends: (state, action) => {
       if (state.user) {
@@ -42,14 +50,43 @@ export const authSlice = createSlice({
       state.posts = updatedPosts;
     },
     setUser: (state, action) => {
-      console.log(state);
-      console.log(action);
+      // console.log(state);
+      // console.log(action);
       // console.log(action.payload.iduser);
-      state.iduser = action.payload.iduser
-    }
+      state.iduser = action.payload.iduser;
+    },
+    setUsers: (state, action) => {
+      // console.log(action.payload.users);
+      state.users = action.payload.users;
+    },
+    setNewpost: (state, action) => {
+
+      state.newpost = action.payload.postData;
+      // state.newpost = temp;
+
+      // console.log(state.newpost);
+    },
+    setTrueFalse: (state, action) => {
+      // console.log(action.payload.isProfile);
+      state.isProfile = action.payload.isProfile
+    },
+    setInteractive: (state, action) => {
+      state.interactive = action.payload.interactive
+    },
   },
 });
 
-export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost, setUser } =
-  authSlice.actions;
+export const {
+  setMode,
+  setLogin,
+  setLogout,
+  setFriends,
+  setPosts,
+  setPost,
+  setUser,
+  setUsers,
+  setNewpost,
+  setTrueFalse,
+  setInteractive,
+} = authSlice.actions;
 export default authSlice.reducer;

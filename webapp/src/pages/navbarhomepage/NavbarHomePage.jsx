@@ -24,10 +24,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "../../state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
+import { setTrueFalse } from "../../state/index";
 import { Link } from "react-router-dom";
 
 const NavbarHomePage = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+  const { username } = useSelector((state) => state.iduser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -38,8 +40,14 @@ const NavbarHomePage = () => {
   const background = theme.palette.background.default;
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
+
   const state = useSelector((state) => state.iduser);
   const fullName = state.username;
+
+  const handleOnclick = () => {
+    navigate("/home");
+    dispatch(setTrueFalse({ isProfile: false }));
+  };
 
   return (
     <>
@@ -55,7 +63,7 @@ const NavbarHomePage = () => {
             fontWeight='bold'
             fontSize='clamp(1rem, 2rem, 2.25rem)'
             color='primary'
-            onClick={() => navigate("/home")}
+            onClick={handleOnclick}
             sx={{
               "&:hover": {
                 cursor: "pointer",

@@ -380,6 +380,10 @@ History .history {
 .banner{
   margin-left: 20%;
 }
+.nav{
+  
+    justify-content: space-between;
+}
 .nav-item a {
   text-decoration: none;
   /* font-size: large; */
@@ -629,8 +633,29 @@ History .history {
 
 .post-reaction .number-like {
   display: flex;
+  align-items: center;
   margin: 0% 2%;
+  width: 70%;
+}
+.post-reaction .number-like div {
+  margin-right: 5px;
+  font-size: 130%;
+  display: flex;
+  align-items: center;
+}
+.post-reaction .number-like .like {
   width: 50%;
+}
+.post-reaction .number-like .dislike {
+  width: 50%;
+}
+.post-reaction .number-like .like h6 {
+  margin: 0;
+  font-size: 70%;
+}
+.post-reaction .number-like .dislike h6 {
+  margin: 0;
+  font-size: 70%;
 }
 
 .number-like h7 {
@@ -640,10 +665,10 @@ History .history {
 .fa-regular {
   color: #036ee7;
 }
+
 .post-reaction .number-user {
   display: flex;
   margin: 0% 2%;
-  width: 30%;
 }
 
 .number-view {
@@ -655,7 +680,7 @@ History .history {
   /* margin: auto; */
   display: flex;
   justify-content: space-evenly;
-  padding: 0% 2%;
+  padding: 0.5% 2%;
   margin: 1% 5%;
   border-top: 1px solid #ced0d4;
   border-bottom: 1px solid #ced0d4;
@@ -663,11 +688,17 @@ History .history {
 
 .post-buttons button {
   border: none;
-  padding: 1% 2%;
+  padding: 1% 4%;
   position: relative;
   background: white;
+  border-radius: 5px;
 }
-
+.post-buttons button:hover {
+  background: rgb(230, 230, 230);
+}
+.post-buttons .likecoler {
+  color: red;
+}
 .body-left {
   height: 5000px;
   width: 20%;
@@ -1290,4 +1321,6 @@ History .history {
   /* color: #19d4d4 !important; */
 }
 
-
+.page-content {
+  width: 70%;
+}

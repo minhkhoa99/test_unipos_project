@@ -12,14 +12,27 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 
-const PostWidget = () => {
+import { useEffect } from "react";
+import { setNewpost,} from "../../state/index";
+
+
+
+const PostWidget = ({postview,}) => {
+  const dispatch = useDispatch();
+  // const newpost = useSelector((state) => state.newpost)
+  const iduser = useSelector((state) => state.iduser)
+  const { id, username } = useSelector((state) => state.iduser);
+  const {blog, arrUsers, likes, dislikes} = postview
+  const [like, setLike] = useState(false)
+  const [dislike, setDislike] = useState(false)
+  // console.log(newpost);
   // const [isComments, setIsComments] = useState(false);
   // const dispatch = useDispatch();
   // const token = useSelector((state) => state.token);
   // const loggedInUserId = useSelector((state) => state.user._id);
   // const isLiked = Boolean(likes[loggedInUserId]);
   // const likeCount = Object.keys(likes).length;
-
+     
   // const { palette } = useTheme();
   // const main = palette.neutral.main;
   // const primary = palette.primary.main;
@@ -36,19 +49,81 @@ const PostWidget = () => {
   //   const updatedPost = await response.json();
   //   dispatch(setPost({ post: updatedPost }));
   // };
+  // const [postview, setPostview] = useState()
+  // setPostview(postviews)
+  // console.log(postview);
+  // console.log(interactive);
+  // console.log(likes);
+  // console.log(iduser);
+  // console.log(id);
+  const handleLikeOnclick = async (e) => {
+    let blogid = e.target.parentElement.id
+    const formData = {};
+    formData.usernameLikes = username
+    formData.userId = id;
+    formData.blogId = blogid
+    if(!like){
+      if(blogid){
+        const response = await fetch(`http://127.0.0.1:5000/interactive`, {
+          mode: "cors",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const likeposts = await response.json();
+        let likepost = likeposts.data
+        console.log(likepost);
+        setLike(!like);
+      }
+    }
+  }
+  const handleDislikeOnclick = async (e) => {
+    let blogid = e.target.parentElement.id
+    const formData = {};
+    formData.usernameDislikes = username
+    formData.userId = id;
+    formData.blogId = blogid
+    if(!dislike){
+      if(blogid){
+        const response = await fetch(`http://127.0.0.1:5000/interactive`, {
+          mode: "cors",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const dislikeposts = await response.json();
+        let dislikepost = dislikeposts.data
+        console.log(dislikepost);
+        setDislike(!dislike);
+      }
+    }
+  }
 
+  const liked = likes.find((e)=>e.usernameLikes==iduser.username)
+  const disliked = dislikes.find((e)=>e.usernameDislikes==iduser.username)
+  // console.log(dislikes);
+  console.log(disliked);
+  
+  useEffect(() => {
+    dispatch(setNewpost([]));
+  },[]);
   return (<>
-    <div className='home-post'>
+ {/* in post từ bảng */}
+    <div id = {blog.id} className='home-post'>
       <div className='post-header'>
         <div className='post-header-right'>
-          <div className='user-post'>
+          <div id = {arrUsers.id} className='user-post'>
             <img
-              src='https://i.pinimg.com/originals/d9/b8/3a/d9b83aa1a08be3e46ebb47254db8cf75.jpg'
+              src={arrUsers.Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : arrUsers.Avata}
               alt=''
             />
           </div>
           <div className='name-user-post'>
-            <div>Nguyễn Xuân Bách</div>
+            <div>{arrUsers.username}</div>
             <h6>1 giờ trước </h6>{" "}
             <i className='fa-solid fa-earth-americas icon-public'></i>
           </div>
@@ -58,40 +133,42 @@ const PostWidget = () => {
         </div>
       </div>
       <div className='post-content'>
-        Trong những năm 1500, máy in phù hợp của Cicero văn bản để phát triển
-        một trang kiểu mẫu. Từ đó, văn bản Latinh như đã tiêu chuẩn của ngành
-        công nghiệp in văn bản giả mạo hoặc giả. Trước khi xuất bản, thiết kế đồ
-        họa có giả lập bố cục của bản vẽ trong dòng squiggled để cho biết văn
-        bản. Xuất hiện tầng tự dính các preprinted "Lorem ipsum" nhường một thực
-        tế cho biết văn bản đâu trên trang.
+        {blog.Content}
       </div>
-      <div className='post-picture'>
-        <img
-          src='https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/317695595_2328376577331130_4256807180384835310_n.jpg?stp=cp6_dst-jpg&_nc_cat=106&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=3P06jzZ3C80AX8WP0LE&_nc_ht=scontent.fhan15-1.fna&oh=00_AfBFNfYiR7WAgz_YCKMtO3Ucqo5Q0ntsvQhhsg8JXnCJqw&oe=639D16C9'
-          alt=''
-        />
-      </div>
+      {blog.ImgVideo== null ?   ""   :
+           <div className='post-picture'>
+           <img
+             src={blog.ImgVideo}
+             alt=''
+           />
+          </div>
+        }
       <br />
       <div className='post-reaction'>
         <div className='number-like'>
-          <div>
-            <i className='fa-regular fa-thumbs-up'></i>
+          <div className="like">
+            <div>
+              <i className='fa-regular fa-thumbs-up'></i>
+            </div>
+            {likes == undefined ? "" : <h6> {likes.length >= 1 ? "Bạn" : ""} {likes.length >= 2 ? `, ${likes[1].usernameLikes}` : ""} {likes.length >= 3 ? `, ${likes[2].usernameLikes}` : ""} {likes.length >= 4 ? `và ${likes.length-3} người khác` : ""}</h6>}
           </div>
-          <h6>Thành Đô, Hoàng Đức và 23 người khác</h6>
+          <div className="dislike">
+            <div>
+              <i className='fa-regular fa-thumbs-down'></i>
+            </div>
+            {disliked == undefined ? "" : <h6> {disliked.length >= 1 ? "Bạn" : ""} {disliked.length >= 2 ? `, ${disliked[1].usernamedisliked}` : ""} {disliked.length >= 3 ? `, ${disliked[2].usernamedisliked}` : ""} {disliked.length >= 4 ? `và ${disliked.length-3} người khác` : ""}</h6>}
+          </div>
         </div>
         <div className='number-user'>
-          {" "}
           <div className='number-comment'>23 bình luận</div>
-          <div className='number-view'>108 người đã xem</div>
         </div>
       </div>
-      <div className='post-buttons'>
-        <button>
-          {" "}
-          <i className='fa-regular fa-thumbs-up'></i> Yêu thích
+      <div id={blog.id} className='post-buttons'>
+        <button onClick={handleLikeOnclick}>
+          <i className={`fa-regular fa-thumbs-up  ${like || liked ? 'likecoler' : ''}`}></i> Yêu thích
         </button>
-        <button>
-          <i className='fa-regular fa-thumbs-down'></i> Không thích
+        <button onClick={handleDislikeOnclick}>
+          <i className={`fa-regular fa-thumbs-down ${dislike || disliked ? 'likecoler' : ''}`}></i> Không thích
         </button>
         <button>
           <i className='fa-regular fa-comments'></i> Bình luận
@@ -100,7 +177,7 @@ const PostWidget = () => {
       <div className='post-comment'>
         <div className='my-user'>
           <img
-            src='https://i.pinimg.com/originals/d9/b8/3a/d9b83aa1a08be3e46ebb47254db8cf75.jpg'
+            src={iduser.Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : iduser.Avata}
             alt=''
           />
         </div>
@@ -139,10 +216,6 @@ const PostWidget = () => {
     </div>
     </>
   );
-
-
-
-
 
   // return (
   //   <WidgetWrapper m="2rem 0">
