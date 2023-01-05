@@ -56,7 +56,7 @@ const server = app.listen(port, () => {
   connected();
 });
 const io = socket(server, {
-  cors: { origin: "http://localhost:4000", credentials: true },
+  cors: { origin: "http://localhost:8800", credentials: true },
 });
 
 global.onlineUsers = new Map();

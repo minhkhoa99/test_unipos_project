@@ -19,7 +19,7 @@ const PostWidget = ({ postview }) => {
   // const newpost = useSelector((state) => state.newpost)
   const iduser = useSelector((state) => state.iduser);
   const { blog, arrUsers, likes, dislikes } = postview;
-  console.log(postview);
+  // console.log(postview);
   const [like, setLike] = useState(false);
   // console.log(newpost);
   // const [isComments, setIsComments] = useState(false);
