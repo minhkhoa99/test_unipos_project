@@ -150,13 +150,13 @@ const PostWidget = ({postview,}) => {
             <div>
               <i className='fa-regular fa-thumbs-up'></i>
             </div>
-            {likes == undefined ? "" : <h6> {likes.length >= 1 ? "BẠN" : ""} {likes.length >= 2 ? `, ${likes[1].usernameLikes}` : ""} {likes.length >= 3 ? `, ${likes[2].usernameLikes}` : ""} {likes.length >= 4 ? `và ${likes.length-3} người khác` : ""}</h6>}
+            {likes == undefined ? "" : <h6> {likes.length >= 1 ? "Bạn" : ""} {likes.length >= 2 ? `, ${likes[1].usernameLikes}` : ""} {likes.length >= 3 ? `, ${likes[2].usernameLikes}` : ""} {likes.length >= 4 ? `và ${likes.length-3} người khác` : ""}</h6>}
           </div>
           <div className="dislike">
             <div>
               <i className='fa-regular fa-thumbs-down'></i>
             </div>
-            {disliked == undefined ? "" : <h6> {disliked.length >= 1 ? "BẠN" : ""} {disliked.length >= 2 ? `, ${disliked[1].usernamedisliked}` : ""} {disliked.length >= 3 ? `, ${disliked[2].usernamedisliked}` : ""} {disliked.length >= 4 ? `và ${disliked.length-3} người khác` : ""}</h6>}
+            {disliked == undefined ? "" : <h6> {disliked.length >= 1 ? "Bạn" : ""} {disliked.length >= 2 ? `, ${disliked[1].usernamedisliked}` : ""} {disliked.length >= 3 ? `, ${disliked[2].usernamedisliked}` : ""} {disliked.length >= 4 ? `và ${disliked.length-3} người khác` : ""}</h6>}
           </div>
         </div>
         <div className='number-user'>
