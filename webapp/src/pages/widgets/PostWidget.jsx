@@ -175,6 +175,7 @@ const PostWidget = ({ postview }) => {
           </ul>
         </div>
       </div>
+      </div>
     </>
   );
 
