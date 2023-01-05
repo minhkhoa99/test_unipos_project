@@ -58,7 +58,6 @@ function App() {
             </Route>
             <Route path='/home/rank' element={<Rank />}></Route>
             <Route path='/home/about' element={<About />}></Route>
-            <Route path='/home/support' element={<Support />}></Route>
           </Route>
           <Route
             path='/myprofile'
@@ -80,8 +79,6 @@ function App() {
           <Route path='/nghien-cuu-dien-hinh' element={<CaseStudy />}></Route>
           <Route path='/chi-phi' element={<PricePage />}></Route>
           <Route path='/tin-tuc' element={<NewsPage />}></Route>
-
-          
         </Routes>
       </section>
     </div>

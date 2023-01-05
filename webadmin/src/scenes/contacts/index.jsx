@@ -4,6 +4,7 @@ import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
+import { useState, useEffect } from "react";
 
 const Contacts = () => {
   const theme = useTheme();
@@ -51,7 +52,14 @@ const Contacts = () => {
       flex: 1,
     },
   ];
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(`http://localhost:5000/user`);
+      console.log(res);
+      const data = await res.json();
+    };
+    fetchData().catch(console.error);
+  }, []);
   return (
     <Box m='20px'>
       <Header title='User Infomation' subtitle='Details users infomation' />

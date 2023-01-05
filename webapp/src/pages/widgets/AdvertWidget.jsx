@@ -9,7 +9,7 @@ const AdvertWidget = () => {
   const medium = "A3A3A3";
 
   return (
-    <WidgetWrapper position='sticky' top='19%'>
+    <WidgetWrapper>
       <FlexBetween>
         <Typography color={dark} variant='h5' fontWeight='500'>
           Đề xuất

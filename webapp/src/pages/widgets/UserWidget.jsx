@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { setTrueFalse } from "../../state/index";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 function UserWidget({ userId, picturePath }) {
   const state = useSelector((state) => state.iduser);
@@ -59,9 +61,13 @@ function UserWidget({ userId, picturePath }) {
     navigate(`/myprofile`);
     dispatch(setTrueFalse({ isProfile: true }));
   };
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
-    <WidgetWrapper position='sticky' top='20%'>
+    <WidgetWrapper>
       {/* FIRST ROW */}
       <FlexBetween
         gap='0.5rem'
@@ -187,16 +193,36 @@ function UserWidget({ userId, picturePath }) {
             <Box>
               <Typography color={main} fontWeight='500'>
                 <Link
-                  to='/home/support'
                   style={{
                     textDecoration: "none",
                     color: "rgba(0, 0, 0, 0.87)",
                     marginLeft: "9px",
                     fontWeight: "bolder",
                   }}
+                  variant='primary'
+                  onClick={handleShow}
                 >
-                  <span className='text'>Hỗ trợ giải đáp</span>
+                  Hỗ trợ giải đáp
                 </Link>
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Hỗ trợ giải đáp</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <div>
+                      {" "}
+                      Nếu bạn gặp khó khăn trong quá trình sử dụng, xin liên hệ:
+                    </div>
+                    <b>Hotline: 19001080</b>
+                    <br />
+                    <b>Gmail: RikkeiSupport@gmail.com</b>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant='secondary' onClick={handleClose}>
+                      Đóng
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
               </Typography>
               {/* <Typography color={medium}>Network Platform</Typography> */}
             </Box>
