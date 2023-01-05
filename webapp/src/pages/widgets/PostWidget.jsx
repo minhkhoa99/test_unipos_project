@@ -18,6 +18,7 @@ const PostWidget = ({ postview }) => {
   const dispatch = useDispatch();
   // const newpost = useSelector((state) => state.newpost)
   const iduser = useSelector((state) => state.iduser)
+  const { id, username } = useSelector((state) => state.iduser);
   const {blog, arrUsers, likes, dislikes} = postview
   const [like, setLike] = useState(false)
   // console.log(newpost);
@@ -50,15 +51,24 @@ const PostWidget = ({ postview }) => {
   // console.log(interactive);
   // console.log(likes);
   // console.log(iduser);
-  // {postview[2].length >= 1 ? console.log(postview[2][0].usernameLikes) : ""}
+  // console.log(id);
   const handleLikeOnclick = async (e) => {
     let blogid = e.target.parentElement.id
     if(blogid){
-    setLike(!like);
+      setLike(!like);
+    }
+  }
+  const handleDislikeOnclick = async (e) => {
+    let blogid = e.target.parentElement.id
+    if(blogid){
+      setDislike(!dislike);
     }
   }
 
   const liked = likes.find((e)=>e.usernameLikes==iduser.username)
+  const disliked = dislikes.find((e)=>e.usernameDislikes==iduser.username)
+  // console.log(dislikes);
+  // console.log(disliked);
   
   useEffect(() => {
     dispatch(setNewpost([]));
@@ -98,14 +108,21 @@ const PostWidget = ({ postview }) => {
       <br />
       <div className='post-reaction'>
         <div className='number-like'>
-          <div>
-            <i className='fa-regular fa-thumbs-up'></i>
+          <div className="like">
+            <div>
+              <i className='fa-regular fa-thumbs-up'></i>
+            </div>
+            {likes == undefined ? "" : <h6> {likes.length >= 1 ? "Bạn" : ""} {likes.length >= 2 ? `, ${likes[1].usernameLikes}` : ""} {likes.length >= 3 ? `, ${likes[2].usernameLikes}` : ""} {likes.length >= 4 ? `và ${likes.length-3} người khác` : ""}</h6>}
           </div>
-          <h6> {likes.length >= 1 ? "BẠN" : ""} {likes.length >= 2 ? `, ${likes[1].usernameLikes}` : ""} {likes.length >= 3 ? `, ${likes[2].usernameLikes}` : ""} {likes.length >= 4 ? `và ${likes.length-3} người khác` : ""}</h6>
+          <div className="dislike">
+            <div>
+              <i className='fa-regular fa-thumbs-down'></i>
+            </div>
+            {disliked == undefined ? "" : <h6> {disliked.length >= 1 ? "Bạn" : ""} {disliked.length >= 2 ? `, ${disliked[1].usernamedisliked}` : ""} {disliked.length >= 3 ? `, ${disliked[2].usernamedisliked}` : ""} {disliked.length >= 4 ? `và ${disliked.length-3} người khác` : ""}</h6>}
+          </div>
         </div>
         <div className='number-user'>
           <div className='number-comment'>23 bình luận</div>
-          <div className='number-view'>108 người đã xem</div>
         </div>
       </div>
       <div id={blog.id} className='post-buttons'>

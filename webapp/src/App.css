@@ -633,16 +633,29 @@ History .history {
   display: flex;
   align-items: center;
   margin: 0% 2%;
-  width: 50%;
+  width: 70%;
 }
 .post-reaction .number-like div {
   margin-right: 5px;
   font-size: 130%;
+  display: flex;
+  align-items: center;
 }
-.post-reaction .number-like h6 {
+.post-reaction .number-like .like {
+  width: 50%;
+}
+.post-reaction .number-like .dislike {
+  width: 50%;
+}
+.post-reaction .number-like .like h6 {
   margin: 0;
-  font-size: 100%;
+  font-size: 70%;
 }
+.post-reaction .number-like .dislike h6 {
+  margin: 0;
+  font-size: 70%;
+}
+
 .number-like h7 {
   margin-left: 1%;
 }
@@ -654,7 +667,6 @@ History .history {
 .post-reaction .number-user {
   display: flex;
   margin: 0% 2%;
-  width: 30%;
 }
 
 .number-view {
