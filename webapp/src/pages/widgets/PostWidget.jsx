@@ -8,9 +8,9 @@ import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "../../components/FlexBetween";
 import Friend from "../../components/Friend";
 import WidgetWrapper from "../../components/WidgetWrapper";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost ,setNewpost} from "../../state/index";
+import { setPost } from "state";
 
 import { useEffect } from "react";
 import { setNewpost,} from "../../state/index";
@@ -19,9 +19,6 @@ import { setNewpost,} from "../../state/index";
 
 const PostWidget = ({postview,}) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setNewpost([]));
-  }, []);
   // const newpost = useSelector((state) => state.newpost)
   const iduser = useSelector((state) => state.iduser)
   const { id, username } = useSelector((state) => state.iduser);
@@ -190,43 +187,33 @@ const PostWidget = ({postview,}) => {
               className='comment-input'
               type='text'
               placeholder='Viết bình luận của bạn...'
-            ></input>
-          </form>
-          </div>
-          <div className="main-form-comment">
-            <form action="">
-              <input
-                className="comment-input"
-                type="text"
-                placeholder="Viết bình luận của bạn..."
-              />
-            </form>
-          </div>
-        </div>
-        <div className="other-comments">
-          <div className="other-user">
-            <img
-              src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-1/272253596_10158307835791922_8649551029038105142_n.jpg?stp=cp0_dst-jpg_p48x48&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_ohc=RA01PIphbFQAX-QKwHr&_nc_ht=scontent.fhan15-1.fna&oh=00_AfD_ncaM88oph6r7tthvyNEhm76wIUWkw9Nhc_6KqA-Lew&oe=639F76A7"
-              alt=""
             />
-          </div>
-          <div className="comment-text">
-            Trước khi xuất bản, thiết kế đồ họa có giả lập bố cục của bản vẽ
-            trong dòng squiggled để cho biết văn bản. Xuất hiện tầng tự dính các
-            preprinted "Lorem ipsum" nhường một thực tế cho biết văn bản đâu
-            trên trang.
-          </div>
-        </div>
-        <div>
-          <ul className="ul-like-time">
-            <li className="li-like">
-              <button>Thích</button>{" "}
-            </li>
-            <li>50 phút trước</li>
-          </ul>
+          </form>
         </div>
       </div>
-      
+      <div className='other-comments'>
+        <div className='other-user'>
+          <img
+            src='https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-1/272253596_10158307835791922_8649551029038105142_n.jpg?stp=cp0_dst-jpg_p48x48&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_ohc=RA01PIphbFQAX-QKwHr&_nc_ht=scontent.fhan15-1.fna&oh=00_AfD_ncaM88oph6r7tthvyNEhm76wIUWkw9Nhc_6KqA-Lew&oe=639F76A7'
+            alt=''
+          />
+        </div>
+        <div className='comment-text'>
+          Trước khi xuất bản, thiết kế đồ họa có giả lập bố cục của bản vẽ trong
+          dòng squiggled để cho biết văn bản. Xuất hiện tầng tự dính các
+          preprinted "Lorem ipsum" nhường một thực tế cho biết văn bản đâu trên
+          trang.
+        </div>
+      </div>
+      <div>
+        <ul className='ul-like-time'>
+          <li className='li-like'>
+            <button>Thích</button>{" "}
+          </li>
+          <li>50 phút trước</li>
+        </ul>
+      </div>
+    </div>
     </>
   );
 
