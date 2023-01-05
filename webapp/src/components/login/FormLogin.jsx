@@ -132,6 +132,7 @@ function FormLogin() {
       };
 
       fetch("http://localhost:5000/user", {
+
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",

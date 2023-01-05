@@ -33,7 +33,7 @@ module.exports.signin = async (req, res, next) => {
     if (check) {
       res.status(200).send({
         message: "login success",
-        data:user.dataValues
+        data: user.dataValues,
       });
     } else {
       res.status(404).send({
@@ -50,5 +50,35 @@ module.exports.signin = async (req, res, next) => {
     // console.log(user);
   } catch (error) {
     return error;
+  }
+};
+
+module.exports.resetUser = async (req, res) => {
+  try {
+    console.log(req.body.Email);
+    const user = await db.models.Users.findOne({
+      where: {
+        email: req.body.Email,
+      },
+    });
+    console.log();
+    if (user.Email) {
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(req.body.Password, salt);
+
+      user.Password = hash;
+      await user.save();
+    }
+    res.status(200).send({
+      status: 200,
+      message: "Success",
+      data: user,
+    });
+  } catch (error) {
+    return res.status(400).send({
+      message: "Unable to insert data",
+      error: error,
+      status: 400,
+    });
   }
 };

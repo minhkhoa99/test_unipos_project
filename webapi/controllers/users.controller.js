@@ -9,6 +9,7 @@ module.exports.createUser = async (req, res) => {
     const check = await UserMongo.findOne({ Email });
     if (check) return res.json({ msg: "Email already used" });
     const passFontend = req.body.Password;
+    console.log(passFontend);
     const salt = bcrypt.genSaltSync(10);
     const hash = await bcrypt.hashSync(passFontend, salt);
     const users = await UserMongo.create({
@@ -22,6 +23,7 @@ module.exports.createUser = async (req, res) => {
       ...getAllDb,
       Password: hash,
     });
+
     // const userDetails = await db.models.Users.create({
     //   id: req.body.id,
     //   username: req.body.username,
