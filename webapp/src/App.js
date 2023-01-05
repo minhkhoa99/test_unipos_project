@@ -78,6 +78,7 @@ function App() {
           <Route path='/nghien-cuu-dien-hinh' element={<CaseStudy />} />
           <Route path='/tin-tuc' element={<NewsPage />} />
           <Route path='/chi-phi' element={<PricePage />} />
+
         </Routes>
       </section>
     </div>

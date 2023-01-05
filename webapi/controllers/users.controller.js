@@ -170,3 +170,32 @@ module.exports.deleteUser = async (req, res) => {
     });
   }
 };
+
+module.exports.resetUser = async (req, res) => {
+  try {
+    console.log(req.params.email);
+    const user = await db.models.Users.findOne({
+      where: {
+        email: req.params.email,
+      },
+    });
+    if (user) {
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(req.body.Password, salt);
+
+      user.Password = hash;
+      await user.save();
+    }
+    res.status(200).send({
+      status: 200,
+      message: "Success",
+      data: user,
+    });
+  } catch (error) {
+    return res.status(400).send({
+      message: "Unable to insert data",
+      error: error,
+      status: 400,
+    });
+  }
+};
