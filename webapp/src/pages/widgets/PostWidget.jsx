@@ -11,16 +11,20 @@ import WidgetWrapper from "../../components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+
 import { useEffect } from "react";
 import { setNewpost,} from "../../state/index";
 
-const PostWidget = ({ postview }) => {
+
+
+const PostWidget = ({postview,}) => {
   const dispatch = useDispatch();
   // const newpost = useSelector((state) => state.newpost)
   const iduser = useSelector((state) => state.iduser)
   const { id, username } = useSelector((state) => state.iduser);
   const {blog, arrUsers, likes, dislikes} = postview
   const [like, setLike] = useState(false)
+  const [dislike, setDislike] = useState(false)
   // console.log(newpost);
   // const [isComments, setIsComments] = useState(false);
   // const dispatch = useDispatch();
@@ -28,7 +32,7 @@ const PostWidget = ({ postview }) => {
   // const loggedInUserId = useSelector((state) => state.user._id);
   // const isLiked = Boolean(likes[loggedInUserId]);
   // const likeCount = Object.keys(likes).length;
-
+     
   // const { palette } = useTheme();
   // const main = palette.neutral.main;
   // const primary = palette.primary.main;
@@ -54,27 +58,61 @@ const PostWidget = ({ postview }) => {
   // console.log(id);
   const handleLikeOnclick = async (e) => {
     let blogid = e.target.parentElement.id
-    if(blogid){
-      setLike(!like);
+    const formData = {};
+    formData.usernameLikes = username
+    formData.userId = id;
+    formData.blogId = blogid
+    if(!like){
+      if(blogid){
+        const response = await fetch(`http://127.0.0.1:5000/interactive`, {
+          mode: "cors",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const likeposts = await response.json();
+        let likepost = likeposts.data
+        console.log(likepost);
+        setLike(!like);
+      }
     }
   }
   const handleDislikeOnclick = async (e) => {
     let blogid = e.target.parentElement.id
-    if(blogid){
-      setDislike(!dislike);
+    const formData = {};
+    formData.usernameDislikes = username
+    formData.userId = id;
+    formData.blogId = blogid
+    if(!dislike){
+      if(blogid){
+        const response = await fetch(`http://127.0.0.1:5000/interactive`, {
+          mode: "cors",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const dislikeposts = await response.json();
+        let dislikepost = dislikeposts.data
+        console.log(dislikepost);
+        setDislike(!dislike);
+      }
     }
   }
 
   const liked = likes.find((e)=>e.usernameLikes==iduser.username)
   const disliked = dislikes.find((e)=>e.usernameDislikes==iduser.username)
   // console.log(dislikes);
-  // console.log(disliked);
+  console.log(disliked);
   
   useEffect(() => {
     dispatch(setNewpost([]));
   },[]);
   return (<>
-  {/* in post từ bảng */}
+ {/* in post từ bảng */}
     <div id = {blog.id} className='home-post'>
       <div className='post-header'>
         <div className='post-header-right'>
@@ -129,8 +167,8 @@ const PostWidget = ({ postview }) => {
         <button onClick={handleLikeOnclick}>
           <i className={`fa-regular fa-thumbs-up  ${like || liked ? 'likecoler' : ''}`}></i> Yêu thích
         </button>
-        <button>
-          <i className='fa-regular fa-thumbs-down'></i> Không thích
+        <button onClick={handleDislikeOnclick}>
+          <i className={`fa-regular fa-thumbs-down ${dislike || disliked ? 'likecoler' : ''}`}></i> Không thích
         </button>
         <button>
           <i className='fa-regular fa-comments'></i> Bình luận
@@ -166,16 +204,16 @@ const PostWidget = ({ postview }) => {
           preprinted "Lorem ipsum" nhường một thực tế cho biết văn bản đâu trên
           trang.
         </div>
-        <div>
-          <ul className='ul-like-time'>
-            <li className='li-like'>
-              <button>Thích</button>{" "}
-            </li>
-            <li>50 phút trước</li>
-          </ul>
-        </div>
       </div>
+      <div>
+        <ul className='ul-like-time'>
+          <li className='li-like'>
+            <button>Thích</button>{" "}
+          </li>
+          <li>50 phút trước</li>
+        </ul>
       </div>
+    </div>
     </>
   );
 

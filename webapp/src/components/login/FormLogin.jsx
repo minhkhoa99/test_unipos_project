@@ -130,11 +130,9 @@ function FormLogin() {
         referralCode: null,
         Status: null,
       };
-<<<<<<<<< Temporary merge branch 1
-      fetch("http://localhost:3000/user", {
-=========
+
       fetch("http://localhost:5000/user", {
->>>>>>>>> Temporary merge branch 2
+
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
