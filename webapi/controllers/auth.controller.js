@@ -1,5 +1,8 @@
 const db = require("../database/models/index");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config();
 
 module.exports.signin = async (req, res, next) => {
   try {
@@ -17,23 +20,27 @@ module.exports.signin = async (req, res, next) => {
       });
     }
 
-    bcrypt.compare(req.body.Password, user.Password, function (err, res) {
-      if (err) {
-        res.status(err.status(500).json({ message: "Server err" }));
-      }
-      if (!res) {
-        console.log("Sai");
-      } else {
-        console.log("Dung");
-      }
-    });
-    const check = bcrypt.compare(req.body.Password, user.Password);
+    // bcrypt.compare(req.body.Password, user.Password, function (err, res) {
+    //   if (err) {
+    //     res.status(err.status(500).json({ message: "Server err" }));
+    //   }
+    //   if (!res) {
+    //     console.log("Sai");
+    //   } else {
+    //     console.log("Dung");
+    //   }
+    // });
+    const check = await bcrypt.compare(req.body.Password, user.Password);
     console.log(check);
 
     if (check) {
-      res.status(200).send({
+      const token = jwt.sign(user.Email, process.env.JWT);
+      // console.log(token);
+
+      res.status(200).header("auth-token", token).send({
         message: "login success",
         data: user.dataValues,
+        token: token,
       });
     } else {
       res.status(404).send({
