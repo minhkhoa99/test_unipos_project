@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -7,6 +7,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import axios from "axios";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -52,6 +53,7 @@ const initialValuesLogin = {
   repassword: "",
 };
 function FormLogin() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
@@ -60,6 +62,17 @@ function FormLogin() {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
+  const [dataChat, setDataChat] = useState([]);
+  useEffect(() => {
+    const getUserChat = async () => {
+      if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+        const result = await axios.get(`http://localhost:5000/user`);
+        setDataChat(result);
+        console.log(result);
+      }
+    };
+    getUserChat();
+  }, []);
 
   const handleSubmit = (values) => {
     if (isLogin) {
@@ -90,6 +103,10 @@ function FormLogin() {
         .then((data) => {
           dispatch(setUser({ iduser: data.data }));
           if (data.message === "login success") {
+            localStorage.setItem(
+              process.env.REACT_APP_LOCALHOST_KEY,
+              JSON.stringify(data.dataMongo)
+            );
             Swal.fire(
               "Login Successful!",
               "Logged in successfully!",
@@ -103,7 +120,6 @@ function FormLogin() {
               text: "Incorrect email or password!",
             });
           }
-          console.log(data);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -132,7 +148,6 @@ function FormLogin() {
       };
 
       fetch("http://localhost:5000/user", {
-
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",

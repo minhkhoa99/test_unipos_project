@@ -12,8 +12,8 @@ export default function ChatContainer({ currentChat, socket, handleClick }) {
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
-  useEffect(
-    (async () => {
+  useEffect(() => {
+    const getDataSocket = async () => {
       const data = await JSON.parse(
         localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
       );
@@ -22,9 +22,9 @@ export default function ChatContainer({ currentChat, socket, handleClick }) {
         to: currentChat._id,
       });
       setMessages(response.data);
-    },
-    [currentChat])
-  );
+    };
+    getDataSocket();
+  }, [currentChat]);
 
   useEffect(() => {
     const getCurrentChat = async () => {
@@ -57,30 +57,30 @@ export default function ChatContainer({ currentChat, socket, handleClick }) {
     setMessages(msgs);
   };
 
-  useEffect(
-    (() => {
+  useEffect(() => {
+    const getsocket = () => {
       if (socket.current) {
         socket.current.on("msg-recieve", (msg) => {
           setArrivalMessage({ fromSelf: false, message: msg });
         });
       }
-    },
-    [])
-  );
+    };
+    getsocket();
+  }, []);
 
-  useEffect(
-    (() => {
+  useEffect(() => {
+    const getMessage = () => {
       arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
-    },
-    [arrivalMessage])
-  );
+    };
+    getMessage();
+  }, [arrivalMessage]);
 
-  useEffect(
-    (() => {
+  useEffect(() => {
+    const scoll = () => {
       scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-    },
-    [messages])
-  );
+    };
+    scoll();
+  }, [messages]);
 
   return (
     <div className='chat-container-content'>
