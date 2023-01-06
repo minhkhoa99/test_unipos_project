@@ -62,11 +62,11 @@ module.exports = (sequelize, DataTypes) => {
     // },
     Total: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     Content: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     Like: {
       type: DataTypes.INTEGER,

@@ -48,6 +48,8 @@ module.exports.getBlogById = async (req, res) => {
       where: {
         userId:id,
       },
+      order: [["id", "DESC"]],
+
     });
     console.log(blog);
     res.status(200).send({

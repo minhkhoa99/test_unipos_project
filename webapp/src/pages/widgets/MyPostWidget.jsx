@@ -30,7 +30,7 @@ const MyPostWidget = ({ picturePath }) => {
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
-  const [postData, setPostData1] = useState([]);
+  const [postData, setPostData] = useState([]);
   const { palette } = useTheme();
   const { id } = useSelector((state) => state.iduser);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
@@ -50,7 +50,7 @@ const MyPostWidget = ({ picturePath }) => {
       });
       const postRes = await response.json();
       let a = postRes.data
-      setPostData1([a,...postData])
+      setPostData([a,...postData])
       setImage(null);
       setPost("");
     } else {
@@ -69,7 +69,7 @@ const MyPostWidget = ({ picturePath }) => {
       });
       const postRes = await response.json();
       let a = postRes.data
-      setPostData1([a,...postData])
+      setPostData([a,...postData])
 
       // if(postData.length != 0){
       //   let a = postRes.data
