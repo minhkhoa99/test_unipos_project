@@ -40,6 +40,7 @@ const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        alert('thành công')
       })
       .catch((error) => {
         console.error("Error:", error);

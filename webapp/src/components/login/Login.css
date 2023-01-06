@@ -1,9 +1,7 @@
 .login-form {
-
   margin: auto;
-
 }
-.switch-login{
+.switch-login {
   margin-top: 5%;
 }
 
@@ -19,7 +17,6 @@
 .fa-brands {
   font-size: 30px;
 }
-
 
 .login-form-button {
   width: 100%;
@@ -64,31 +61,18 @@
 .img-title {
   width: 50px;
 }
-.background{
-  background-image: url("https://64.media.tumblr.com/3d62dedb5a37c6692861b8c8d665c262/2ada355e5789475b-c6/s640x960/f9d19c10b8255b998245e09aeba485d74b2ac49a.gif");
-  background-attachment: fixed;
-  /* background-position:center; */
-  width: 100%;
-  
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  /* border-radius: 2%; */
-  box-shadow: 0px 16px 24px rgb(0 0 0 / 8%);
-}
 
-.title-forgot-password{
+.title-forgot-password {
   float: right;
 }
-.css-1p7m5yx-MuiTypography-root{
+.css-1p7m5yx-MuiTypography-root {
   display: inline;
 }
 
-.background{
+.background {
   color: white;
 }
-.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
   background-color: white;
 }
 .css-1ko8d4z {

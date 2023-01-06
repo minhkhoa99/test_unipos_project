@@ -9,42 +9,41 @@ import FriendListWidget from "./widgets/FriendListWidget";
 import UserWidget from "./widgets/UserWidget";
 import PointWidget from "./widgets/PointWidget";
 import { Outlet } from "react-router";
-import { setUsers } from '../state/index'
+import { setUsers } from "../state/index";
 import { useEffect } from "react";
-
 
 function Homepages() {
   const dispatch = useDispatch();
-  const getusers = async ()=>{
-    const restuser = await fetch("http://localhost:5000/user", {modo: "cors"})
-    // const users = restuser.json()
-    .then(res=>res.json())
-    .then((result)=>{
+  const getusers = async () => {
+    const restuser = await fetch("http://localhost:5000/user", { modo: "cors" })
+      // const users = restuser.json()
+      .then((res) => res.json())
+      .then((result) => {
         // console.log(result.data);
-        let arr = result.data
+        let arr = result.data;
         dispatch(setUsers({ users: arr }));
-    })
-  }
-  useEffect(()=>{
-    getusers()
-  },[])
-  
+      });
+  };
+  useEffect(() => {
+    getusers();
+  }, []);
+
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const state = useSelector((state) => state.iduser);
   const users = useSelector((state) => state.users);
   // console.log(users);
   // console.log(state);
- 
+
   return (
     <>
       <Box>
         <NavbarHomePage />
         <Box
-          width="100%"
-          padding="2rem 6%"
+          width='100%'
+          padding='2rem 6%'
           display={isNonMobileScreens ? "flex" : "block"}
-          gap="0.5rem"
-          justifyContent="space-between"
+          gap='0.5rem'
+          justifyContent='space-between'
         >
           <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
             {/* <UserWidget userId={_id} picturePath={picturePath} /> */}
@@ -63,10 +62,11 @@ function Homepages() {
           </Box>
 
           {isNonMobileScreens && (
-            <Box flexBasis="26%">
+            <Box flexBasis='26%'>
               <AdvertWidget />
-              <Box m="2rem 0" />
+              <Box m='2rem 0' />
               <FriendListWidget />
+              {/* <FriendListWidget userId={_id} /> */}
             </Box>
           )}
         </Box>

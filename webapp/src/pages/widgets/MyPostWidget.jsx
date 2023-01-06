@@ -51,7 +51,6 @@ const MyPostWidget = ({ picturePath }) => {
       const postRes = await response.json();
       let a = postRes.data
       setPostData([a,...postData])
-      setImage(null);
       setPost("");
     } else {
       const formData1 = {};
@@ -71,23 +70,12 @@ const MyPostWidget = ({ picturePath }) => {
       let a = postRes.data
       setPostData([a,...postData])
 
-      // if(postData.length != 0){
-      //   let a = postRes.data
-      //   setPostData1([...postData,a])
-      //   dispatch(setNewpost({ postData }));
-      //   // console.log(postData);
-      // }else{
-      //   let postData = postRes.data
-      //   setPostData1([postRes.data])
-      //   dispatch(setNewpost({ postData }));
-      // }
 
       setImage(null);
       setPost("");
-
     }
   };
-  if(postData.length != 0){
+  if (postData.length != 0) {
     dispatch(setNewpost({ postData }));
     // console.log(postData);
   }

@@ -3,11 +3,10 @@ import "./FeatureBottom.css";
 function FeatureBottum() {
   return (
     <>
-      <div className="container-bottom">
-        <div className="row">
-          
-          <div className="col-10-bottom">
-            <div className="title-bottom">
+      <div className='container-bottom' style={{ backgroundColor: "#f8f9f9" }}>
+        <div className='row'>
+          <div className='col-10-bottom'>
+            <div className='title-bottom'>
               <h3>Đặc điểm của Rating</h3>
               <p>Rating là gì</p>
               <p>Giới thiệu chức năng</p>
@@ -18,7 +17,7 @@ function FeatureBottum() {
               <h3>Cơ cấu chi phí</h3>
               <h3>Nghiên cứu điển hình</h3>
             </div>
-            <div className="title-bottom">
+            <div className='title-bottom'>
               <h3>Cảnh sử dụng</h3>
               <p>Theo chủ đề</p>
               <p>Nghành nghề</p>
@@ -28,7 +27,7 @@ function FeatureBottum() {
               <p>Thông tin hội thảo</p>
               <p>Tin tức</p>
             </div>
-            <div className="title-bottom">
+            <div className='title-bottom'>
               <h3>Cột nhân sự</h3>
               <p>An toàn tâm lý</p>
               <p>Sự giao tiếp nội bộ</p>
@@ -37,7 +36,7 @@ function FeatureBottum() {
               <p>Triết lý doanh nghiệp / Hướng dẫn hành động</p>
               <p>Báo cáo sự kiện</p>
             </div>
-            <div className="title-bottom">
+            <div className='title-bottom'>
               <h3>Đối với khách hàng xem xét</h3>
               <p>
                 <b>Tài liệu sản phẩm</b>
@@ -51,46 +50,44 @@ function FeatureBottum() {
               <p>
                 <b>Chảy cho đến khi giới thiệu</b>
               </p>
-               <img
-              src="https://tuyendung.rikkeisoft.com/assets/front/images/logoRikkeisoft.png"
-              alt=""
-              className="logoRikkei"
-            />
+              <img
+                src='https://tuyendung.rikkeisoft.com/assets/front/images/logoRikkeisoft.png'
+                alt=''
+                className='logoRikkei'
+              />
             </div>
-            
           </div>
         </div>
       </div>
-      <div className="footerItem_lowestBottom">
-        <div className="footerItem_termsWrap">
-          <div className="footerItem-ul">
-            <span className="footerItem_terms">
+      <div className='footerItem_lowestBottom'>
+        <div className='footerItem_termsWrap'>
+          <div className='footerItem-ul'>
+            <span className='footerItem_terms'>
               <b>Chính sách bảo mật thông tin</b>
             </span>
-            <span className="footerItem_terms">
+            <span className='footerItem_terms'>
               <b>Chính sách bảo mật</b>
             </span>
-            <span className="footerItem_terms">
+            <span className='footerItem_terms'>
               <b>Điều khoản sử dụng</b>
             </span>
-            <span className="footerItem_terms">
+            <span className='footerItem_terms'>
               <b>Điều hành công ty</b>
             </span>
-            <span className="footerItem_terms">
+            <span className='footerItem_terms'>
               <b>Hướng dẫn thương hiệu</b>
             </span>
-           
           </div>
-          <div className="footerItem_sns">
+          <div className='footerItem_sns'>
             <img
-              src="	https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png"
-              alt=""
-              className="logo-facebook"
+              src='	https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/2048px-Facebook_f_logo_%282019%29.svg.png'
+              alt=''
+              className='logo-facebook'
             />
             <img
-              src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
-              alt=""
-              className="logo-google"
+              src='https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png'
+              alt=''
+              className='logo-google'
             />
           </div>
         </div>
