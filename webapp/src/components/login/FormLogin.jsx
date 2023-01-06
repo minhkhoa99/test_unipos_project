@@ -29,6 +29,8 @@ const registerSchema = yup.object().shape({
   password: yup.string().required("Password cannot be empty !!"),
   repassword: yup.string().required("Password cannot be empty !!"),
 });
+const bcrypt = require("bcryptjs");
+
 const loginSchema = yup.object().shape({
   email: yup
     .string()
@@ -53,7 +55,7 @@ const initialValuesLogin = {
 };
 function FormLogin() {
   const dispatch = useDispatch();
-  const [cookies, setCookie] = useCookies(["user"]);
+  const [cookies, setCookie] = useCookies("user");
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
   // const dispatch = useDispatch();
@@ -90,25 +92,36 @@ function FormLogin() {
       })
         .then((response) => response.json())
         .then((data) => {
+          // console.log(data);
+          console.log(localStorage);
+          console.log(data.token);
+
+          localStorage.setItem("token", data.token);
           dispatch(setUser({ iduser: data.data }));
-          if (data.message === "login success") {
-            Swal.fire(
-              "Login Successful!",
-              "Logged in successfully!",
-              "success"
-            );
-            setCookie("Email", email);
-            setCookie("Password", pass);
-            console.log(cookies);
-            window.location.href = "http://localhost:8800/home";
+          if (!data.token) {
+            window.location.href = "http://localhost:8800/login";
           } else {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Incorrect email or password!",
-            });
+            // window.location.href != "http://localhost:8800/login";
+            if (data.message === "login success") {
+              Swal.fire(
+                "Login Successful!",
+                "Logged in successfully!",
+                "success"
+              );
+              // setCookie("Email", bcrypt.hashSync(email));
+              // console.log(data);
+              // console.log(cookies.Email);
+              window.location.href = "http://localhost:8800/home";
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Incorrect email or password!",
+              });
+            }
+            console.log(data);
+            
           }
-          console.log(data);
         })
         .catch((error) => {
           console.error("Error:", error);
