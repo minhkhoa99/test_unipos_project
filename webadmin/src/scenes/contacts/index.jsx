@@ -12,7 +12,7 @@ const Contacts = () => {
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
+    // { field: "RegisterId", headerName: "Registrar ID" },
     {
       field: "name",
       headerName: "Name",
@@ -37,29 +37,42 @@ const Contacts = () => {
       flex: 1,
     },
     {
-      field: "address",
-      headerName: "Address",
-      flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
+      field: "point",
+      headerName: "Point",
       flex: 1,
     },
   ];
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(`http://localhost:5000/user`);
-      console.log(res);
+      // console.log(res);
       const data = await res.json();
+      console.log(data.data);
+      setUsers(data.data);
     };
     fetchData().catch(console.error);
   }, []);
+  const result = users.map((e) => {
+    return {
+      id: `${e.id}`,
+      name: `${e.username}`,
+      email: `${e.Email}`,
+      phone: `${e.Phone}`,
+      point: `${e.Point}`,
+    };
+  });
+  console.log(result);
+
+  // const DataUser = [
+  //   {
+  //     id: `${users.id}`,
+  //     name: `${users.username}`,
+  //     email: `${users.email}`,
+  //     phone: `${users.phone}`,
+  //     point: `${users.point}`,
+  //   },
+  // ];
   return (
     <Box m='20px'>
       <Header title='User Infomation' subtitle='Details users infomation' />
@@ -96,7 +109,7 @@ const Contacts = () => {
         }}
       >
         <DataGrid
-          rows={mockDataContacts}
+          rows={result}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
