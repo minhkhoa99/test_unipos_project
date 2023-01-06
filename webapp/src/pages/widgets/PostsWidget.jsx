@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { format, render, cancel, register } from 'timeago.js';
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state/index";
-import { setNewpost ,setInteractive } from "../../state/index";
+import { setNewpost ,setInteractive, setComments } from "../../state/index";
 import { setTrueFalse } from "../../state/index";
 import PostWidget from "./PostWidget";
 import PostNew from "./PostNew";
@@ -16,8 +17,8 @@ const PostsWidget = () => {
   const iduser = useSelector((state) => state.iduser);
   const isProfile = useSelector((state) => state.isProfile);
   const interactive = useSelector((state) => state.interactive);
+  const comments = useSelector((state) => state.comments)
   const [data, setData] = useState([]);
-  const like = useSelector((state) => state.like);
   const getPosts = async () => {
     const response = await fetch("http://127.0.0.1:5000/blog", {
       mode: "cors",
@@ -49,15 +50,27 @@ const PostsWidget = () => {
     dispatch(setInteractive({ interactive: data.data }));
   };
 
+  const getComment = async() => {
+    const response = await fetch("http://127.0.0.1:5000/comment", {
+      mode: "cors",
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    dispatch(setComments({ comments: data.data }));
+  }
+
   useEffect(() => {
     if (isProfile) {
       // console.log("aa");
       getUserpost();
       getInteractive();
+      getComment()
     } else {
       // console.log("bb");
       getPosts();
       getInteractive();
+      getComment()
     };
     dispatch(setNewpost([]));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -86,11 +99,16 @@ const PostsWidget = () => {
   // console.log(newpost);
   // console.log(isProfile);
   // console.log(interactive);
+  // console.log(comments);
   return (
     <>
       {newpost != undefined ?
         newpost.map((e,i) => {
-        return <PostNew key={i} newpost={e} />
+          let like = interactive.filter((e2) => e2.blogId == e.id && e2.usernameLikes != "" );
+          let dislike = interactive.filter((e2) => e2.blogId == e.id && e2.usernameDislikes != "" );
+          let command = comments.filter((e2)=> e2.blogId == e.id)
+          let postviews = {blog:e, arrUsers:iduser, likes:like, dislikes:dislike, command:command};
+          return <PostNew key={i} newpost={postviews} />
       })
       :
       ""}
@@ -98,7 +116,8 @@ const PostsWidget = () => {
         posts.map((e,i) => {
           let like = interactive.filter((e2) => e2.blogId == e.id && e2.usernameLikes != "" );
           let dislike = interactive.filter((e2) => e2.blogId == e.id && e2.usernameDislikes != "" );
-          let postviews = {blog:e, arrUsers:iduser, likes:like, dislikes:dislike};
+          let command = comments.filter((e2)=> e2.blogId == e.id)
+          let postviews = {blog:e, arrUsers:iduser, likes:like, dislikes:dislike, command:command};
           return <PostWidget key={i}
            postview={postviews}
             />;
@@ -110,8 +129,10 @@ const PostsWidget = () => {
           });
           let like = interactive.filter((e2) => e2.blogId == e.id && e2.usernameLikes != "" );
           let dislike = interactive.filter((e2) => e2.blogId == e.id && e2.usernameDislikes != "" );
-          let postviews = {blog:e, arrUsers:arrUser, likes:like, dislikes:dislike};
+          let command = comments.filter((e2)=> e2.blogId == e.id)
+          let postviews = {blog:e, arrUsers:arrUser, likes:like, dislikes:dislike, command:command};
           return <PostWidget key={i}
+           i={i}
            postview={postviews}
            />;
         })

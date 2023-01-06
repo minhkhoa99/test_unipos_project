@@ -11,6 +11,7 @@ const initialState = {
   iduser: [],
   newpost: [],
   interactive: [],
+  comments: [],
 };
 
 export const authSlice = createSlice({
@@ -73,6 +74,9 @@ export const authSlice = createSlice({
     setInteractive: (state, action) => {
       state.interactive = action.payload.interactive
     },
+    setComments: (state, action) => {
+      state.comments = action.payload.comments
+    }
   },
 });
 
@@ -88,5 +92,6 @@ export const {
   setNewpost,
   setTrueFalse,
   setInteractive,
+  setComments,
 } = authSlice.actions;
 export default authSlice.reducer;
