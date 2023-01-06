@@ -94,7 +94,7 @@ export default function ChatContainer({ currentChat, socket, handleClick }) {
             /> */}
           </div>
           <div className='username'>
-            <h3>hello</h3>
+            <h3>{currentChat.username}</h3>
           </div>
         </div>
         <div className='container-btn-chat'>
