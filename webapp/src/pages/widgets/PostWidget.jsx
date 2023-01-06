@@ -16,6 +16,7 @@ import { setPost } from "state";
 import { useEffect } from "react";
 import { setNewpost,} from "../../state/index";
 import Comment from "./Comment";
+import Commentnew from "./Commentnew";
 import { async } from "@firebase/util";
 
 
@@ -26,7 +27,8 @@ const PostWidget = ({postview,}) => {
   const { id, username } = useSelector((state) => state.iduser);
   const users = useSelector((state) => state.users);
   const {blog, arrUsers, likes, dislikes, command} = postview
-  const [commentviewnew,setCommentviewnew] = useState([])
+  const [commentviewnew,setCommentviewnew] = useState()
+  const [isCommentviewnew, setIscommentviewnew] = useState(true)
   const [like, setLike] = useState(false)
   const [dislike, setDislike] = useState(false)
   const [commentinput, setCommentinput] = useState("")
@@ -99,25 +101,28 @@ const PostWidget = ({postview,}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // console.log("aaaa");
-    let blogid = e.target.classList[0]
-    let formData ={}
-    formData.Content = commentinput
-    formData.userId = id;
-    formData.blogId = blogid
-    const response = await fetch(`http://127.0.0.1:5000/comment`, {
-      mode: "cors",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const piostComments = await response.json();
-    let piostComment = piostComments.data
-    console.log(piostComment);
-    setCommentviewnew(piostComment)
-    setCommentinput("")
+    if(isCommentviewnew) {
+      // console.log("aaaa");
+      let blogid = e.target.classList[0]
+      let formData ={}
+      formData.Content = commentinput
+      formData.userId = id;
+      formData.blogId = blogid
+      const response = await fetch(`http://127.0.0.1:5000/comment`, {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const piostComments = await response.json();
+      let piostComment = piostComments.data
+      console.log(piostComment);
+      setCommentviewnew(piostComment)
+      setCommentinput("")
+      setIscommentviewnew(false)
+    }
 
   }
 
@@ -215,6 +220,7 @@ const PostWidget = ({postview,}) => {
           </form>
         </div>
       </div>
+      {!commentviewnew ? "" : <Commentnew commentviewnew = {commentviewnew} iduser = {iduser}></Commentnew>}
       {command.map((e,i)=>{
         let user = users.find((e1)=>{
           return e1.id == e.userId
