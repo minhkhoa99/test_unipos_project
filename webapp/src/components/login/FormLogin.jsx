@@ -15,10 +15,10 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
-import { setUser } from "../../state/index"
+import { setUser } from "../../state/index";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import { useCookies } from "react-cookie";
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("FirstName cannot be empty !!"),
   lastName: yup.string().required("LastName cannot be empty !!"),
@@ -53,6 +53,7 @@ const initialValuesLogin = {
 };
 function FormLogin() {
   const dispatch = useDispatch();
+  const [cookies, setCookie] = useCookies(["user"]);
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
   // const dispatch = useDispatch();
@@ -67,6 +68,7 @@ function FormLogin() {
       let email = values.target[0].value;
       let pass = values.target[2].value;
       console.log(email, pass);
+
       const data = {
         id: null,
         username: null,
@@ -95,6 +97,9 @@ function FormLogin() {
               "Logged in successfully!",
               "success"
             );
+            setCookie("Email", email);
+            setCookie("Password", pass);
+            console.log(cookies);
             window.location.href = "http://localhost:8800/home";
           } else {
             Swal.fire({

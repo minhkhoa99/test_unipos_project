@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { CookiesProvider } from "react-cookie";
 import {
   persistStore,
   persistReducer,
@@ -47,13 +48,14 @@ const app = initializeApp(firebaseConfig);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    
     <Router>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistStore(store)}>
-      <App />
-      </PersistGate>
-    </Provider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistStore(store)}>
+          <CookiesProvider>
+            <App />
+          </CookiesProvider>
+        </PersistGate>
+      </Provider>
     </Router>
   </React.StrictMode>
 );
