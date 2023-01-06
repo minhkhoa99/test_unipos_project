@@ -3,23 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { format, render, cancel, register } from 'timeago.js';
 
 
-function Commentnew({comment}) {
-    const {commentview,user} = comment
-    // console.log(commentview);
-    // console.log(user);
+function Commentnew({commentviewnew,iduser}) {
+
     return ( <>
     <div>
         <div className='other-comments'>
           <div className='other-user'>
             <img
-              src={user.Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : user.Avata}
+              src={iduser.Avata == null ? "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6" : iduser.Avata}
               alt=''
             />
           </div>
           <div className='comment-text'>
-            <div className="viewcomnent-username">{user.username}</div>
+            <div className="viewcomnent-username">{iduser.username}</div>
             <div className="viewcomnent-text">
-            {commentview.Content}
+            {commentviewnew.Content}
             </div>
           </div>
         </div>
@@ -28,7 +26,7 @@ function Commentnew({comment}) {
             <li className='li-like'>
               <button>Thích</button>{" "}
             </li>
-            <li>{format(commentview.createdAt)}</li>
+            <li>{format(commentviewnew.createdAt)}</li>
           </ul>
         </div>
       </div>
