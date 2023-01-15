@@ -61,7 +61,7 @@ export default function Chat() {
   };
   return (
     <>
-      <div className='container'>
+      <div className="container">
         {currentChat === undefined ? (
           ""
         ) : (
