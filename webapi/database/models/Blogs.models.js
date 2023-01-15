@@ -22,10 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    // Category: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    // },
+    Category: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     Like: {
       type: DataTypes.INTEGER,
     },

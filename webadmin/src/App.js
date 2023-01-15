@@ -1,99 +1,47 @@
-import PropTypes from 'prop-types'
-import React, {useEffect} from "react"
+import { useState } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
+import Topbar from "./scenes/global/Topbar";
+import Sidebar from "./scenes/global/Sidebar";
+// import Dashboard from "./scenes/dashboard";
+// import Team from "./scenes/team";
+// import Invoices from "./scenes/invoices";
+// import Contacts from "./scenes/contacts";
+// import Bar from "./scenes/bar";
+// import Form from "./scenes/form";
+// import Line from "./scenes/line";
+// import Pie from "./scenes/pie";
+// import FAQ from "./scenes/faq";
+// import Geography from "./scenes/geography";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "./theme";
+// import Calendar from "./scenes/calendar/calendar";
+// import Login from "./components/Login";
 
-import { Switch, BrowserRouter as Router } from "react-router-dom"
-import { connect } from "react-redux"
+function App() {
+  const [theme, colorMode] = useMode();
+  const [isSidebar, setIsSidebar] = useState(true);
 
-// Import Routes all
-import { userRoutes, authRoutes } from "./routes/allRoutes"
-
-// Import all middleware
-import Authmiddleware from "./routes/middleware/Authmiddleware"
-
-// layouts Format
-import VerticalLayout from "./components/VerticalLayout/"
-import HorizontalLayout from "./components/HorizontalLayout/"
-import NonAuthLayout from "./components/NonAuthLayout"
-
-// Import scss
-import "./assets/scss/theme.scss"
-
-// Import Firebase Configuration file
-// import { initFirebaseBackend } from "./helpers/firebase_helper"
-
-import fakeBackend from "./helpers/AuthType/fakeBackend"
-
-// Activating fake backend
-fakeBackend()
-
-// const firebaseConfig = {
-//   apiKey: process.env.REACT_APP_APIKEY,
-//   authDomain: process.env.REACT_APP_AUTHDOMAIN,
-//   databaseURL: process.env.REACT_APP_DATABASEURL,
-//   projectId: process.env.REACT_APP_PROJECTID,
-//   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
-//   messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
-//   appId: process.env.REACT_APP_APPID,
-//   measurementId: process.env.REACT_APP_MEASUREMENTID,
-// }
-
-// init firebase backend
-// initFirebaseBackend(firebaseConfig)
-
-const App = props => {
-
-  function getLayout() {
-    let layoutCls = VerticalLayout
-    switch (props.layout.layoutType) {
-      case "horizontal":
-        layoutCls = HorizontalLayout
-        break
-      default:
-        layoutCls = VerticalLayout
-        break
-    }
-    return layoutCls
-  }
-
-  const Layout = getLayout()
   return (
-    <React.Fragment>
-      <Router>
-        <Switch>
-          {authRoutes.map((route, idx) => (
-            <Authmiddleware
-              path={route.path}
-              layout={NonAuthLayout}
-              component={route.component}
-              key={idx}
-              isAuthProtected={false}
-            />
-          ))}
-
-          {userRoutes.map((route, idx) => (
-            <Authmiddleware
-              path={route.path}
-              layout={Layout}
-              component={route.component}
-              key={idx}
-              isAuthProtected={true}
-              exact
-            />
-          ))}
-        </Switch>
-      </Router>
-    </React.Fragment>
-  )
+    <>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className='app'>
+            <Sidebar isSidebar={isSidebar} />
+            <main className='content'>
+              <Topbar setIsSidebar={setIsSidebar} />
+              <Outlet></Outlet>
+            </main>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </>
+  );
 }
 
-App.propTypes = {
-  layout: PropTypes.any
+export default App;
+{
+  /* <Routes>
+        <Route path='/login' element={<Login />} />
+      </Routes> */
 }
-
-const mapStateToProps = state => {
-  return {
-    layout: state.Layout,
-  }
-}
-
-export default connect(mapStateToProps, null)(App)

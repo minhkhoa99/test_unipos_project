@@ -23,51 +23,71 @@ import UserImage from "../../components/UserImage";
 import WidgetWrapper from "../../components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "../../state/index";
+import { setPosts, setNewpost } from "../../state/index";
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
-  let id = Math.floor(Math.random()*10000)
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
+  const [postData, setPostData] = useState([]);
   const { palette } = useTheme();
-  // const { _id } = useSelector((state) => state.user);
+  const { id } = useSelector((state) => state.iduser);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mediumMain = "#858585";
   const medium = "A3A3A3";
-
+  // console.log(id);
   const handlePost = async () => {
-    const formData = {}
-    
-    formData.id = id;
-    formData.userId = 1;
-    formData.Content = post;
     if (image) {
-      formData.append("picture", image);
-      formData.append("picturePath", image.name);
-    }
-     console.log(post);
-     console.log(id);
-     console.log(formData);
-    const response = await fetch(`http://127.0.0.1:3000/blog`, {
-      mode: 'cors',
-      method: 'POST',
-      headers: {
-        'Content-Type': "application/json"
-      },
-      body: JSON.stringify(formData),
-    });
-    const posts = await response.json();
-    dispatch(setPosts({ posts }));
-    setImage(null);
-    setPost("");
-  };
+      const formData = new FormData();
+      formData.append("Content", post);
+      formData.append("userId", id);
+      formData.append("ImgVideo", image);
+      const response = await fetch(`http://127.0.0.1:5000/blogs`, {
+        mode: "cors",
+        method: "POST",
+        body: formData,
+      });
+      const postRes = await response.json();
+      let a = postRes.data
+      setPostData([a,...postData])
+      setPost("");
+    } else {
+      const formData1 = {};
+      formData1.userId = id;
+      formData1.Content = post;
+      //  console.log(post);
+      //  console.log(formData);
+      const response = await fetch(`http://127.0.0.1:5000/blog`, {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData1),
+      });
+      const postRes = await response.json();
+      let a = postRes.data
+      setPostData([a,...postData])
 
+
+      setImage(null);
+      setPost("");
+    }
+  };
+  if (postData.length != 0) {
+    dispatch(setNewpost({ postData }));
+    // console.log(postData);
+  }
+  // console.log(postData);
   return (
     <WidgetWrapper>
-      <FlexBetween gap="1.5rem">
-        <UserImage image={"https://thuthuatnhanh.com/wp-content/uploads/2022/06/Anh-sieu-nhan-mau-do.jpg"} />
+      <FlexBetween gap='1.5rem'>
+        <UserImage
+          image={
+            "https://thuthuatnhanh.com/wp-content/uploads/2022/06/Anh-sieu-nhan-mau-do.jpg"
+          }
+        />
         <InputBase
           placeholder="What's on your mind..."
           onChange={(e) => setPost(e.target.value)}
@@ -83,12 +103,12 @@ const MyPostWidget = ({ picturePath }) => {
       {isImage && (
         <Box
           border={`1px solid ${medium}`}
-          borderRadius="5px"
-          mt="1rem"
-          p="1rem"
+          borderRadius='5px'
+          mt='1rem'
+          p='1rem'
         >
           <Dropzone
-            acceptedFiles=".jpg,.jpeg,.png"
+            acceptedFiles='.jpg,.jpeg,.png'
             multiple={false}
             onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
           >
@@ -97,8 +117,8 @@ const MyPostWidget = ({ picturePath }) => {
                 <Box
                   {...getRootProps()}
                   border={`2px dashed ${palette.primary.main}`}
-                  p="1rem"
-                  width="100%"
+                  p='1rem'
+                  width='100%'
                   sx={{ "&:hover": { cursor: "pointer" } }}
                 >
                   <input {...getInputProps()} />
@@ -107,7 +127,7 @@ const MyPostWidget = ({ picturePath }) => {
                   ) : (
                     <FlexBetween>
                       <Typography>{image.name}</Typography>
-                      
+
                       <EditOutlined />
                     </FlexBetween>
                   )}
@@ -129,7 +149,7 @@ const MyPostWidget = ({ picturePath }) => {
       <Divider sx={{ margin: "1.25rem 0" }} />
 
       <FlexBetween>
-        <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
+        <FlexBetween gap='0.25rem' onClick={() => setIsImage(!isImage)}>
           <ImageOutlined sx={{ color: mediumMain }} />
           <Typography
             color={mediumMain}
@@ -141,23 +161,23 @@ const MyPostWidget = ({ picturePath }) => {
 
         {isNonMobileScreens ? (
           <>
-            <FlexBetween gap="0.25rem">
+            <FlexBetween gap='0.25rem'>
               <GifBoxOutlined sx={{ color: mediumMain }} />
               <Typography color={mediumMain}>Clip</Typography>
             </FlexBetween>
 
-            <FlexBetween gap="0.25rem">
+            <FlexBetween gap='0.25rem'>
               <AttachFileOutlined sx={{ color: mediumMain }} />
               <Typography color={mediumMain}>Attachment</Typography>
             </FlexBetween>
 
-            <FlexBetween gap="0.25rem">
+            <FlexBetween gap='0.25rem'>
               <MicOutlined sx={{ color: mediumMain }} />
               <Typography color={mediumMain}>Audio</Typography>
             </FlexBetween>
           </>
         ) : (
-          <FlexBetween gap="0.25rem">
+          <FlexBetween gap='0.25rem'>
             <MoreHorizOutlined sx={{ color: mediumMain }} />
           </FlexBetween>
         )}
