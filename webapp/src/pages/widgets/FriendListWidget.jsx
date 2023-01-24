@@ -11,6 +11,7 @@ import axios from "axios";
 import Chat from "../Chat";
 import ChatContainer from "./../../components/ChatContainer";
 
+
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
   const { palette } = useTheme();
@@ -70,31 +71,35 @@ const FriendListWidget = ({ userId }) => {
     setCurrentChat(undefined);
   };
   return (
-    <WidgetWrapper>
-      <Typography
-        color={"#333333"}
-        variant='h5'
-        fontWeight='500'
-        sx={{ mb: "1.5rem" }}
-      >
-        Friend List
-        <div className='container'>
-          {currentChat === undefined ? (
-            ""
-          ) : (
-            <ChatContainer
-              currentChat={currentChat}
-              socket={socket}
-              handleClick={handleClick}
-            />
-          )}
-          <Contacts contacts={contacts} changeChat={handleChatChange} />
-        </div>
-      </Typography>
-      <Box display='flex' flexDirection='column' gap='1.5rem'></Box>
+    <div className="total-chat"
+    display="flex"
+    >
+      <WidgetWrapper>
+        <Typography
+          color={"#333333"}
+          variant="h5"
+          fontWeight="500"
+          sx={{ mb: "1.5rem" }}
+        >
+          Friend List
+          <div className="container">
+            <Contacts contacts={contacts} changeChat={handleChatChange} />
+          </div>
+        </Typography>
+        <Box display="flex" flexDirection="column" gap="1.5rem"></Box>
 
-      {/* <Chat /> */}
-    </WidgetWrapper>
+        {/* <Chat /> */}
+      </WidgetWrapper>
+      {currentChat === undefined ? (
+        ""
+      ) : (
+        <ChatContainer
+          currentChat={currentChat}
+          socket={socket}
+          handleClick={handleClick}
+        />
+      )}
+    </div>
   );
 };
 
