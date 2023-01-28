@@ -12,6 +12,7 @@ import Chat from "../Chat";
 import ChatContainer from "./../../components/ChatContainer";
 
 
+
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
   const { palette } = useTheme();
