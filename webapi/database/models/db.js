@@ -3,6 +3,5 @@ module.exports = {
   USER: "root",
   PASSWORD: "12345678",
   DATABASE: "unipost_project",
-
   DIALECT: "mysql",
 };

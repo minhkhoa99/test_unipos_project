@@ -94,7 +94,7 @@ export default function ChatContainer({ currentChat, socket, handleClick }) {
             /> */}
           </div>
           <div className='username'>
-            <h3>{currentChat.username}</h3>
+            <h5>{currentChat.username}</h5>
           </div>
         </div>
         <div className='container-btn-chat'>
@@ -118,7 +118,7 @@ export default function ChatContainer({ currentChat, socket, handleClick }) {
                   message.fromSelf ? "sended" : "recieved"
                 }`}
               >
-                <div className='content '>
+                <div className='content-message '>
                   <p>{message.message}</p>
                 </div>
               </div>
