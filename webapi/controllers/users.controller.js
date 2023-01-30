@@ -13,10 +13,12 @@ module.exports.createUser = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = await bcrypt.hashSync(passFontend, salt);
     const users = await UserMongo.create({
+      _id: req.params.id,
       username,
       Email,
       Password: hash,
     });
+    console.log(req.params.id);
     console.log(req.body.Password);
     delete users.Password;
     const userDetails = await db.models.Users.create({
@@ -89,13 +91,17 @@ module.exports.getUserById = async (req, res) => {
     const user = await db.models.Users.findOne({
       where: {
         id: req.params.id,
+        username: req.body.username,
       },
     });
-
+    const userMongo = await UserMongo.findOne({
+      // _id: user.id,
+      username: req.body.username,
+    });
     res.status(200).send({
       status: 200,
       data: user,
-      // dataMongo: usersMongo,
+      dataMongo: userMongo,
     });
   } catch (error) {
     return res.status(400).send({
@@ -108,21 +114,26 @@ module.exports.getUserById = async (req, res) => {
 
 module.exports.updateUser = async (req, res) => {
   try {
-    console.log(req.params.id);
-    // const usersMongo = await UserMongo.findOneAndUpdate({
-    //   _id: { $ne: req.params.id },
-    // });
+    console.log(req.body.username);
+
     const user = await db.models.Users.findOne({
       where: {
         id: req.params.id,
       },
     });
+    const userMongo = await UserMongo.findOne({
+      // _id: req.params.id,
+      username: req.body.username,
+    });
+    console.log("id", req.params.id);
     if (user) {
+      console.log("hehehe");
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.Password, salt);
       console.log(user.username);
-      // console.log(usersMongo);
+      // console.log("hello", userMongo.username);
       user.username = req.body.username;
+
       (user.Email = req.body.Email), (user.Password = hash);
       user.DOB = req.body.DOB;
       user.Gender = req.body.Gender;
@@ -131,11 +142,15 @@ module.exports.updateUser = async (req, res) => {
       user.referralCode = req.body.referralCode;
       user.Status = req.body.Status;
       await user.save();
+      await UserMongo.findOneAndUpdate({
+        $set: { username: req.body.username },
+      });
     }
     res.status(200).send({
       status: 200,
       message: "Success",
       data: user,
+      dataMongo: userMongo,
     });
   } catch (error) {
     return res.status(400).send({
