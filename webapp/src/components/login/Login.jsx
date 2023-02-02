@@ -14,7 +14,6 @@ import FormLogin from "./FormLogin";
 
 // import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
-
 const Login = () => {
   const theme = useTheme();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
@@ -59,38 +58,34 @@ const Login = () => {
   };
 
   return (
-    <div className="background">
-     
-      <HeadingNavbar/>
-    
-      <Box >
-      <Box
-      marginTop="5%"
-        width="100%"
-        backgroundColor={theme.palette.background.alt}
-        p="1rem 6%"
-        textAlign="center"
-      >
-        <Typography fontWeight="bold" fontSize="32px" color="primary">
-          Rating App
-        </Typography>
+    <div style={{ backgroundColor: "#f8f9f9" }}>
+      <HeadingNavbar />
+
+      <Box>
+        <Box
+          marginTop='5%'
+          width='100%'
+          backgroundColor={theme.palette.background.alt}
+          p='1rem 6%'
+          textAlign='center'
+        >
+          <Typography fontWeight='bold' fontSize='32px' color='primary'>
+            Rating App
+          </Typography>
+        </Box>
+
+        <Box
+          width={isNonMobileScreens ? "50%" : "93%"}
+          p='2rem'
+          m='2rem auto'
+          borderRadius='1.5rem'
+          backgroundColor={theme.palette.background.alt}
+        >
+          <FormLogin />
+        </Box>
       </Box>
 
-      <Box
-        width={isNonMobileScreens ? "50%" : "93%"}
-        p="2rem"
-        m="2rem auto"
-        borderRadius="1.5rem"
-        backgroundColor={theme.palette.background.alt}
-      >
-       
-    <FormLogin/>
-       
-      </Box>
-    </Box>
- 
-    
-      <FeatureBottum/>
+      <FeatureBottum />
     </div>
   );
 };

@@ -1,10 +1,16 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
+<<<<<<< HEAD
 // import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
+=======
+import { mockDataContacts } from "../../data/mockData";
+import Header from "../../components/Header";
+import { useTheme } from "@mui/material";
+>>>>>>> master
 
 const Contacts = () => {
   const theme = useTheme();
@@ -12,7 +18,11 @@ const Contacts = () => {
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
+<<<<<<< HEAD
     // { field: "RegisterId", headerName: "Registrar ID" },
+=======
+    { field: "registrarId", headerName: "Registrar ID" },
+>>>>>>> master
     {
       field: "name",
       headerName: "Name",
@@ -37,6 +47,7 @@ const Contacts = () => {
       flex: 1,
     },
     {
+<<<<<<< HEAD
       field: "point",
       headerName: "Point",
       flex: 1,
@@ -73,6 +84,24 @@ const Contacts = () => {
   //     point: `${users.point}`,
   //   },
   // ];
+=======
+      field: "address",
+      headerName: "Address",
+      flex: 1,
+    },
+    {
+      field: "city",
+      headerName: "City",
+      flex: 1,
+    },
+    {
+      field: "zipCode",
+      headerName: "Zip Code",
+      flex: 1,
+    },
+  ];
+
+>>>>>>> master
   return (
     <Box m='20px'>
       <Header title='User Infomation' subtitle='Details users infomation' />
@@ -109,7 +138,11 @@ const Contacts = () => {
         }}
       >
         <DataGrid
+<<<<<<< HEAD
           rows={result}
+=======
+          rows={mockDataContacts}
+>>>>>>> master
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />

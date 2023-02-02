@@ -16,6 +16,14 @@ const Invoices = () => {
       cellClassName: "name-column--cell",
     },
     {
+<<<<<<< HEAD
+=======
+      field: "phone",
+      headerName: "Phone Number",
+      flex: 1,
+    },
+    {
+>>>>>>> master
       field: "email",
       headerName: "Email",
       flex: 1,

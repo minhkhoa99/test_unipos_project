@@ -66,6 +66,7 @@ function Homepages() {
               <AdvertWidget />
               <Box m='2rem 0' />
               <FriendListWidget />
+              {/* <FriendListWidget userId={_id} /> */}
             </Box>
           )}
         </Box>

@@ -1,33 +1,78 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import Friend from "../../components/Friend";
 import WidgetWrapper from "../../components/WidgetWrapper";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "../../state/index";
+import Contacts from "../../components/Contacts";
+import { allUsersRoute, host } from "../../utils/APIRoutes";
+import { useNavigate } from "react-router-dom";
+import { io } from "socket.io-client";
+import axios from "axios";
+import Chat from "../Chat";
+import ChatContainer from "./../../components/ChatContainer";
+
+
 
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
   const { palette } = useTheme();
   const token = useSelector((state) => state.token);
-  // const friends = useSelector((state) => state.user.friends);
+  const [friend, setFriends] = useState([]);
 
-  // const getFriends = async () => {
-  //   const response = await fetch(
-  //     `http://localhost:3001/users/${userId}/friends`,
-  //     {
-  //       method: "GET",
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     }
-  //   );
-  //   const data = await response.json();
-  //   dispatch(setFriends({ friends: data }));
-  // };
+  const navigate = useNavigate();
+  const socket = useRef();
+  const [contacts, setContacts] = useState([]);
+  const [currentChat, setCurrentChat] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(undefined); // eslint-disable-line react-hooks/exhaustive-deps
+  // console.log(friend);
+  useEffect(() => {
+    const getItem = async () => {
+      if (localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+        // navigate("/login");
+        setCurrentUser(
+          await JSON.parse(
+            localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+          )
+        );
+      }
+    };
+    getItem();
+  }, []);
+  useEffect(() => {
+    const getSocket = () => {
+      if (currentUser) {
+        socket.current = io(host);
+        socket.current.emit("add-user", currentUser._id);
+      }
+    };
+    getSocket();
+    // console.log(currentUser);
+  }, [currentUser]);
+  // console.log(currentUser.id);
+  useEffect(() => {
+    const getData = async () => {
+      if (currentUser) {
+        const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
 
-  // useEffect(() => {
-  //   getFriends();
-  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+        setContacts(data.data.dataMongo);
+      }
+    };
+    getData();
+  }, [currentUser]);
+  // console.log(contacts);
+  const handleChatChange = (chat) => {
+    if (currentChat === chat) {
+      setCurrentChat(undefined);
+    } else {
+      setCurrentChat(chat);
+    }
+  };
+  console.log(currentChat);
+  const handleClick = () => {
+    setCurrentChat(undefined);
+  };
   return (
+<<<<<<< HEAD
     <WidgetWrapper >
       <Typography
         color={"#333333"}
@@ -49,6 +94,37 @@ const FriendListWidget = ({ userId }) => {
         ))} */}
       </Box>
     </WidgetWrapper>
+=======
+    <div className="total-chat"
+    display="flex"
+    >
+      <WidgetWrapper>
+        <Typography
+          color={"#333333"}
+          variant="h5"
+          fontWeight="500"
+          sx={{ mb: "1.5rem" }}
+        >
+          Friend List
+          <div className="container">
+            <Contacts contacts={contacts} changeChat={handleChatChange} />
+          </div>
+        </Typography>
+        <Box display="flex" flexDirection="column" gap="1.5rem"></Box>
+
+        {/* <Chat /> */}
+      </WidgetWrapper>
+      {currentChat === undefined ? (
+        ""
+      ) : (
+        <ChatContainer
+          currentChat={currentChat}
+          socket={socket}
+          handleClick={handleClick}
+        />
+      )}
+    </div>
+>>>>>>> master
   );
 };
 

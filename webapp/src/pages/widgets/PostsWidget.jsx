@@ -4,6 +4,7 @@ import { format, render, cancel, register } from 'timeago.js';
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state/index";
 import { setNewpost ,setInteractive, setComments } from "../../state/index";
+
 import { setTrueFalse } from "../../state/index";
 import PostWidget from "./PostWidget";
 import PostNew from "./PostNew";
@@ -29,7 +30,7 @@ const PostsWidget = () => {
     dispatch(setPosts({ posts: data.data }));
   };
 
-  const getUserpost = async () =>{
+  const getUserpost = async () => {
     const response = await fetch(`http://127.0.0.1:5000/blog/${id}`, {
       mode: "cors",
       method: "GET",
@@ -38,7 +39,7 @@ const PostsWidget = () => {
     const data = await response.json();
     // console.log(data.data);
     dispatch(setPosts({ posts: data.data }));
-  }
+  };
 
   const getInteractive = async () => {
     const response = await fetch("http://127.0.0.1:5000/interactive", {
@@ -70,20 +71,18 @@ const PostsWidget = () => {
       // console.log("bb");
       getPosts();
       getInteractive();
+
       getComment()
     };
     dispatch(setNewpost([]));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-
-
 
   // let result = posts.map((e) => {
   //   let arr = users.find((e1) => {
   //     return e1.id === e.userId;
   //   });
   //   let like = interactive.filter((e2) => e2.blogId == e.id )
-  
+
   //   return like;
   // });
   // let like = posts.map((e) => {
@@ -137,7 +136,6 @@ const PostsWidget = () => {
            />;
         })
       }
-
       {/* <PostWidget /> */}
     </>
   );
