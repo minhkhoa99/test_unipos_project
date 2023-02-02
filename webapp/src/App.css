@@ -357,7 +357,6 @@ ul {
   }
 }
 
-
 /* Homepage */
 .homepage {
   display: flex;
@@ -373,9 +372,6 @@ History .history {
 
 .banner {
   margin-left: 20%;
-}
-.nav {
-  justify-content: space-between;
 }
 .nav-item a {
   text-decoration: none;
@@ -770,7 +766,7 @@ History .history {
   padding-right: 10px;
   padding-top: 1%;
 }
-.other-comments .comment-text .viewcomnent-username{
+.other-comments .comment-text .viewcomnent-username {
   color: black;
   font-weight: 600;
 }

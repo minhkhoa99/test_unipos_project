@@ -73,12 +73,12 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/gioi-thieu' element={<FeaturePages />} />
+
           <Route path='/resetpassword' element={<ResetPass />} />
           <Route path='/editprofile' element={<UserProfile />} />
           <Route path='/nghien-cuu-dien-hinh' element={<CaseStudy />} />
           <Route path='/tin-tuc' element={<NewsPage />} />
           <Route path='/chi-phi' element={<PricePage />} />
-
         </Routes>
       </section>
     </div>
