@@ -22,6 +22,7 @@
     "flexbox-react": "^4.4.0",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.9",
+    "gh-pages": "^5.0.0",
     "i": "^0.3.7",
     "multer": "^1.4.5-lts.1",
     "npm": "^9.2.0",
@@ -60,7 +61,9 @@
     "start": " set PORT=8800 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
